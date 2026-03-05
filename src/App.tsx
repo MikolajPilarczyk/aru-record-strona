@@ -4,11 +4,7 @@ import { Home } from './home';
 import { About } from './about';
 import './index.css';
 import { PostDetail } from './post/postDetail';
-import { Navigation } from './navigation';
-import { Hero } from './hero';
-import { Services } from './services';
 import { VoiceActorsDetail } from "./aktorzy-glosowi/voiceActorsDetail"
-import VoiceActors from './voiceActors';
 function App() {
   
   return (

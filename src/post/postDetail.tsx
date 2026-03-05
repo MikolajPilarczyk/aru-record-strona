@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
-import { User, Calendar } from 'lucide-react';
+import {  Calendar } from 'lucide-react';
 
 export function PostDetail() {
   const { id } = useParams(); // Pobieramy 'id' z adresu URL

@@ -11,7 +11,7 @@ export function Footer()
                 <Mic className="w-5 h-5 text-white" />
               </div>
               <span className="bg-gradient-to-r from-cyan-400 to-green-300 bg-clip-text text-transparent">
-                VoiceStudio
+                Aru Record
               </span>
             </div>
             

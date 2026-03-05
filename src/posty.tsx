@@ -1,4 +1,4 @@
-import { User, Calendar } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { client, urlFor } from './sanityClient';
 import { Link } from 'react-router-dom';
