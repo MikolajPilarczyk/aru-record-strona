@@ -1,5 +1,3 @@
-Oto surowa i konkretna treść pliku README.md w formacie Markdown, przygotowana zgodnie z Twoimi wytycznymi.
-
 Aru Record - Voice Studio & Blog
 🇵🇱 Wersja Polska
 Opis projektu
