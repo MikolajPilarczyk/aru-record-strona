@@ -1,75 +1,56 @@
-# React + TypeScript + Vite
+🎙️ Aru Record - Studio Lektorskie & Blog
+[PL] Profesjonalna platforma dla studia lektorskiego zbudowana w oparciu o nowoczesny stos technologiczny. Projekt łączy dynamiczny frontend z elastycznym systemem zarządzania treścią (CMS).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[EN] A professional platform for a voice-over studio built on a modern tech stack. The project combines a dynamic frontend with a flexible Content Management System (CMS).
 
-Currently, two official plugins are available:
+🇵🇱 Wersja Polska
+🚀 Główne Funkcje
+Dynamiczna Baza Głosów: Automatyczne wyświetlanie lektorów pobieranych z CMS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Portfolio Projektów: Sekcja prezentująca realizacje studia w proporcjach 16:9.
 
-## React Compiler
+Integracja z Sanity.io: Pełne zarządzanie treścią (dodawanie aktorów, opisów i wpisów) bez dotykania kodu.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Responsive Design: Pełna responsywność i nowoczesny "dark mode" z efektami glassmorphism.
 
-Note: This will impact Vite dev & build performances.
+Custom Scrollbar: Autorska stylizacja paska przewijania pasująca do brandingu studia.
 
-## Expanding the ESLint configuration
+🛠️ Stos Technologiczny
+Frontend: React + TypeScript + Vite.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Stylizacja: Tailwind CSS.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+CMS: Sanity.io (Headless CMS).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Ikony: Lucide React.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🏗️ Struktura Danych (Sanity)
+voiceActors: Zarządzanie bazą lektorów (zdjęcia, ksywki, specjalizacje).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+post: Zarządzanie projektami i aktualnościami (Portable Text, daty, obrazy).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🇬🇧 English Version
+🚀 Key Features
+Dynamic Voice Database: Automatic display of voice actors fetched from the CMS.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Project Portfolio: A dedicated section showcasing studio works in 16:9 aspect ratio.
+
+Sanity.io Integration: Full content management (adding actors, descriptions, and posts) via an intuitive dashboard.
+
+Responsive Design: Fully mobile-friendly UI with a modern dark theme and glassmorphism effects.
+
+Custom Scrollbar: Tailored scrollbar styling that matches the studio's branding.
+
+🛠️ Tech Stack
+Frontend: React + TypeScript + Vite.
+
+Styling: Tailwind CSS.
+
+CMS: Sanity.io (Headless CMS).
+
+Icons: Lucide React.
+
+🏗️ Data Structure (Sanity)
+voiceActors: Document type for managing the talent pool (images, nicknames, specializations).
+
+post: Document type for projects and news (Portable Text, dates, images).
