@@ -1,56 +1,76 @@
-🎙️ Aru Record - Studio Lektorskie & Blog
-[PL] Profesjonalna platforma dla studia lektorskiego zbudowana w oparciu o nowoczesny stos technologiczny. Projekt łączy dynamiczny frontend z elastycznym systemem zarządzania treścią (CMS).
+Oto surowa i konkretna treść pliku README.md w formacie Markdown, przygotowana zgodnie z Twoimi wytycznymi.
 
-[EN] A professional platform for a voice-over studio built on a modern tech stack. The project combines a dynamic frontend with a flexible Content Management System (CMS).
-
+Aru Record - Voice Studio & Blog
 🇵🇱 Wersja Polska
-🚀 Główne Funkcje
-Dynamiczna Baza Głosów: Automatyczne wyświetlanie lektorów pobieranych z CMS.
+Opis projektu
+Strona internetowa dla studia lektorskiego.
 
-Portfolio Projektów: Sekcja prezentująca realizacje studia w proporcjach 16:9.
+Integracja z systemem zarządzania treścią Sanity.io.
 
-Integracja z Sanity.io: Pełne zarządzanie treścią (dodawanie aktorów, opisów i wpisów) bez dotykania kodu.
+Frontend zbudowany w React z wykorzystaniem TypeScript.
 
-Responsive Design: Pełna responsywność i nowoczesny "dark mode" z efektami glassmorphism.
+Funkcjonalności
+Pobieranie i wyświetlanie listy lektorów z bazy Sanity.
 
-Custom Scrollbar: Autorska stylizacja paska przewijania pasująca do brandingu studia.
+Dynamiczne podstrony detali aktorów głosowych.
 
-🛠️ Stos Technologiczny
-Frontend: React + TypeScript + Vite.
+Sekcja projektów w formacie 16:9 z automatycznym sortowaniem po dacie.
 
-Stylizacja: Tailwind CSS.
+Horyzontalny scroll projektów z ostylowanym paskiem przewijania.
 
-CMS: Sanity.io (Headless CMS).
+Obsługa treści typu Rich Text przez Portable Text.
 
-Ikony: Lucide React.
+Stos technologiczny
+React 18
 
-🏗️ Struktura Danych (Sanity)
-voiceActors: Zarządzanie bazą lektorów (zdjęcia, ksywki, specjalizacje).
+TypeScript
 
-post: Zarządzanie projektami i aktualnościami (Portable Text, daty, obrazy).
+Vite
+
+Tailwind CSS
+
+Sanity.io (Headless CMS)
+
+Lucide React (Ikony)
+
+Struktura Sanity.io
+voiceActors: Imię, nazwisko, ksywka, specjalizacja, zdjęcie.
+
+post: Tytuł, slug, data publikacji, zdjęcie (image), treść (body).
 
 🇬🇧 English Version
-🚀 Key Features
-Dynamic Voice Database: Automatic display of voice actors fetched from the CMS.
+Project Description
+Website for a voice-over studio.
 
-Project Portfolio: A dedicated section showcasing studio works in 16:9 aspect ratio.
+Integration with Sanity.io Content Management System.
 
-Sanity.io Integration: Full content management (adding actors, descriptions, and posts) via an intuitive dashboard.
+Frontend built with React and TypeScript.
 
-Responsive Design: Fully mobile-friendly UI with a modern dark theme and glassmorphism effects.
+Features
+Fetching and displaying voice actor lists from Sanity.
 
-Custom Scrollbar: Tailored scrollbar styling that matches the studio's branding.
+Dynamic detail pages for individual voice actors.
 
-🛠️ Tech Stack
-Frontend: React + TypeScript + Vite.
+Project section with 16:9 aspect ratio and date-based sorting.
 
-Styling: Tailwind CSS.
+Horizontal project scroll with custom-styled scrollbar.
 
-CMS: Sanity.io (Headless CMS).
+Rich Text support via Portable Text.
 
-Icons: Lucide React.
+Tech Stack
+React 18
 
-🏗️ Data Structure (Sanity)
-voiceActors: Document type for managing the talent pool (images, nicknames, specializations).
+TypeScript
 
-post: Document type for projects and news (Portable Text, dates, images).
+Vite
+
+Tailwind CSS
+
+Sanity.io (Headless CMS)
+
+Lucide React (Icons)
+
+Sanity.io Structure
+voiceActors: Name, surname, nickname, specialization, image.
+
+post: Title, slug, published date, image, body content.
