@@ -4,6 +4,7 @@ import { Services } from './services';
 import VoiceActors from './voiceActors';
 import { Contact } from './contact';
 import Posty from './posty';
+import LatestVideos from './youtubeConnect';
 
 export function Home() {
 
@@ -11,6 +12,7 @@ export function Home() {
     <div>
     <Hero/>
     <Services/>
+    <LatestVideos/>
     <Posty/>
     <VoiceActors/>
     <Contact/>

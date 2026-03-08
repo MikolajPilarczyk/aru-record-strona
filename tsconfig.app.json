@@ -9,6 +9,12 @@
     "module": "ESNext",
     "types": ["vite/client"],
     "skipLibCheck": true,
+    
+
+    "allowJs": true,           /* Pozwala na importowanie plików .js i .jsx */
+    "checkJs": false,          /* Nie sprawdza błędów wewnątrz plików .jsx */
+    "noImplicitAny": false,    /* Wyłącza błąd, o który pytasz */
+    "moduleResolution": "node",
 
     /* Bundler mode */
     "moduleResolution": "bundler",

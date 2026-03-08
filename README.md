@@ -13,6 +13,8 @@ Pobieranie i wyświetlanie listy lektorów z bazy Sanity.
 
 Dynamiczne podstrony detali aktorów głosowych.
 
+Sekcja pobierająca filmy z kanału na YouTube i wyświetlająca je na stronie
+
 Sekcja projektów w formacie 16:9 z automatycznym sortowaniem po dacie.
 
 Horyzontalny scroll projektów z ostylowanym paskiem przewijania.

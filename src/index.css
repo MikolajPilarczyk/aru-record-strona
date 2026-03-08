@@ -154,6 +154,30 @@ html, body, #root {
 }
 
 
+.custom-scrollbar2::-webkit-scrollbar {
+  height: px; /* Wysokość paska poziomego */
+}
+
+.custom-scrollbar2::-webkit-scrollbar-track {
+  background: #11141b; /* Twój kolor gray-880 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar2::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #20d1c2, #d62c2c); /* Gradient green-500 */
+  border-radius: 10px;
+}
+
+.custom-scrollbar2::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #20d1c2, #d62c2c); /* Jaśniejszy przy najechaniu */
+}
+
+/* Stylizacja dla Firefox */
+.custom-scrollbar2 {
+  scrollbar-width: thin;
+  scrollbar-color: #eb6060 #11141b;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
