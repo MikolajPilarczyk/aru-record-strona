@@ -11,7 +11,7 @@ export function Navigation() {
     { label: 'Usługi', href: '/#services' },
     { label: 'Portfolio', href: '/#projects' },
     { label: 'O nas', href: '/about' },
-    { label: 'Kontakt', href: '#contact' },
+    { label: 'Kontakt', href: ' #contact' },
   ];
 
   return (
