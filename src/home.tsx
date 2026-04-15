@@ -11,10 +11,10 @@ export function Home() {
   return (
     <div>
     <Hero/>
-    <Services/>
+      <Posty/>
     <LatestVideos/>
-    <Posty/>
     <VoiceActors/>
+      <Services/>
     <Contact/>
     </div>);
 }

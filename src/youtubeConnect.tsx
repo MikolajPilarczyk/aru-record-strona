@@ -93,10 +93,10 @@ const LatestVideos: React.FC = () => {
   return (
         <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-800 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-left mb-16">
             <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasz Kanał na YouTube</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-red-500 mx-auto rounded-full" />
-            <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+            <div className="w-120 h-1 bg-gradient-to-r from-cyan-500 to-red-500 mx-auto float-left mb-5" />
+            <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
               Sprawdźcie nasz kanał na YouTubie oto nasze ostatnie publikacje
             </p>
           </div>
@@ -111,10 +111,9 @@ const LatestVideos: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex-shrink-0 w-[300px] md:w-[400px] snap-center"
               >
-                <div className="group relative bg-gray-700/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-600 hover:border-transparent transition-all duration-300 hover:scale-105 h-full">
+                <div className="group relative bg-gray-700/50 backdrop-blur-sm  overflow-hidden border border-gray-600 hover:border-transparent transition-all duration-300 hover:scale-105 h-full">
                   <div className={`absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
                   
-                  {/* ZMIANA: aspect-square -> aspect-video (16:9) */}
                   <div className="aspect-video w-full overflow-hidden bg-gray-800">
                   <img 
                         src={video.thumbnailsUrl} 

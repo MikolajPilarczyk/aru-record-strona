@@ -1,10 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { client, urlFor } from '../sanityClient'; // sprawdź ścieżkę
-import { PortableText } from '@portabletext/react';
+import { PortableText, type PortableTextComponents } from '@portabletext/react';
 
 export function VoiceActorsDetail() {
-    const portableTextComponents = {
+    // Konfiguracja renderowania treści Portable Text pobranej z Sanity.
+    const portableTextComponents: PortableTextComponents = {
         types: {
             image: ({ value }) => {
                 return (
@@ -20,13 +21,16 @@ export function VoiceActorsDetail() {
                             </p>
                         )}
                     </div>
-                )
+                );
             },
         },
         block: {
-            // Definiujemy jak mają wyglądać nagłówki i akapity
+            h1: ({ children }) => <h1 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h1>,
             h2: ({ children }) => <h2 className="text-2xl font-bold text-white mt-10 mb-4">{children}</h2>,
             h3: ({ children }) => <h3 className="text-xl font-semibold text-white mt-8 mb-3">{children}</h3>,
+            h4: ({ children }) => <h4 className="text-xl font-semibold text-white mt-8 mb-3">{children}</h4>,
+            h5: ({ children }) => <h5 className="text-xl font-semibold text-white mt-8 mb-3">{children}</h5>,
+            h6: ({ children }) => <h6 className="text-xl font-semibold text-white mt-8 mb-3">{children}</h6>,
             normal: ({ children }) => <p className="mb-4">{children}</p>,
             blockquote: ({ children }) => (
                 <blockquote className="border-l-4 border-blue-500 pl-4 italic my-6 text-gray-400">
@@ -35,14 +39,15 @@ export function VoiceActorsDetail() {
             ),
         },
         list: {
-            // Tailwind 'prose' zajmie się stylem, ale warto upewnić się, że tagi są poprawne
+            // Wymuszamy poprawne semantycznie listy, niezależnie od stylowania `prose`.
             bullet: ({ children }) => <ul className="list-disc ml-6 mb-6 space-y-2">{children}</ul>,
             number: ({ children }) => <ol className="list-decimal ml-6 mb-6 space-y-2">{children}</ol>,
         },
         marks: {
-            // Obsługa linków
+            // Linki zewnętrzne dostają `rel`, żeby ograniczyć dostęp do `window.opener`.
             link: ({ children, value }) => {
-                const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined
+                const rel = !value.href.startsWith('/') ? 'noreferrer noopener' : undefined;
+
                 return (
                     <a
                         href={value.href}
@@ -51,18 +56,16 @@ export function VoiceActorsDetail() {
                     >
                         {children}
                     </a>
-                )
+                );
             },
         },
-    }
-
-
+    };
 
     const { id } = useParams();
-    const [actors, setActor] = useState<any>(null);
+    const [actors, setActor] = useState<Record<string, any> | null>(null);
 
     useEffect(() => {
-        // Poprawione zapytanie: $id jako parametr i [0] na końcu, aby dostać 1 obiekt
+        // Ładujemy pojedynczy rekord aktora na podstawie identyfikatora z parametru trasy.
         const query = `*[_type == "voiceAcotrs" && _id == $id][0]{ 
             _id, 
             imie, 
@@ -73,68 +76,73 @@ export function VoiceActorsDetail() {
             body,
             "demo": demo.asset->url
         }`;
-        
-        client.fetch(query, { id }).then((data) => {
-          setActor(data);
-        }).catch(console.error);
-      }, [id]);
-    
-    if (!actors) return <div className="min-h-screen bg-gray-880 flex items-center justify-center text-white">Wczytywanie głosu...</div>;
-    
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-6 md:p-12">
-      <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden ">
-        
 
-        <div className="p-8 md:p-12">
-            <div className="flex items-center justify-between">
-                {actors.image && (
-                    <div className="w-75 h-full">
-                        <img
-                            src={urlFor(actors.image).url()}
-                            className="w-full h-full rounded-4xl object-cover  transition-transform duration-500 "
-                            alt={actors.ksywka || actors.imie}
-                        />
+        client.fetch(query, { id }).then((data) => {
+            setActor(data);
+        }).catch(console.error);
+    }, [id]);
+
+    // Stan przejściowy, zanim dane wrócą z CMS-a.
+    if (!actors) {
+        return (
+            <div className="min-h-screen bg-gray-880 flex items-center justify-center text-white">
+                Wczytywanie głosu...
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-6 md:p-12">
+            <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden ">
+                <div className="p-8 md:p-12">
+                    <div className="flex items-center justify-between">
+                        {/* Zdjęcie jest opcjonalne, więc nie renderujemy pustego kontenera bez danych. */}
+                        {actors.image && (
+                            <div className="w-75 h-full">
+                                <img
+                                    src={urlFor(actors.image).url()}
+                                    className="w-full h-full rounded-4xl object-cover transition-transform duration-500 "
+                                    alt={actors.ksywka || actors.imie}
+                                />
+                            </div>
+                        )}
+
+                        <div className="ml-10">
+                            <h1 className="text-5xl md:text-7xl font-luckiest text-white mb-2">
+                                {`${actors.imie} "${actors.ksywka}" ${actors.nazwisko}`}
+                            </h1>
+                            <p className="text-cyan-400 text-xl font-medium mb-8">
+                                {actors.specialization}
+                            </p>
+                        </div>
                     </div>
-                )}
-                <div className="ml-10">
-                    <h1 className="text-5xl md:text-7xl font-luckiest text-white mb-2">
-                        {`${actors.imie} "${actors.ksywka}" ${actors.nazwisko}`}
-                    </h1>
-                    <p className="text-cyan-400 text-xl font-medium mb-8">
-                        {actors.specialization}
-                    </p>
+
+                    <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-10" />
+
+                    <h2 className="text-white text-2xl py-5">Demo głosowe</h2>
+                    <audio
+                        controls
+                        className="w-1/2 h-12 rounded-lg bg-gray-900 p-2 shadow-2xl accent-orange-500 border border-gray-700"
+                    >
+                        {/* Źródło audio pochodzi z pola `demo` rozwiniętego w zapytaniu GROQ. */}
+                        <source src={actors.demo} type="audio/wav" />
+                    </audio>
+
+                    {/* Treść profilu renderujemy z bloków Portable Text zapisanych w bazie. */}
+                    <div className="prose prose-invert prose-lg max-w-none text-gray-300">
+                        {actors.body ? (
+                            <PortableText
+                                value={actors.body}
+                                components={portableTextComponents}
+                            />
+                        ) : (
+                            <p className="italic text-gray-500 text-center py-10">
+                                Ten lektor nie posiada jeszcze opisu profilu.
+                            </p>
+                        )}
+                    </div>
                 </div>
             </div>
-
-            
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-10" />
-
-          {/* Treść (body) z bazy */}
-            <div className="prose prose-invert prose-lg max-w-none text-gray-300">
-                {actors.body ? (
-                    <PortableText
-                        value={actors.body}
-                        components={portableTextComponents}
-                    />
-                ) : (
-                    <p className="italic text-gray-500 text-center py-10">
-                        Ten lektor nie posiada jeszcze opisu profilu.
-                    </p>
-                )}
-            </div>
-
-
-
-            <audio
-                controls
-                className="w-1/2 h-12 rounded-lg bg-gray-900 p-2 shadow-2xl accent-orange-500 border border-gray-700"
-            >
-                <source src={actors.demo} type="audio/wav" />
-            </audio>
         </div>
-
-      </div>
-    </div>
-);
+    );
 }

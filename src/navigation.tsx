@@ -8,9 +8,7 @@ export function Navigation() {
 
   const menuItems = [
     { label: 'Start', href: '/#hero' },
-    { label: 'Usługi', href: '/#services' },
     { label: 'Portfolio', href: '/#projects' },
-    { label: 'O nas', href: '/about' },
     { label: 'Kontakt', href: ' #contact' },
   ];
 
@@ -37,6 +35,25 @@ export function Navigation() {
                 {item.label}
               </a>
             ))}
+
+
+            <Link to="/about">
+              <a
+                  className="text-gray-300 hover:text-purple-500 transition-colors"
+              >
+                O nas
+              </a>
+            </Link>
+            <Link to="/aktorzy-glosowi">
+            <a
+                className="text-gray-300 hover:text-purple-500 transition-colors"
+            >
+              Nasi Aktorzy
+            </a>
+            </Link>
+
+
+
              <Link to="/about">
             <button className="px-6 py-2 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-lg bg-clip-padding hover:opacity-90 transition-opacity">
               Wycena

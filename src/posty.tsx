@@ -17,11 +17,16 @@ function Posty() {
       <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-800 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasze Projekty</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-emerald-500 mx-auto rounded-full" />
-            <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-              Oto nasze ostatnie projekty nad jakimi pracowaliśmy
-            </p>
+
+
+              <div className="text-left mb-16">
+                  <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasze Portfolio</h2>
+                  <div className="w-60 h-1 bg-gradient-to-r from-cyan-500 to-emerald-500 mx-auto float-left mb-5" />
+                  <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
+                      Oto projekty nad jakimi ostatnio pracowaliśmy
+                  </p>
+              </div>
+
           </div>
       
           {/* KONTENER PRZEWIJANY */}
@@ -32,7 +37,7 @@ function Posty() {
       key={post._id}
       className="min-w-[calc(100%-2rem)] sm:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-1.5rem)] snap-start px-2"
     >
-      <div className="group relative bg-gray-700/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-600 hover:border-transparent transition-all duration-300 hover:scale-105 h-full">
+      <div className="group relative bg-gray-700/50 backdrop-blur-sm rounded-smnpm overflow-hidden border border-gray-600 hover:border-transparent transition-all duration-300 hover:scale-105 h-full">
         <div className={`absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
         
         {/* ZMIANA: aspect-square -> aspect-video (16:9) */}

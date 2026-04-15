@@ -1,5 +1,6 @@
-import { MapPin, Phone, Mail } from 'lucide-react';
-
+import {  Phone, Mail } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDiscord, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 export function Contact()
 {
@@ -35,17 +36,36 @@ return(
         </div>
       </div>
 
+
       <div className="flex items-start space-x-4">
-        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-          <MapPin className="w-6 h-6 text-white" />
+        <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+          <FontAwesomeIcon
+              icon={faYoutube}
+              size="xl"
+              className={"text-gray-50"}
+          />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-white">Adres</h3>
-          <p className="text-gray-400">ul. Dubbingowa 15</p>
-          <p className="text-gray-400">00-001 Warszawa</p>
+          <h3 className="text-xl mb-2 text-white">Kanał YouTube</h3>
+        </div>
+      </div>
+
+      <div className="flex items-start space-x-4">
+        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+          <FontAwesomeIcon
+              icon={faDiscord}
+              size="xl"
+              className={"text-gray-50"}
+            />
+        </div>
+        <div>
+          <i className="fa-brands fa-discord"></i>
+          <h3 className="text-xl mb-2 text-white">Serwer Discord</h3>
         </div>
       </div>
     </div>
+
+
 
     <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
       <form className="space-y-6">
