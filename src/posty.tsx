@@ -1,4 +1,4 @@
-import { Calendar } from 'lucide-react';
+import {ArrowRight, Calendar} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { client, urlFor } from './sanityClient';
 import { Link } from 'react-router-dom';
@@ -76,6 +76,10 @@ function Posty() {
     </Link>
   ))}
 </div>
+            <div className="justify-items-center">
+                <button className={" border-1 border-emerald-400  text-emerald-300  hover:opacity-80 transition-opacity p-4 rounded-xl   flex my-10  shadow-emerald-500/50 shadow-xl/20 "}><Link to="/aktorzy-glosowi">  Zobacz nasze całe portfolio </Link><ArrowRight></ArrowRight></button>
+
+            </div>
         </div>
       </section>
     );

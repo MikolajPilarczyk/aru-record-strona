@@ -50,7 +50,7 @@ export function AllVoiceActors()
                             key={actor._id}
                             className="w-70 snap-start mx-5 my-5"
                         >
-                            <div className="group relative bg-gray-900 rounded-sm overflow-hidden border border-gray-600  transition-all duration-300 hover:scale-105 h-full aspect-[3/4]">
+                            <div className="group relative bg-gray-900 rounded-sm overflow-hidden border border-gray-600  transition-all duration-300 hover:scale-105 h-75 aspect-[3/4]">
                                 {/* Kontener obrazu */}
                                 <div className="absolute inset-0">
                                     <img
@@ -100,7 +100,7 @@ export function AllVoiceActors()
                             key={actor._id}
                             className="w-70 snap-start mx-5 my-5"
                         >
-                            <div className="group relative bg-gray-900 rounded-sm overflow-hidden border border-gray-600  transition-all duration-300 hover:scale-105 h-full aspect-[3/4]">
+                            <div className="group relative bg-gray-900 rounded-sm overflow-hidden border border-gray-600  transition-all duration-300 hover:scale-105 h-75 aspect-[3/4]">
                                 {/* Kontener obrazu */}
                                 <div className="absolute inset-0">
                                     <img
@@ -151,7 +151,7 @@ export function AllVoiceActors()
                             key={actor._id}
                             className="w-70 snap-start mx-5 my-5"
                         >
-                            <div className="group relative bg-gray-900 rounded-sm overflow-hidden border border-gray-600 transition-all duration-300 hover:scale-105 h-full aspect-[3/4]">
+                            <div className="group relative bg-gray-900 rounded-sm overflow-hidden border border-gray-600 transition-all duration-300 hover:scale-105 h-75 aspect-[3/4]">
                                 {/* Kontener obrazu */}
                                 <div className="absolute inset-0">
                                     <img
