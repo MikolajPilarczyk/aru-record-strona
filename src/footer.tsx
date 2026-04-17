@@ -1,4 +1,5 @@
 import { Mic } from "lucide-react";
+import {Link} from "react-router-dom";
 
 export function Footer()
 {
@@ -20,9 +21,11 @@ export function Footer()
             </p>
             
             <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-purple-400 transition-colors">
+              <Link to={"polityka-prywatnosci"}>
+              <a  className="text-gray-400 hover:text-purple-400 transition-colors">
                 Polityka prywatności
               </a>
+              </Link>
               <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors">
                 Regulamin
               </a>

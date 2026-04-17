@@ -14,7 +14,7 @@ function Posty() {
     }, []);
   
     return ( 
-      <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-800 overflow-hidden">
+      <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-800 overflow-hidden px-5 md:px-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
 
@@ -76,7 +76,7 @@ function Posty() {
     </Link>
   ))}
 </div>
-            <div className="justify-items-center">
+            <div className="justify-items-center ml-4 md:ml-0">
                 <button className={" border-1 border-emerald-400  text-emerald-300  hover:opacity-80 transition-opacity p-4 rounded-xl   flex my-10  shadow-emerald-500/50 shadow-xl/20 "}><Link to="/portfolio">  Zobacz nasze całe portfolio </Link><ArrowRight></ArrowRight></button>
 
             </div>

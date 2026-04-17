@@ -47,7 +47,7 @@ export function AllVoiceActors()
 
 
     return (
-        <section id="voices" className="relative py-30 bg-gradient-to-b from-gray-800 to-gray-900 overflow-hidden">
+        <section id="voices" className="relative py-30 bg-gradient-to-b from-gray-800 to-gray-900 md:h-screen">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Wszyscy aktorzy</h2>
@@ -58,22 +58,37 @@ export function AllVoiceActors()
                 </div>
 
                 <h3 className="text-gray-100 px-2 text-2xl  my-7 ml-15">Wyszukaj aktora</h3>
-                <form onSubmit={handleSubmit} className="flex mb-20 ml-20 w-full">
-                    <input onChange={handleChange} name={"searchData"}  type={"text"} className="bg-gray-600
-                     px-4 text-gray-50 w-1/2 p-2 rounded-full border-2 focus:outline-none
-                     focus:border-gray-300 border-gray-400 shadow-xl/20 shadow-red-300 placeholder:text-sm"
-                           placeholder={"Szczur Romek walczący z aligatorem..." }/>
-                    <select onChange={handleChange} name={"searchData"} className="bg-gradient-to-l text-sm shadow-red-300  shadow-xl/20 border-gray-400 from-gray-600 to-gray-600 text-gray-400 p-2 rounded-full  ml-2 border-2 focus:outline-none">
-                        <option className="bg-gray-300 text-gray-700 " value="">Wszystkie głosy</option>
+                <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col md:flex-row items-center gap-4 mb-10 md:mb-20 md:ml-20 w-full px-4 md:px-0"
+                >
+                    <input
+                        onChange={handleChange}
+                        name="searchData"
+                        type="text"
+                        className="bg-gray-600 px-4 text-gray-50 w-full md:w-1/2 p-2 rounded-full border-2 focus:outline-none focus:border-gray-300 border-gray-400 shadow-xl/20 shadow-red-300 placeholder:text-sm"
+                        placeholder="Szczur Romek walczący z aligatorem..."
+                    />
+
+                    <select
+                        onChange={handleChange}
+                        name="searchData"
+                        className="bg-gradient-to-l text-sm shadow-red-300 shadow-xl/20 border-gray-400 from-gray-600 to-gray-600 text-gray-400 p-3 rounded-full w-full md:w-auto border-2 focus:outline-none"
+                    >
+                        <option className="bg-gray-300 text-gray-700" value="">Wszystkie głosy</option>
                         <option className="bg-gray-200 text-gray-700" value="damski">Głosy damskie</option>
-                        <option className="bg-gray-300 text-gray-700"  value="męski">Głosy męskie</option>
+                        <option className="bg-gray-300 text-gray-700" value="męski">Głosy męskie</option>
                         <option className="bg-gray-200 text-gray-700" value="dorosły">Głosy dorosłe</option>
                         <option className="bg-gray-300 text-gray-700" value="dziecięcy">Głosy dziecięce</option>
-
                     </select>
-                    <button type={"submit"} className="bg-gradient-to-br  from-purple-500 to-red-700 ml-5 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110 hover:accent-pink-200  duration-100 p-2 ease-in rounded-full px-4 py-3 flex"><Search></Search></button>
 
-
+                    <button
+                        type="submit"
+                        className="bg-gradient-to-br from-purple-500 to-red-700 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110 duration-100 p-3 ease-in rounded-full w-full md:w-auto flex justify-center items-center"
+                    >
+                        <Search />
+                        <span className="ml-2 md:hidden font-bold">Szukaj</span>
+                    </button>
                 </form>
 
 
@@ -107,11 +122,11 @@ export function AllVoiceActors()
                                         <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             <div className="flex items-center mb-1">
                                                 {/* Mały akcent kolorystyczny */}
-                                                <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-red-700 mr-3 rounded-full" />
+                                                <div className="w-1 h-8 bg-gradient-to-b from-purple-500 to-red-700 mr-3 rounded-full" />
 
                                                 <h3 className="text-xl text-white font-black uppercase tracking-wider drop-shadow-lg">
                                                     {actor.imie}
-                                                    <span className="block bg-gradient-to-b from-red-400 to-purple-400 bg-clip-text text-transparent text-sm font-medium">"{actor.ksywka}"</span>
+                                                    <span className="block bg-gradient-to-b from-purple-500 to-red-700 bg-clip-text text-transparent text-md font-medium">"{actor.ksywka}"</span>
                                                 </h3>
                                             </div>
 

@@ -7,6 +7,7 @@ import { PostDetail } from './post/postDetail';
 import { VoiceActorsDetail } from "./aktorzy-glosowi/voiceActorsDetail"
 import {AllVoiceActors} from "./allVoiceActors.tsx";
 import {Portfolio} from "./portfolio.tsx";
+import {PrivatePolicy} from "./polityka-prywatnosci.tsx";
 
 function App() {
   
@@ -21,6 +22,8 @@ function App() {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/aktorzy-glosowi" element={<AllVoiceActors />} />
           <Route path="/aktorzy-glosowi/:id" element={<VoiceActorsDetail />} />
+          <Route path="/polityka-prywatnosci" element={<PrivatePolicy />} />
+
 
     </Routes> 
   </div>
