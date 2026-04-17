@@ -30,7 +30,7 @@ function Posty() {
           </div>
       
           {/* KONTENER PRZEWIJANY */}
-          <div className="flex overflow-x-auto gap-8 pb-8 custom-scrollbar snap-x snap-mandatory scroll-smooth py-5 ">
+          <div className="flex overflow-x-auto gap-8 pb-8 custom-scrollbar snap-x snap-mandatory scroll-smooth py-1 ">
   {posts.map((post) => (
     <Link 
       to={`/post/${post._id}`} 

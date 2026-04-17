@@ -2,7 +2,7 @@
 import {Link, useParams} from 'react-router-dom';
 import {client, urlFor} from '../sanityClient';
 import { PortableText } from '@portabletext/react';
-import {  Calendar } from 'lucide-react';
+import {  Calendar} from 'lucide-react';
   import MuxPlayer from '@mux/mux-player-react';
 
 export function PostDetail() {

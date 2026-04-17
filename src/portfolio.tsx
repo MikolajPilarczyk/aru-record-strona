@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
 import {client, urlFor} from "./sanityClient.ts";
 import {Link} from "react-router-dom";
-import {Search, Calendar} from "lucide-react";
+import {Search, Calendar, CalendarArrowUp,CalendarArrowDown } from "lucide-react";
 
 export function Portfolio()  {
     const [posts, setPosts] = useState<any[]>([]);
     const [search, setSearch] = useState('');
+    const [orderAsc, setOrderAsc] = useState(true);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -13,19 +14,34 @@ export function Portfolio()  {
         {
             alert("Pow Pow");
         }
-        alert(search)
+        if(orderAsc) {
 
-        const query = `*[_type == "post" && title match "${search}*"] | order(publishedAt desc) {
+
+            const query = `*[_type == "post" && title match "${search}*"] | order(publishedAt asc) {
         _id,
         title,
         slug,
         publishedAt,
         image,
         body
-    }`;
-        client.fetch(query)
-            .then(setPosts)
-            .catch(console.error);
+            }`;
+            client.fetch(query)
+                .then(setPosts)
+                .catch(console.error);
+        }
+        else {
+            const query = `*[_type == "post" && title match "${search}*"] | order(publishedAt desc) {
+        _id,
+        title,
+        slug,
+        publishedAt,
+        image,
+        body
+            }`;
+            client.fetch(query)
+                .then(setPosts)
+                .catch(console.error);
+        }
 
     }
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +73,21 @@ export function Portfolio()  {
                 <form onSubmit={handleSubmit} className="flex mb-10">
                     <input onChange={handleChange} name={"searchData"}  type={"text"} className="bg-gray-600   px-4 text-gray-50 w-150 p-2 rounded-full border-2 focus:outline-none focus:border-gray-300 border-gray-400 shadow-xl/20 shadow-emerald-300 placeholder:text-sm"
                            placeholder={"Szczury Walczące na miecze świetlne..." }/>
-                    <button type={"submit"} className="bg-gradient-to-br  from-emerald-500 to-cyan-500 mx-7 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110 hover:shadow-white  duration-100 p-2 ease-in rounded-full px-3"><Search></Search></button>
+                    {
+                        orderAsc?(
+                            <button onClick={()=>setOrderAsc(false)} className="bg-gradient-to-br  from-emerald-500 to-cyan-500 mx-2 ml-4 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110
+                     hover:shadow-white  duration-100 p-2 ease-in rounded-full px-3"> <CalendarArrowUp></CalendarArrowUp></button>
+
+                        ):(
+
+                            <button onClick={()=>setOrderAsc(true)} className="bg-gradient-to-br  from-emerald-500 to-cyan-500 mx-2 ml-4 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110
+                     hover:shadow-white  duration-100 p-2 ease-in rounded-full px-3"> <CalendarArrowDown></CalendarArrowDown></button>
+                        )
+                    }
+
+
+                    <button type={"submit"} className="bg-gradient-to-br  from-emerald-500 to-cyan-500 mx-2 text-gray-100 shadow-gray-400
+                     shadow-xl/20 hover:scale-110 hover:shadow-white  duration-100 p-2 ease-in rounded-full px-3"><Search></Search></button>
                 </form>
                 {/* KONTENER */}
                 <div className="flex flex-wrap gap-4 pb-8 py-5 ">

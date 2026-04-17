@@ -7,8 +7,6 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { label: 'Start', href: '/#hero' },
-    { label: 'Portfolio', href: '/#projects' },
     { label: 'Kontakt', href: ' #contact' },
   ];
 
@@ -26,17 +24,21 @@ export function Navigation() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            {menuItems.map((item) => (
+
+            <Link to="/">
               <a
-                key={item.href}
-                href={item.href}
-                className="text-gray-300 hover:text-purple-500 transition-colors"
+                  className="text-gray-300 hover:text-purple-500 transition-colors"
               >
-                {item.label}
+                Start
               </a>
-            ))}
-
-
+            </Link>
+            <Link to="/portfolio">
+              <a
+                  className="text-gray-300 hover:text-purple-500 transition-colors"
+              >
+                Portfolio
+              </a>
+            </Link>
             <Link to="/about">
               <a
                   className="text-gray-300 hover:text-purple-500 transition-colors"
@@ -48,8 +50,15 @@ export function Navigation() {
             <a
                 className="text-gray-300 hover:text-purple-500 transition-colors"
             >
-              Nasi Aktorzy
+              Aktorzy
             </a>
+            </Link>
+            <Link to="/#contact">
+              <a
+                  className="text-gray-300 hover:text-purple-500 transition-colors"
+              >
+                Kontakt
+              </a>
             </Link>
 
 

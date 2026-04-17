@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {client, urlFor} from "./sanityClient.ts";
 import {Link} from "react-router-dom";
-import {Search} from "lucide-react";
+import {Search ,} from "lucide-react";
 
 export function AllVoiceActors()
 {
@@ -10,12 +10,11 @@ export function AllVoiceActors()
     const [restActors, setRestActors] = useState<any[]>([]);
 
     const [search, setSearch] = useState('');
-    const [canShow, setCanShow] = useState(true);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const query = `*[_type == "voiceAcotrs" && (imie match "*${search}*" || ksywka match "*${search}*" || nazwisko match "*${search}*")]
+        const query = `*[_type == "voiceAcotrs" && (imie match "*${search}*" || ksywka match "*${search}*" || nazwisko match "*${search}*" || specialization match "*${search}*")]
             { 
               _id, 
               imie, 
@@ -29,19 +28,13 @@ export function AllVoiceActors()
         client.fetch(query)
             .then(setRestActors)
             .catch(console.error);
-        if(restActors.length> 0)
-        {
-            setCanShow(true);
-        }
-        else
-        {
-            setCanShow(false);
-        }
+
 
     }
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e) => {
         setSearch(e.target.value);
     }
+
 
 
     useEffect(() => {
@@ -50,9 +43,7 @@ export function AllVoiceActors()
             .then(setRestActors)
             .catch(console.error);
     }, []);
-    useEffect(() => {
 
-    }, [canShow]);
 
 
     return (
@@ -60,24 +51,36 @@ export function AllVoiceActors()
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Wszyscy aktorzy</h2>
-                    <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-500 mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-purple-500 mx-auto rounded-full" />
                     <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
                         Poznaj naszych doświadczonych aktorów, którzy nadają charakter każdemu projektowi
                     </p>
                 </div>
 
-                <h3 className="text-gray-100 px-2 text-2xl  my-5">Wyszukaj naszego projektu</h3>
-                <form onSubmit={handleSubmit} className="flex mb-10">
-                    <input onChange={handleChange} name={"searchData"}  type={"text"} className="bg-gray-600   px-4 text-gray-50 w-150 p-2 rounded-full border-2 focus:outline-none focus:border-gray-300 border-gray-400 shadow-xl/20 shadow-red-300 placeholder:text-sm"
-                           placeholder={"Szczury Walczące na miecze świetlne..." }/>
-                    <button type={"submit"} className="bg-gradient-to-br  from-red-500 to-red-700 mx-7 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110 hover:accent-pink-200  duration-100 p-2 ease-in rounded-full px-3"><Search></Search></button>
+                <h3 className="text-gray-100 px-2 text-2xl  my-7 ml-15">Wyszukaj aktora</h3>
+                <form onSubmit={handleSubmit} className="flex mb-20 ml-20 w-full">
+                    <input onChange={handleChange} name={"searchData"}  type={"text"} className="bg-gray-600
+                     px-4 text-gray-50 w-1/2 p-2 rounded-full border-2 focus:outline-none
+                     focus:border-gray-300 border-gray-400 shadow-xl/20 shadow-red-300 placeholder:text-sm"
+                           placeholder={"Szczur Romek walczący z aligatorem..." }/>
+                    <select onChange={handleChange} name={"searchData"} className="bg-gradient-to-l text-sm shadow-red-300  shadow-xl/20 border-gray-400 from-gray-600 to-gray-600 text-gray-400 p-2 rounded-full  ml-2 border-2 focus:outline-none">
+                        <option className="bg-gray-300 text-gray-700 " value="">Wszystkie głosy</option>
+                        <option className="bg-gray-200 text-gray-700" value="damski">Głosy damskie</option>
+                        <option className="bg-gray-300 text-gray-700"  value="męski">Głosy męskie</option>
+                        <option className="bg-gray-200 text-gray-700" value="dorosły">Głosy dorosłe</option>
+                        <option className="bg-gray-300 text-gray-700" value="dziecięcy">Głosy dziecięce</option>
+
+                    </select>
+                    <button type={"submit"} className="bg-gradient-to-br  from-purple-500 to-red-700 ml-5 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110 hover:accent-pink-200  duration-100 p-2 ease-in rounded-full px-4 py-3 flex"><Search></Search></button>
+
+
                 </form>
 
 
                 {/*Pozostałe Głosy*/}
 
-                <h3 className={"text-3xl text-gray-200 mx-15 mt-10"}>Wszystkie Głosy</h3>
-                    {canShow ?
+                <h3 className={"text-2xl text-gray-200 mx-15 mt-10 font-sans"}>Oto nasza brygada szczurów ({restActors.length})</h3>
+                    {restActors.length> 0 ?
                     (
                         <div className="flex gap-8 pb-8 px-10 snap-x snap-mandatory flex flex-wrap gap-3 py-5 ">
                             {restActors.map((actor) => (
@@ -104,11 +107,11 @@ export function AllVoiceActors()
                                         <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                             <div className="flex items-center mb-1">
                                                 {/* Mały akcent kolorystyczny */}
-                                                <div className="w-1 h-6 bg-red-600 mr-3 rounded-full" />
+                                                <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-red-700 mr-3 rounded-full" />
 
                                                 <h3 className="text-xl text-white font-black uppercase tracking-wider drop-shadow-lg">
                                                     {actor.imie}
-                                                    <span className="block bg-gradient-to-b from-red-500 to-red-600 bg-clip-text text-transparent text-sm font-medium">"{actor.ksywka}"</span>
+                                                    <span className="block bg-gradient-to-b from-red-400 to-purple-400 bg-clip-text text-transparent text-sm font-medium">"{actor.ksywka}"</span>
                                                 </h3>
                                             </div>
 
@@ -120,7 +123,7 @@ export function AllVoiceActors()
                                         </div>
 
                                         {/* Połysk przy hoverze */}
-                                        <div className="absolute inset-0 bg-gradient-to-tr from-red-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none" />
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none" />
                                     </div>
                                 </Link>
 
