@@ -6,16 +6,16 @@ import { ArrowRight } from 'lucide-react';
 
 function VoiceActors() {
     const [actors, setActors] = useState<any[]>([]);
-  
+
     useEffect(() => {
       client.fetch('*[_type == "voiceAcotrs"][0..3]{ _id, imie,ksywka,nazwisko, slug, specialization, image, body }')
         .then(setActors)
         .catch(console.error);
     }, []);
 
-  
-    return ( 
-      <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-900 overflow-hidden px-5">
+
+    return (
+      <section id="voices" className="relative py-20 bg-gradient-to-b from-[#172440] to-[#14203D] w-screen overflow-hidden px-5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
 
@@ -24,24 +24,27 @@ function VoiceActors() {
 
 
 
-              <div className="text-left mb-16">
-                  <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasi Aktorzy</h2>
-                  <div className="w-60 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto float-left mb-5" />
-                  <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
-                      Poznaj naszych doświadczonych aktorów, którzy nadają charakter każdemu projektowi
-                  </p>
+              <div className="text-left mb-16 grid grid-cols-2">
+                  <div>
+                      <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasi Aktorzy</h2>
+                      <div className="w-60 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto float-left mb-5" />
+                      <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
+                          Poznaj naszych doświadczonych aktorów, którzy nadają charakter każdemu projektowi
+                      </p>
+                  </div>
+                <img src="/scul%20love.png" alt="scul-plose" className="w-45 mx-95"/>
               </div>
 
 
           </div>
-      
+
           {/* KONTENER PRZEWIJANY */}
           <div className="flex overflow-x-auto gap-8 pb-8 px-10 custom-scrollbar snap-x snap-mandatory scroll-smooth py-5 ">
             {actors.map((actor) => (
 
 
-              <Link 
-                to={`/aktorzy-glosowi/${actor._id}`} 
+              <Link
+                to={`/aktorzy-glosowi/${actor._id}`}
                 key={actor._id}
                 className="min-w-[calc(100%-2rem)] sm:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(25%-1.5rem)] snap-start px-2"
               >
@@ -84,7 +87,7 @@ function VoiceActors() {
             ))}
           </div>
             <div className="justify-items-center">
-                <button className={" border-1 border-green-500  text-green-400 hover:opacity-80 transition-opacity p-4 rounded-xl   flex my-10  shadow-green-500/50 shadow-xl/20 "}><Link to="/aktorzy-glosowi">  Zobacz wszystkich naszych aktorów </Link><ArrowRight></ArrowRight></button>
+                <button className={" border-1 border-green-500  text-green-400 hover:scale-105 transition-all p-4 rounded-xl   flex my-10  shadow-green-500/50 shadow-xl/20 "}><Link to="/aktorzy-glosowi">  Zobacz wszystkich naszych aktorów </Link><ArrowRight></ArrowRight></button>
 
             </div>
 

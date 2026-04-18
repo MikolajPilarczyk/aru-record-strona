@@ -35,7 +35,7 @@ export function PostDetail() {
   if (!post) return <div className="p-8">Ładowanie...</div>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-6 md:p-12">
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
     <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden ">
       
 
@@ -74,8 +74,8 @@ export function PostDetail() {
       </div>
 
       {/*Kontener z aktorami*/}
-      <h2 className="text-gray-200 font-bold p-2">W tej produkcji występili:</h2>
-      <div className="flex ">
+      <h2 className="text-gray-200  p-2">W tej produkcji występili:</h2>
+      <div className="flex grid grid-cols-1">
           {post.cast?.map((actor) => (
               <Link
                   to={`/aktorzy-glosowi/${actor.actorDetail._id}`}

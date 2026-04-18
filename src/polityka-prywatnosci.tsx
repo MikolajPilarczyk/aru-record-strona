@@ -1,7 +1,7 @@
 export function PrivatePolicy()
 {
     return (
-            <div className="min-h-screen bg-gray-900 py-12 px-4 flex justify-center items-start ">
+            <div className="min-h-screen  bg-gradient-to-b from-[#14203D] to-[#172440] py-12 px-4 flex justify-center items-start ">
                 <div className="w-full max-w-3xl 0 rounded-2xl p-8">
 
                     <h1 className="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-4">

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { client, urlFor } from '../sanityClient'; // sprawdź ścieżkę
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
@@ -61,26 +61,74 @@ export function VoiceActorsDetail() {
         },
     };
 
+
+    interface Post {
+        _id: string;
+        title: string;
+        publishedAt: string;
+        slug: { current: string };
+        body: any; // Możesz doprecyzować używając TypedObject[] z PortableText
+        cast: Array<{
+            characterName: string;
+            actorDetail: {
+                _id: string;
+                imie: string;
+                nazwisko: string;
+                ksywka?: string;
+                slug: { current: string };
+                // dodaj resztę pól, których używasz
+            };
+        }>;
+
+    }
+
+
     const { id } = useParams();
     const [actors, setActor] = useState<Record<string, any> | null>(null);
+    const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
-        // Ładujemy pojedynczy rekord aktora na podstawie identyfikatora z parametru trasy.
-        const query = `*[_type == "voiceAcotrs" && _id == $id][0]{ 
-            _id, 
-            imie, 
-            ksywka, 
-            nazwisko, 
-            specialization, 
-            image, 
-            body,
-            "demo": demo.asset->url
-        }`;
+        // 1. Definicja zapytań
+        const actorQuery = `*[_type == "voiceAcotrs" && _id == $id][0]{ 
+        _id, imie, ksywka, nazwisko, specialization, image, body,
+        "demo": demo.asset->url
+    }`;
 
-        client.fetch(query, { id }).then((data) => {
-            setActor(data);
-        }).catch(console.error);
+        const postsQuery = `*[_type == "post" && $id in cast[].actor._ref]{ 
+        _id,
+        title,
+        publishedAt,
+        slug,
+        "cast": cast[]{
+          characterName,
+          "actorDetail": actor->{ _id, imie, nazwisko }
+        }
+    }`;
+
+        // 2. Pobieranie danych
+        const fetchData = async () => {
+            try {
+                // Pobieramy dane aktora
+                const actorData = await client.fetch(actorQuery, { id });
+                setActor(actorData);
+
+                // Pobieramy posty, w których ten konkretny aktor występuje w tablicy 'cast'
+                // Używamy bezpośrednio 'id', zamiast przekazywać całą tablicę obiektów
+                const relatedPosts = await client.fetch(postsQuery, { id });
+                setPosts(relatedPosts);
+
+            } catch (err) {
+                console.error("Błąd pobierania danych:", err);
+            }
+        };
+
+        if (id) {
+            fetchData();
+        }
     }, [id]);
+
+
+
 
     // Stan przejściowy, zanim dane wrócą z CMS-a.
     if (!actors) {
@@ -92,7 +140,7 @@ export function VoiceActorsDetail() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-6 md:p-12">
+        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden ">
                 <div className="p-8 md:p-12">
                     <div className="flex items-center justify-between">
@@ -141,6 +189,31 @@ export function VoiceActorsDetail() {
                             </p>
                         )}
                     </div>
+                    { posts.length>0 ? (
+
+                        <div>
+                            <h2 className="text-gray-50 text-2xl py-5">Brał udział w:</h2>
+                            {posts.map((post) => (
+                                <Link to={`/post/${post._id}`} className={""} >
+                                    <div key={post.slug.current} className="post-card text-gray-50 hover:opacity-85 border-transparent transition-all rounded-md pb-5">
+                                        <h3 className={"text-lg"}>{post.title}</h3>
+                                        <ul>
+                                            <li className="">{post.cast?.map((member, index) => (
+                                                <div key={index}>
+                                                    <strong>W roli {member.characterName}</strong>
+                                                </div>
+                                            ))}</li>
+                                        </ul>
+                                    </div>
+                                </Link>
+                            ))}
+
+
+                        </div>
+                    ):(
+                        <div></div>
+                    )}
+
                 </div>
             </div>
         </div>

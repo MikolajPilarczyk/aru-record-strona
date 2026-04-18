@@ -6,15 +6,15 @@ import './index.css';
 
 function Posty() {
     const [posts, setPosts] = useState<any[]>([]);
-  
+
     useEffect(() => {
       client.fetch('*[_type == "post"] | order(publishedAt desc) {_id,title,slug,publishedAt,image,body}')
         .then(setPosts)
         .catch(console.error);
     }, []);
-  
-    return ( 
-      <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-800 overflow-hidden px-5 md:px-0">
+
+    return (
+      <section id="voices" className="relative py-20 bg-gradient-to-b from-[#505B6C] to-[#14203D] overflow-hidden px-5 md:px-0 w-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
 
@@ -28,24 +28,24 @@ function Posty() {
               </div>
 
           </div>
-      
+
           {/* KONTENER PRZEWIJANY */}
           <div className="flex overflow-x-auto gap-8 pb-8 custom-scrollbar snap-x snap-mandatory scroll-smooth py-1 ">
   {posts.map((post) => (
-    <Link 
-      to={`/post/${post._id}`} 
+    <Link
+      to={`/post/${post._id}`}
       key={post._id}
       className="min-w-[calc(100%-2rem)] sm:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(33.333%-1.5rem)] snap-start px-2"
     >
       <div className="group relative bg-gray-700/50 backdrop-blur-sm rounded-smnpm overflow-hidden border border-gray-600 hover:border-transparent transition-all duration-300 hover:scale-105 h-full">
         <div className={`absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
-        
+
         {/* ZMIANA: aspect-square -> aspect-video (16:9) */}
         <div className="aspect-video overflow-hidden bg-gray-800">
           {post.image ? (
-            <img 
-              src={urlFor(post.image).url()} 
-              alt={post.title} 
+            <img
+              src={urlFor(post.image).url()}
+              alt={post.title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
           ) : (
@@ -77,7 +77,7 @@ function Posty() {
   ))}
 </div>
             <div className="justify-items-center ml-4 md:ml-0">
-                <button className={" border-1 border-emerald-400  text-emerald-300  hover:opacity-80 transition-opacity p-4 rounded-xl   flex my-10  shadow-emerald-500/50 shadow-xl/20 "}><Link to="/portfolio">  Zobacz nasze całe portfolio </Link><ArrowRight></ArrowRight></button>
+                <button className={" border-1 border-emerald-400  text-emerald-300  hover:scale-105 transition-opacity p-4 rounded-xl   flex my-10  shadow-emerald-500/50 shadow-xl/20 "}><Link to="/portfolio">  Zobacz nasze całe portfolio </Link><ArrowRight></ArrowRight></button>
 
             </div>
         </div>

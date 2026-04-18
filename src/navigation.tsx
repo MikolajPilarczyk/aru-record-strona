@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './App.css';
 import './index.css';
+import { HashLink } from 'react-router-hash-link';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,12 +12,11 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
-            </div>
+            <img src={"/ARU_logo.png"} alt="Logo" className={"w-15 h-15 p-1 rounded-lg"} />
             <Link to="/">
             <p className="text-xl font-bold text-white">Aru Record</p>
             </Link>
@@ -27,46 +27,41 @@ export function Navigation() {
 
             <Link to="/">
               <a
-                  className="text-gray-300 hover:text-purple-500 transition-colors"
+                  className="text-gray-300 hover:text-emerald-500 transition-colors"
               >
                 Start
               </a>
             </Link>
             <Link to="/portfolio">
               <a
-                  className="text-gray-300 hover:text-purple-500 transition-colors"
+                  className="text-gray-300 hover:text-emerald-500 transition-colors"
               >
                 Portfolio
               </a>
             </Link>
             <Link to="/about">
               <a
-                  className="text-gray-300 hover:text-purple-500 transition-colors"
+                  className="text-gray-300 hover:text-emerald-500 transition-colors"
               >
                 O nas
               </a>
             </Link>
             <Link to="/aktorzy-glosowi">
             <a
-                className="text-gray-300 hover:text-purple-500 transition-colors"
+                className="text-gray-300 hover:text-emerald-500 transition-colors"
             >
               Aktorzy
             </a>
-            </Link>
-            <Link to="/#contact">
-              <a
-                  className="text-gray-300 hover:text-purple-500 transition-colors"
-              >
-                Kontakt
-              </a>
             </Link>
 
 
 
              <Link to="/about">
-            <button className="px-6 py-2 bg-gradient-to-r from-blue-400 to-purple-500 text-white rounded-lg bg-clip-padding hover:opacity-90 transition-opacity">
-              Wycena
+               <HashLink to="/#contact">
+            <button className="px-6 py-2 bg-gradient-to-r  bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] hover:scale-105 transition-all duration-200 text-white rounded-lg bg-clip-padding">
+              Kontakt
             </button>
+               </HashLink>
             </Link>
           </div>
 

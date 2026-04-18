@@ -1,16 +1,16 @@
 import { Mic2, Users, Trophy, Radio, ArrowRight } from 'lucide-react';
+import {Link} from "react-router-dom";
 
 export function About() {
   const stats = [
-    { label: 'Lat doświadczenia', value: '10+', icon: Trophy },
-    { label: 'Projektów', value: '500+', icon: Mic2 },
-    { label: 'Głosów', value: '40+', icon: Users },
-    { label: 'Radiostacji', value: '15', icon: Radio },
+    { label: 'wysokiej klasy sprzęt i oprogramowanie', value: 'Topowa jakość', icon: Trophy },
+    { label: 'zawrotne tempo realizacji', value: 'Szybkość i profesjonalizm ', icon: Mic2 },
+    { label: '50+ różnych głosów', value: 'Obszerna baza aktorów', icon: Users },
+    { label: 'doświadczeni dialogiści oraz adiustatorzy', value: 'Dokładne i staranne tłumaczenia ', icon: Radio },
   ];
 
   return (
-    // min-h-screen sprawia, że sekcja ma co najmniej 100% wysokości ekranu
-    <section id="about" className="relative min-h-screen w-full flex items-center bg-bricks bg-gray-900 overflow-hidden py-20 lg:py-0">
+    <section id="about" className="relative min-h-screen w-full flex items-center  bg-gradient-to-b from-gray-900 to-[#172440]  overflow-hidden py-20  pt-35">
       
       {/* Tło z mocniejszymi akcentami świetlnymi */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-500/10 rounded-full blur-[120px] -z-10" />
@@ -23,16 +23,18 @@ export function About() {
           <div className="order-2 lg:order-1 space-y-10">
             <div className="space-y-4">
               <span className="inline-block px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-500 text-sm font-bold tracking-widest uppercase">
-                Poznaj nasze studio
+                O nas
               </span>
               <h1 className="text-5xl md:text-7xl font-luckiest text-white leading-[1.1]">
-                Dźwięk, który <br />
+                Czym jest<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
-                  buduje emocje
+                 Aru Record?
                 </span>
               </h1>
               <p className="text-gray-400 text-xl leading-relaxed max-w-xl">
-                Jesteśmy zespołem pasjonatów, którzy zamieniają słowa w niezapomniane wrażenia słuchowe. Nasze studio to miejsce, gdzie technologia spotyka się z ludzkim talentem.
+                Jesteśmy zespołem entuzjastów łączącym pasję z profesjonalnym podejściem. Nasze studio to miejsce, gdzie Twoje produkcje mogą nabrać nowych kolorów,
+                dzięki naszej wyjątkowej pracy. Specjalizujemy się w tworzeniu najlepszej jakości projektów, przy zachowaniu energicznego tempa. Jesteśmy otwarci
+                na nowe zlecenia i propozycje współpracy.
               </p>
             </div>
 
@@ -46,19 +48,20 @@ export function About() {
                 </div>
               ))}
             </div>
+            <Link to={"/portfolio"}>
+              <button className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-700 text-white font-bold rounded-full hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] transition-all hover:-translate-y-1">
+                Zobacz nasze projekty <ArrowRight className="w-5 h-5" />
+              </button>
+            </Link>
 
-            <button className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-700 text-white font-bold rounded-full hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] transition-all hover:-translate-y-1">
-              Rozpocznij projekt <ArrowRight className="w-5 h-5" />
-            </button>
           </div>
 
           {/* PRAWA STRONA: Duży wizual (Zdjęcie 16:9 lub Portrait) */}
           <div className="order-1 lg:order-2 relative">
             <div className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] lg:aspect-square group">
               <img 
-                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1000&auto=format&fit=crop"
-                alt="Studio session" 
-                className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+                src="/scul%20plose.png"
+                alt="Scur"
               />
               {/* Overlay gradientowy na zdjęciu */}
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />

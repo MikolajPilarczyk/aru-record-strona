@@ -1,43 +1,52 @@
-import {  Phone, Mail } from 'lucide-react';
+import {   Mail } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiscord, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faDiscord, faYoutube,faInstagram, faTiktok,faBluesky} from '@fortawesome/free-brands-svg-icons';
 
 export function Contact()
 {
 return(
-<section id="contact" className="relative py-20 bg-gradient-to-b from-gray-900 to-gray-800 ">
+<section id="contact" className="relative py-20 bg-gradient-to-b from-[#14203D] to-[#172440] w-screen ">
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   <div className="text-center mb-16">
+
     <h2 className="text-4xl md:text-5xl mb-4 text-white">Skontaktuj się z nami</h2>
     <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-green-500 mx-auto rounded-full" />
   </div>
 
   <div className="grid md:grid-cols-2 gap-12">
     <div className="space-y-8">
-      <div className="flex items-start space-x-4">
-        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-emerald-400 rounded-lg flex items-center justify-center flex-shrink-0">
-          <Mail className="w-6 h-6 text-white" />
-        </div>
-        <div>
-          <h3 className="text-xl mb-2 text-white">Email</h3>
-          <p className="text-gray-400">kontakt@voicestudio.pl</p>
-          <p className="text-gray-400">biuro@voicestudio.pl</p>
-        </div>
-      </div>
 
-      <div className="flex items-start space-x-4">
+
+
+      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
         <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-          <Phone className="w-6 h-6 text-white" />
+          <FontAwesomeIcon
+              icon={faInstagram}
+              size="xl"
+              className={"text-gray-50"}
+          />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-white">Telefon</h3>
-          <p className="text-gray-400">+48 123 456 789</p>
-          <p className="text-gray-400">+48 987 654 321</p>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">@arurec0rd</h3>
+        </div>
+      </div>
+
+      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+        <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center  justify-center flex-shrink-0">
+          <FontAwesomeIcon
+              icon={faTiktok}
+              size="xl"
+              className={"text-gray-50"}
+          />
+        </div>
+        <div>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">@arurecord</h3>
         </div>
       </div>
 
 
-      <div className="flex items-start space-x-4">
+
+      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
         <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
           <FontAwesomeIcon
               icon={faYoutube}
@@ -46,11 +55,11 @@ return(
           />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-white">Kanał YouTube</h3>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">Kanał YouTube</h3>
         </div>
       </div>
 
-      <div className="flex items-start space-x-4">
+      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
         <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
           <FontAwesomeIcon
               icon={faDiscord}
@@ -60,14 +69,35 @@ return(
         </div>
         <div>
           <i className="fa-brands fa-discord"></i>
-          <h3 className="text-xl mb-2 text-white">Serwer Discord</h3>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">Serwer Discord</h3>
+        </div>
+      </div>
+
+      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+        <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+          <FontAwesomeIcon
+              icon={faBluesky}
+              size="xl"
+              className={"text-gray-50"}
+          />
+        </div>
+        <div>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">@arurecord.bsky.social</h3>
+        </div>
+      </div>
+      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-emerald-400 rounded-lg flex items-center justify-center flex-shrink-0">
+          <Mail className="w-6 h-6 text-white" />
+        </div>
+        <div>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">arurecordmail@gmail.com</h3>
         </div>
       </div>
     </div>
 
 
 
-    <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+    <div className="bg-[#172440] backdrop-blur-sm rounded-xl p-8 border border-slate-700">
       <form className="space-y-6">
         <div>
           <label className="block text-gray-300 mb-2">Imię i nazwisko</label>
@@ -106,6 +136,7 @@ return(
     </div>
   </div>
 </div>
+  <img src="/scul%20płaski.png" className="w-screen px-170 pt-20"/>
 </section>
 );
 }

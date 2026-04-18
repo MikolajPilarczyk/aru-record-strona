@@ -10,6 +10,30 @@ html, body, #root {
 }
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'duzeNaglowki';
+  src: url('./fonts/Staatliches-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Poprawia ładowanie - tekst pojawi się szybciej */
+}
+@font-face {
+  font-family: 'srednieNaglowki';
+  src: url('./fonts/Lexend-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Poprawia ładowanie - tekst pojawi się szybciej */
+}
+
+@font-face {
+  font-family: 'mainTekst';
+  src: url('./fonts/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Poprawia ładowanie - tekst pojawi się szybciej */
+}
+
+
 :root {
   --font-size: 16px;
   --background: #ffffff;
@@ -215,12 +239,30 @@ html, body, #root {
   scrollbar-width: thin;
   scrollbar-color: #22c55e #11141b;
 }
+  body
+  {
+    font-family: mainTekst
+  }
+  h1{
+    font-family: "duzeNaglowki";
+
+  }
   h2{
-    font-family: "Roboto", sans-serif;
+  font-family: "duzeNaglowki";
 
   }
   h3{
-    font-family: "Roboto", sans-serif;
+    font-family: "srednieNaglowki";
+
+
+  }
+  h4{
+    font-family: "srednieNaglowki";
+
+
+  }
+  h5{
+    font-family: "srednieNaglowki";
 
 
   }
@@ -237,14 +279,12 @@ html, body, #root {
       font-size: var(--text-2xl);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
-      font-family: "Sour Gummy", sans-serif;
     }
 
     h2 {
       font-size: var(--text-xl);
       font-weight: var(--font-weight-medium);
       line-height: 1.5;
-      font-family: "Sour Gummy", sans-serif;
     }
 
     h3 {

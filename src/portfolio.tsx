@@ -55,17 +55,24 @@ export function Portfolio()  {
     }, []);
 
     return (
-        <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-800 md:h-screen ">
+        <section id="voices" className="relative py-20 bg-gradient-to-b from-[#14203D] to-[#172440] md:min-h-screen ">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
 
 
-                    <div className="text-left mb-16 pt-15">
-                        <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasze Portfolio</h2>
-                        <div className="w-60 h-1 bg-gradient-to-r from-cyan-500 to-emerald-500 mx-auto float-left mb-5" />
-                        <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
-                            Oto projekty nad jakimi ostatnio pracowaliśmy
-                        </p>
+                    <div className="text-left mb-16 pt-15 ">
+                        <div>
+                            <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasze Portfolio</h2>
+                            <div className="w-60 h-1 bg-gradient-to-r from-cyan-500 to-emerald-500 mx-auto float-left mb-5" />
+                            <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
+                                Oto projekty nad jakimi ostatnio pracowaliśmy
+                            </p>
+                        </div>
+                        {
+
+                            search=="Szczury Walczące na miecze świetlne"&&<img src={"/scul%20blancior.png"} className={"w-50 transition-all duration-150"} />
+                        }
+
                     </div>
 
                 </div>

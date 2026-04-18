@@ -91,18 +91,23 @@ const LatestVideos: React.FC = () => {
   if (loading) return <p>Ładowanie filmów...</p>;
 
   return (
-        <section id="voices" className="relative py-20 bg-gradient-to-b from-gray-800 to-gray-800 overflow-hidden sm:w-screen px-7">
+        <section id="voices" className="relative py-20 bg-gradient-to-b from-[#505B6C] pt-50 to-[#172440] overflow-hidden sm:w-screen px-7">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-left mb-16">
-            <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasz Kanał na YouTube</h2>
-            <div className="lg:w-120   h-1 bg-gradient-to-r from-cyan-500 to-red-500 mx-auto float-left mb-5 w-70" />
-            <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
-              Sprawdźcie nasz kanał na YouTubie oto nasze ostatnie publikacje
-            </p>
+          <div className="text-left mb-16 grid grid-cols-2">
+            <div>
+              <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasze współprace</h2>
+              <div className="lg:w-120   h-1 bg-gradient-to-r from-cyan-500 to-green-500 mx-auto float-left mb-5 w-70" />
+              <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
+                Projekty, przy których Aru Record maczało swoje szczurze palce
+              </p>
+            </div>
+            <img src={"/scul%20like.png"}  alt="scul-lajk" className="w-45 mx-95"/>
+
+
           </div>
-      
+
           {/* KONTENER PRZEWIJANY */}
-          <div className="flex overflow-x-auto gap-8 pb-8 custom-scrollbar2 snap-x snap-mandatory scroll-smooth py-5 ">
+          <div className="flex overflow-x-auto gap-8 pb-8 custom-scrollbar snap-x snap-mandatory scroll-smooth py-5 ">
           {videosFromDataBase.map((video) => (
                 <a 
                 key={video.videoID} 
