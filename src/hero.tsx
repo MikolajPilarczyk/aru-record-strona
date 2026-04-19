@@ -62,7 +62,7 @@ export function Hero() {
                 </div>
 
                 <div className="relative">
-                  <img src="/szczur%20basic.png" alt="" className="relative z-20 w-full h-auto" />
+                  <img src="/scur_piwo.png" alt="scur" className="relative z-20 w-full h-auto" />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] rounded-2xl blur-3xl opacity-20"></div>
                 </div>
               </div>

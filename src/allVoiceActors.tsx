@@ -11,10 +11,29 @@ export function AllVoiceActors() {
     // Funkcja pobierająca dane - reużywalna
     const fetchActors = (filterQuery = '') => {
         setLoading(true);
-        // Podstawowe zapytanie
+
         let baseQuery = `*[_type == "voiceAcotrs"${filterQuery}] { 
             _id, imie, ksywka, nazwisko, slug, specialization, image, body 
         }`;
+
+
+        if(filterQuery == '') {
+             baseQuery = `*[_type == "voiceAcotrs"${filterQuery}] { 
+                _id, 
+                imie, 
+                ksywka, 
+                nazwisko, 
+                slug, 
+                specialization, 
+                image, 
+                body,
+                // Sprawdzamy match tutaj - to zwróci true/false
+                "priority": specialization match "Oficjalne*"
+            } | order(priority desc, ksywka asc)`;
+        }
+
+
+
 
         client.fetch(baseQuery)
             .then((data) => {
@@ -71,7 +90,6 @@ export function AllVoiceActors() {
                 >
                     <input
                         onChange={handleChange}
-                        value={search}
                         type="text"
                         className="bg-gray-600 px-4 text-gray-50 w-full md:w-1/2 p-2 rounded-full border-2 focus:outline-none focus:border-green-400 border-gray-400 shadow-lg placeholder:text-gray-400"
                         placeholder="Wpisz imię lub specjalizację..."
@@ -86,6 +104,12 @@ export function AllVoiceActors() {
                         <option value="męski">Głosy męskie</option>
                         <option value="dorosły">Głosy dorosłe</option>
                         <option value="dziecięcy">Głosy dziecięce</option>
+
+                        <option value="realizator">Realizator dźwięku</option>
+                        <option value="Reżyser">Reżyser</option>
+                        <option value="Dialogista">Dialogista</option>
+                        <option value="wokalist">Wokalista</option>
+
                     </select>
 
                     <button

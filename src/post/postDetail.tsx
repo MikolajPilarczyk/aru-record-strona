@@ -121,7 +121,7 @@ export function PostDetail() {
                                                 {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
                                             </h3>
                                             <span className="bg-gradient-to-b from-emerald-400 to-emerald-600 bg-clip-text text-transparent text-sm font-medium">
-                                                W roli: {characterName || "Nieokreślona"}
+                                                {characterName || "Nieokreślona"}
                                             </span>
                                         </div>
                                     </Link>
