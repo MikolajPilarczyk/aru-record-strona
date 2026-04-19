@@ -15,7 +15,7 @@ function VoiceActors() {
 
 
     return (
-      <section id="voices" className="relative py-20 bg-gradient-to-b from-[#172440] to-[#14203D] w-screen overflow-hidden px-5">
+      <section id="voices" className="relative py-20 bg-gradient-to-b from-[#172440] to-[#14203D] w-screen overflow-hidden px-5 max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
 

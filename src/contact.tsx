@@ -5,7 +5,7 @@ import { faDiscord, faYoutube,faInstagram, faTiktok,faBluesky} from '@fortawesom
 export function Contact()
 {
 return(
-<section id="contact" className="relative py-20 bg-gradient-to-b from-[#14203D] to-[#172440] w-screen ">
+<section id="contact" className="relative py-20 bg-gradient-to-b from-[#14203D] to-[#172440] w-screen max-w-screen ">
 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   <div className="text-center mb-16">
 

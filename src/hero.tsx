@@ -14,7 +14,7 @@ export function Hero() {
   }, []);
 
   return (
-      <div className="relative overflow-hidden w-screen bg-gradient-to-b from-[#14203D] to-[#505B6C] pb-20">
+      <div className="relative overflow-hidden w-screen bg-gradient-to-b from-[#14203D] to-[#505B6C] pb-20 max-w-full">
 
         <div className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center">
           <img

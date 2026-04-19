@@ -8,7 +8,7 @@ import LatestVideos from './youtubeConnect';
 export function Home() {
 
   return (
-    <div>
+    <div className="max-w-full overflow-x-hidden">
     <Hero/>
     <LatestVideos/>
     <VoiceActors/>
