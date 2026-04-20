@@ -31,7 +31,6 @@ export function VoiceActorsDetail() {
     const [posts, setPosts] = useState<any[]>([]);
 
     useEffect(() => {
-        // ZMIANA W ZAPYTANIU: demo[].asset->url pobierze tablicę linków
         const actorQuery = `*[_type == "voiceAcotrs" && _id == $id][0]{ 
             _id, imie, ksywka, nazwisko, specialization, image, body,
                 socials[]{
