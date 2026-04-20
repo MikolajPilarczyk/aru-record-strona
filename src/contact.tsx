@@ -18,7 +18,8 @@ return(
 
 
 
-      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+      <div className="flex items-start space-x-4 " >
+      <a href={"https://www.instagram.com/arurec0rd/"} target="_blank" rel="noopener noreferrer" className={"flex items-start space-x-4 hover:scale-105 transition-all duration-150 hover:opacity-85"}>
         <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
           <FontAwesomeIcon
               icon={faInstagram}
@@ -27,11 +28,13 @@ return(
           />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">@arurec0rd</h3>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 hover:text-emerald-100">@arurec0rd</h3>
         </div>
+        </a>
       </div>
 
-      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+      <div className="flex items-start space-x-4 " >
+        <a href={"https://www.tiktok.com/@arurecord"} target="_blank" rel="noopener noreferrer" className={"flex items-start space-x-4 hover:scale-105 transition-all duration-150 hover:opacity-85"}>
         <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center  justify-center flex-shrink-0">
           <FontAwesomeIcon
               icon={faTiktok}
@@ -40,13 +43,15 @@ return(
           />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">@arurecord</h3>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 hover:text-emerald-100 ">@arurecord</h3>
         </div>
+        </a>
       </div>
 
 
 
-      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+      <div className="flex items-start space-x-4 " >
+      <a href={""} target="_blank" rel="noopener noreferrer" className={"flex items-start space-x-4 hover:scale-105 transition-all duration-150 hover:opacity-85"}>
         <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
           <FontAwesomeIcon
               icon={faYoutube}
@@ -55,25 +60,34 @@ return(
           />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">Kanał YouTube</h3>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 hover:text-emerald-100">Kanał YouTube</h3>
         </div>
+        </a>
+
       </div>
 
-      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
-        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
-          <FontAwesomeIcon
-              icon={faDiscord}
-              size="xl"
-              className={"text-gray-50"}
-            />
-        </div>
-        <div>
-          <i className="fa-brands fa-discord"></i>
-          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">Serwer Discord</h3>
-        </div>
+      <div className="flex items-start space-x-4 " >
+        <a href={"https://discord.gg/82NaCbJXFU"} target="_blank" rel="noopener noreferrer" className={"flex items-start space-x-4 hover:scale-105 transition-all duration-150 hover:opacity-85"}>
+          <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0 ">
+            <FontAwesomeIcon
+                icon={faDiscord}
+                size="xl"
+                className={"text-gray-50"}
+              />
+          </div>
+          <div>
+            <i className="fa-brands fa-discord"></i>
+            <h3 className="text-xl mb-2 text-gray-200 pt-2 hover:text-emerald-100">Serwer Discord</h3>
+          </div>
+        </a>
       </div>
 
-      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+
+
+
+
+      <div className="flex items-start space-x-4 " >
+      <div  className={"flex items-start space-x-4 hover:scale-105 transition-all duration-150 hover:opacity-85"}>
         <div className="w-12 h-12  bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
           <FontAwesomeIcon
               icon={faBluesky}
@@ -82,16 +96,22 @@ return(
           />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">@arurecord.bsky.social</h3>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 hover:text-emerald-100">@arurecord.bsky.social</h3>
+        </div>
         </div>
       </div>
-      <div className="flex items-start space-x-4 hover:scale-105 transition-all duration-150">
+
+
+
+      <div className="flex items-start space-x-4 " >
+      <div  className={"flex items-start space-x-4 hover:scale-105 transition-all duration-150 hover:opacity-85"}>
         <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-emerald-400 rounded-lg flex items-center justify-center flex-shrink-0">
           <Mail className="w-6 h-6 text-white" />
         </div>
         <div>
-          <h3 className="text-xl mb-2 text-gray-200 pt-2 ">arurecordmail@gmail.com</h3>
+          <h3 className="text-xl mb-2 text-gray-200 pt-2 hover:text-emerald-100">arurecordmail@gmail.com</h3>
         </div>
+      </div>
       </div>
     </div>
 

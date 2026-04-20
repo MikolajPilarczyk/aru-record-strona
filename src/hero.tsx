@@ -5,6 +5,8 @@ import { client, urlFor } from './sanityClient';
 
 export function Hero() {
   const [posts, setPosts] = useState<any[]>([]);
+  //const rats = useState(["/scur_piwo.png"])
+
 
   useEffect(() => {
     client

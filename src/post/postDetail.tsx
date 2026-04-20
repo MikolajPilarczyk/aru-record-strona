@@ -8,9 +8,10 @@ import MuxPlayer from '@mux/mux-player-react';
 export function PostDetail() {
     const { id } = useParams();
     const [post, setPost] = useState<any>(null);
-    const [loading, setLoading] = useState(true); // Dodatkowy stan ładowania
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        // Zaktualizowane zapytanie: pobieramy też URL dla nativeVideo
         const query = `*[_type == "post" && _id == $id][0]{ 
             title,
             publishedAt,
@@ -22,7 +23,9 @@ export function PostDetail() {
             "videoData": videoToUpLoad.asset-> {
                 playbackId,
                 aspectRatio
-            }
+            },
+            // Pobieramy bezpośredni URL do pliku wideo w Sanity
+            "nativeVideoUrl": nativeVideo.asset->url
         }`;
 
         client.fetch(query, { id })
@@ -30,10 +33,9 @@ export function PostDetail() {
                 setPost(data);
                 setLoading(false);
             })
-            .catch(() => setLoading(false)); // Obsługa błędu sieci
+            .catch(() => setLoading(false));
     }, [id]);
 
-    // 1. Obsługa ładowania i braku danych (np. błędne ID)
     if (loading) {
         return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Ładowanie...</div>;
     }
@@ -47,15 +49,27 @@ export function PostDetail() {
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
 
                 <div className="mb-8">
+                    {/* LOGIKA WYŚWIETLANIA: MUX -> Native Video -> Brak */}
                     {post.videoData?.playbackId ? (
                         <MuxPlayer
                             playbackId={post.videoData.playbackId}
                             metadataVideoTitle={post.title || "Wideo"}
                             streamType="on-demand"
-                            className="w-full aspect-video rounded-xl"
+                            className="w-full aspect-video rounded-xl shadow-xl"
                         />
+                    ) : post.nativeVideoUrl ? (
+                        <div className="rounded-xl overflow-hidden shadow-xl bg-black border border-gray-800">
+                            <video
+                                src={post.nativeVideoUrl}
+                                controls
+                                className="w-full aspect-video"
+                                controlsList="nodownload" // Opcjonalnie: blokuje przycisk pobierania
+                            >
+                                Twoja przeglądarka nie wspiera odtwarzacza wideo.
+                            </video>
+                        </div>
                     ) : (
-                        <div className="bg-black/20 aspect-video flex items-center justify-center text-gray-500 rounded-xl border border-gray-800">
+                        <div className="bg-black/20 aspect-video flex items-center justify-center text-gray-500 rounded-xl border border-gray-800 italic">
                             Wideo niedostępne
                         </div>
                     )}
@@ -65,6 +79,7 @@ export function PostDetail() {
                     {post.title || "Tytuł niedostępny"}
                 </h1>
 
+                {/* Reszta Twojego kodu (Data, Body, Cast) pozostaje bez zmian */}
                 <div className="text-gray-400 text-m flex items-center m-2">
                     <Calendar className="w-4 h-4 text-gray-400 mr-2 shrink-0" />
                     <span>
@@ -91,9 +106,7 @@ export function PostDetail() {
                         <h2 className="text-gray-200 text-xl font-bold mb-4">W tej produkcji wystąpili:</h2>
                         <div className="grid grid-cols-1 gap-2">
                             {post.cast.map((member: any, index: number) => {
-                                // Pomijamy renderowanie, jeśli dane aktora są niekompletne
                                 if (!member?.actorDetail) return null;
-
                                 const { actorDetail, characterName } = member;
 
                                 return (
@@ -115,7 +128,6 @@ export function PostDetail() {
                                                 </div>
                                             )}
                                         </div>
-
                                         <div className="flex flex-col min-w-0">
                                             <h3 className="text-gray-50 font-semibold truncate">
                                                 {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}

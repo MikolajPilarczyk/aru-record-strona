@@ -2,6 +2,10 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { client, urlFor } from '../sanityClient';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
+import { faDiscord, faYoutube,faInstagram, faTiktok} from '@fortawesome/free-brands-svg-icons';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
+
 
 export function VoiceActorsDetail() {
     // ... (portableTextComponents bez zmian)
@@ -30,6 +34,10 @@ export function VoiceActorsDetail() {
         // ZMIANA W ZAPYTANIU: demo[].asset->url pobierze tablicę linków
         const actorQuery = `*[_type == "voiceAcotrs" && _id == $id][0]{ 
             _id, imie, ksywka, nazwisko, specialization, image, body,
+                socials[]{
+                    platform,
+                    username
+                },
             "demo": demo[]{
                 "url": asset->url,
                 "description": description
@@ -108,6 +116,70 @@ export function VoiceActorsDetail() {
                             <p className="italic text-gray-500 text-center py-10">Brak opisu profilu.</p>
                         )}
                     </div>
+
+                    {/*Sekcja z socialami*/}
+                    {
+                        actors.socials?(
+                            <div>
+                                {actors.socials.map((social: any, index: number) => (
+                                    <div key={index} className={"text-gray-200 text-lg"}>
+                                        {
+                                            social.platform =="discord" ?(
+                                                    <div className="flex items-center gap-2">
+                                                        <FontAwesomeIcon
+                                                            icon={faDiscord}
+                                                            size="xl"
+                                                            className={"text-gray-50"}
+                                                        />
+                                                        {social.username}
+
+
+                                                    </div>
+                                                )
+                                                : social.platfrom == "instagrm"?(
+                                                    <div>
+                                                        <FontAwesomeIcon
+                                                            icon={faInstagram}
+                                                            size="xl"
+                                                            className={"text-gray-50"}
+                                                        />
+
+                                                        {social.username}</div>
+                                                ) : social.platfrom =="tiktok"?(
+                                                    <div>
+                                                        <FontAwesomeIcon
+                                                            icon={faTiktok}
+                                                            size="xl"
+                                                            className={"text-gray-50"}
+                                                        />
+
+                                                        {social.username}</div>
+                                                ) : (
+                                                    <div><FontAwesomeIcon
+                                                        icon={faYoutube}
+                                                        size="xl"
+                                                        className={"text-gray-50"}
+                                                    />
+                                                        {social.username}</div>
+                                                )
+                                        }
+
+                                    </div>
+                                ))}
+                            </div>
+                        ):
+                            (
+                                <div>
+
+
+                                </div>
+                            )
+
+                    }
+
+
+
+
 
                     {/* Powiązane posty */}
                     {posts.length > 0 && (
