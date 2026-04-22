@@ -65,6 +65,7 @@ export function AllVoiceActors() {
 
     useEffect(() => {
         fetchActors();
+        window.scrollTo(0, 0);
 
 
         const partnerActorsQuery = `*[_type == "partnerVoiceAcotrs"] { 

@@ -49,6 +49,7 @@ export function Portfolio()  {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         client.fetch('*[_type == "post"] | order(publishedAt desc) {_id,title,slug,publishedAt,image,body}')
             .then(setPosts)
             .catch(console.error);

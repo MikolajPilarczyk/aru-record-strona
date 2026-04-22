@@ -32,6 +32,7 @@ export function VoiceActorsDetail() {
     const [posts, setPosts] = useState<any[]>([]);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const actorQuery = `*[_type == "voiceAcotrs" && ksywka == $id][0]{ 
             _id, imie, ksywka, nazwisko, specialization, image, body,
                 socials[]{
