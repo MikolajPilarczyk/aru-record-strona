@@ -213,7 +213,7 @@ export function PostDetail() {
 
                 {post.partnerCast && Array.isArray(post.partnerCast) && post.partnerCast.length > 0 && (
                     <div className="mt-8 p-2">
-                        <h2 className="text-gray-200 text-xl font-bold mb-4">Występ goścninny:</h2>
+                        <h2 className="text-gray-200 text-xl font-bold mb-4">Występ gościnny:</h2>
                         <div className="grid grid-cols-1 gap-2">
                             {post.partnerCast.map((member: any, index: number) => {
                                 if (!member?.actorDetail) return null;

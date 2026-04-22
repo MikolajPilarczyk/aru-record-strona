@@ -8,7 +8,7 @@ import {Helmet} from "react-helmet-async";
 
 
 
-export function VoiceActorsDetail() {
+export function     VoiceActorsDetail() {
     // ... (portableTextComponents bez zmian)
     const portableTextComponents: PortableTextComponents = {
         // ... Twój poprzedni kod komponentów ...
@@ -30,6 +30,8 @@ export function VoiceActorsDetail() {
     const { id } = useParams();
     const [actors, setActor] = useState<Record<string, any> | null>(null);
     const [posts, setPosts] = useState<any[]>([]);
+    const [techPosts, setTechPosts] = useState<any[]>([]);
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -45,25 +47,44 @@ export function VoiceActorsDetail() {
             }
         }`;
 
-        const postsQuery = `*[_type == "post" && $id in cast[].actor._ref]{ 
+        const postsQuery = `*[_type == "post" && $id in cast[].actor->ksywka]{ 
             _id, title, publishedAt, slug,
-            "cast": cast[]{ characterName, "actorDetail": actor->{ _id } }
+            "cast": cast[]{ characterName, "actorDetail": actor->{ ksywka } }
         }`;
+
+        const techPostsQuery = `*[_type == "post" && $id in techCast[].actor->ksywka]{ 
+            _id, title, publishedAt, slug,
+            "techCast": techCast[]{ characterName, "actorDetail": actor->{ ksywka } }
+        }`;
+
+
+
 
         const fetchData = async () => {
             try {
-                const [actorData, relatedPosts] = await Promise.all([
+                const [actorData, relatedPosts,relatedTechPosts] = await Promise.all([
                     client.fetch(actorQuery, { id }),
-                    client.fetch(postsQuery, { id })
+                    client.fetch(postsQuery, { id }),
+                    client.fetch(techPostsQuery, { id })
+
                 ]);
                 setActor(actorData);
                 setPosts(relatedPosts);
+                setTechPosts(relatedTechPosts);
+
+
+
+
+
             } catch (err) {
                 console.error("Błąd pobierania danych:", err);
             }
         };
 
-        if (id) fetchData();
+        if (id)
+        {
+            fetchData();
+        }
     }, [id]);
 
     if (!actors) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Wczytywanie...</div>;
@@ -188,14 +209,33 @@ export function VoiceActorsDetail() {
                     {/* Powiązane posty */}
                     {posts.length > 0 && (
                         <div className="mt-12 pt-10 border-t border-gray-800">
-                            <h2 className="text-white text-3xl font-bold mb-6">Brał udział w:</h2>
+                            <h2 className="text-white text-3xl font-bold mb-6">Wystąpienia</h2>
                             <div className="grid gap-4">
                                 {posts.map((post) => (
                                     <Link to={`/post/${post._id}`} key={post._id} className="block p-5 rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-transparent hover:border-gray-700">
                                         <h3 className="text-xl text-white font-semibold">{post.title}</h3>
                                         <div className="mt-2 text-cyan-400 italic">
-                                            {post.cast?.filter((c: any) => c.actorDetail?._id === id).map((member: any, idx: number) => (
+                                            {post.cast?.filter((c: any) => c.actorDetail?.ksywka === id).map((member: any, idx: number) => (
                                                 <span key={idx}>W roli: {member.characterName}</span>
+                                            ))}
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/*Udział techniczny*/}
+                    {techPosts.length > 0 && (
+                        <div className="mt-12 pt-10 border-t border-gray-800">
+                            <h2 className="text-white text-3xl font-bold mb-6">Udział techniczny</h2>
+                            <div className="grid gap-4">
+                                {techPosts.map((post) => (
+                                    <Link to={`/post/${post._id}`} key={post._id} className="block p-5 rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-transparent hover:border-gray-700">
+                                        <h3 className="text-xl text-white font-semibold">{post.title}</h3>
+                                        <div className="mt-2 text-cyan-400 italic">
+                                            {post.techCast?.filter((c: any) => c.actorDetail?.ksywka === id).map((member: any, idx: number) => (
+                                                <span key={idx}>{member.characterName}</span>
                                             ))}
                                         </div>
                                     </Link>

@@ -22,6 +22,7 @@ export function Portfolio()  {
         title,
         slug,
         publishedAt,
+        "tags": tags[],
         image,
         body
             }`;
@@ -35,6 +36,7 @@ export function Portfolio()  {
         title,
         slug,
         publishedAt,
+        "tags": tags[],
         image,
         body
             }`;
@@ -50,7 +52,7 @@ export function Portfolio()  {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        client.fetch('*[_type == "post"] | order(publishedAt desc) {_id,title,slug,publishedAt,image,body}')
+        client.fetch('*[_type == "post"] | order(publishedAt desc) {_id,title,slug,publishedAt,"tags": tags[],image,body}')
             .then(setPosts)
             .catch(console.error);
     }, []);
@@ -131,6 +133,17 @@ export function Portfolio()  {
                                             {post.title}
                                         </h3>
                                     </div>
+                                    <div>
+                                        {post.tags && post.tags.length > 0 && (
+                                            <div className="flex grid grid-cols-3 gap-1 pb-2">
+                                                {post.tags.map((tag, index) => (
+                                                    <p key={index} className="mr-1 mb-1 bg-gray-700/50 text-xs p-1 px-2 text-center text-gray-500 rounded-full border-1 border-gray-500">
+                                                            {tag}
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
                                     <div className="text-gray-400 text-sm flex items-center">
                                         <Calendar className="w-4 h-4 text-gray-400 mr-2 shrink-0" />
                                         <span>
@@ -139,7 +152,10 @@ export function Portfolio()  {
                                 month: 'long',
                                 year: 'numeric'
                             }) : 'Brak daty'}
+
+
                         </span>
+
                                     </div>
                                 </div>
                             </div>

@@ -195,8 +195,9 @@ export function AllVoiceActors() {
 
                     </div>
                             <div>
+                                {partnerActors.length > 0 && (
                                 <h2 className="text-gray-100 px-2 text-2xl my-7 md:ml-20 text-3xl">Partnerzy</h2>
-
+                                )}
                                 <div className="flex flex-wrap gap-8  py-10">
                                     {
                                         partnerActors.length > 0 && (
