@@ -4,6 +4,7 @@ import { client, urlFor } from '../sanityClient';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import { faDiscord, faYoutube,faInstagram, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Helmet} from "react-helmet-async";
 
 
 
@@ -31,7 +32,7 @@ export function VoiceActorsDetail() {
     const [posts, setPosts] = useState<any[]>([]);
 
     useEffect(() => {
-        const actorQuery = `*[_type == "voiceAcotrs" && _id == $id][0]{ 
+        const actorQuery = `*[_type == "voiceAcotrs" && ksywka == $id][0]{ 
             _id, imie, ksywka, nazwisko, specialization, image, body,
                 socials[]{
                     platform,
@@ -68,6 +69,9 @@ export function VoiceActorsDetail() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
+            <Helmet>
+                <title>{actors.ksywka}</title>
+            </Helmet>
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
                 <div className="p-8 md:p-12">
                     {/* Nagłówek i zdjęcie */}

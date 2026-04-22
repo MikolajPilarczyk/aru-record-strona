@@ -153,7 +153,7 @@ export function AllVoiceActors() {
                     <div className="flex flex-wrap gap-8 justify-center py-10">
                         {restActors.map((actor) => (
                             <Link
-                                to={`/aktorzy-glosowi/${actor._id}`}
+                                to={`/aktorzy-glosowi/${actor.ksywka}`}
                                 key={actor._id}
                                 className="w-70 group"
                             >

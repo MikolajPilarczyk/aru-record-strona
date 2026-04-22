@@ -44,7 +44,7 @@ function VoiceActors() {
 
 
               <Link
-                to={`/aktorzy-glosowi/${actor._id}`}
+                to={`/aktorzy-glosowi/${actor.ksywka}`}
                 key={actor._id}
                 className="min-w-[calc(100%-2rem)] sm:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(25%-1.5rem)] snap-start px-2"
               >

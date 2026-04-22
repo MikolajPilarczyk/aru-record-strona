@@ -58,10 +58,13 @@ export function PostDetail() {
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
             <Helmet>
                 <title>{post.title}</title>
-                <meta property="og:title" content={post.title} />
-                {
-                    post.image?(<meta property="og:image" content={urlFor(post.image).url()} />):(<meta property="og:image" content="/scul%20gitara.png" />)
-                }
+                <meta
+                    property="og:image"
+                    content="https://aru-studio.web.app/scul%20love.png"
+                />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:image" content="https://aru-studio.web.app/scul%20love.png" />
             </Helmet>
 
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
@@ -129,7 +132,7 @@ export function PostDetail() {
 
                                 return (
                                     <Link
-                                        to={`/aktorzy-glosowi/${actorDetail._id}`}
+                                        to={`/aktorzy-glosowi/${actorDetail.ksywka}`}
                                         key={actorDetail._id || index}
                                         className="flex items-center gap-4 group hover:bg-white/5 p-2 rounded-xl transition-all"
                                     >
@@ -171,7 +174,7 @@ export function PostDetail() {
 
                                 return (
                                     <Link
-                                        to={`/aktorzy-glosowi/${actorDetail._id}`}
+                                        to={`/aktorzy-glosowi/${actorDetail.ksywka}`}
                                         key={actorDetail._id || index}
                                         className="flex items-center gap-4 group hover:bg-white/5 p-2 rounded-xl transition-all"
                                     >
