@@ -115,10 +115,9 @@ export function Portfolio()  {
                         <Link
                             to={`/post/${post._id}`}
                             key={post._id}
-                            className="w-full sm:w-1/2 lg:w-1/4 snap-start p-2"
+                            className="w-full sm:w-1/2 lg:w-1/3 snap-start p-2"
                         >
                             <div className="group relative bg-gray-700/50 backdrop-blur-sm rounded-sm overflow-hidden border border-gray-600 hover:border-transparent transition-all duration-300 hover:scale-105">
-                                {/* Reszta Twojego kodu bez zmian */}
                                 <div className={`absolute inset-0 bg-gradient-to-b from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
 
                                 <div className="aspect-video overflow-hidden bg-gray-800">
