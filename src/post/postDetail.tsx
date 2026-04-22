@@ -24,6 +24,7 @@ export function PostDetail() {
             },
             "techCast": techCast[]{
                 characterName,
+                
                 "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
             },
             "partnerCast": partnerCast[]{
@@ -160,6 +161,9 @@ export function PostDetail() {
                                     </Link>
                                 );
                             })}
+
+
+
                         </div>
                     </div>
                 )}
@@ -256,7 +260,7 @@ export function PostDetail() {
                     </div>
                 )}
 
-
+                {/*Występ gościnny*/}
             </div>
         </div>
     );

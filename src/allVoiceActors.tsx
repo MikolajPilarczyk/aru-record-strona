@@ -69,7 +69,7 @@ export function AllVoiceActors() {
 
 
         const partnerActorsQuery = `*[_type == "partnerVoiceAcotrs"] { 
-            _id, imie, ksywka, nazwisko, slug}`;
+            _id, imie,image, ksywka, nazwisko, slug}`;
 
 
 
@@ -215,7 +215,6 @@ export function AllVoiceActors() {
                                                             ) : (
                                                                 <img
                                                                     src={"/scul_partnerski.png"}
-
                                                                     alt={actor.imie}
                                                                     className="w-full h-full object-cover  group-hover:scale-110 transition-transform duration-700"
                                                                 />

@@ -5,19 +5,25 @@ import {Search, Calendar, CalendarArrowUp,CalendarArrowDown } from "lucide-react
 
 export function Portfolio()  {
     const [posts, setPosts] = useState<any[]>([]);
+    const [searchTags, setSearchTags] = useState('');
     const [search, setSearch] = useState('');
     const [orderAsc, setOrderAsc] = useState(false);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(search=="Szczury Walczące na miecze świetlne")
-        {
+
+        const params = {
+            search: search.trim() !== "" ? `${search}*` : "*",
+            searchTags: searchTags !== "" ? `${searchTags}*` : "*"
+        };
+
+        if (search === "Szczury Walczące na miecze świetlne") {
             alert("Pow Pow");
         }
-        if(orderAsc) {
 
+        const order = orderAsc ? "asc" : "desc";
 
-            const query = `*[_type == "post" && title match "${search}*"] | order(publishedAt asc) {
+        const query = `*[_type == "post" && (title match $search && tags[] match $searchTags)] | order(publishedAt ${order}) {
         _id,
         title,
         slug,
@@ -25,27 +31,12 @@ export function Portfolio()  {
         "tags": tags[],
         image,
         body
-            }`;
-            client.fetch(query)
-                .then(setPosts)
-                .catch(console.error);
-        }
-        else {
-            const query = `*[_type == "post" && title match "${search}*"] | order(publishedAt desc) {
-        _id,
-        title,
-        slug,
-        publishedAt,
-        "tags": tags[],
-        image,
-        body
-            }`;
-            client.fetch(query)
-                .then(setPosts)
-                .catch(console.error);
-        }
+    }`;
 
-    }
+        client.fetch(query, params)
+            .then(setPosts)
+            .catch(console.error);
+    };
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     }
@@ -81,10 +72,27 @@ export function Portfolio()  {
                 </div>
                 <h3 className="text-gray-100 px-2 text-2xl  my-5">Wyszukaj naszego projektu</h3>
                 <form onSubmit={handleSubmit} className="md:flex  mb-10 ">
+
+
                     <input onChange={handleChange} name={"searchData"}  type={"text"} className="bg-gray-600
                      px-4 text-gray-50 w-80 md:w-150 p-2 rounded-full border-2 focus:outline-none focus:border-gray-300
                       border-gray-400 shadow-xl/20 shadow-emerald-300 placeholder:text-sm"
                            placeholder={"Szczury Walczące na miecze świetlne..." }/>
+
+
+                    <select
+                        onChange={(e)=>setSearchTags(e.target.value)}
+                        className="bg-gray-600 text-sm shadow-lg border-gray-400 text-gray-100 p-3 rounded-full w-full md:w-auto border-2 focus:outline-none ml-3"
+                    >
+                        <option value="*">Wszystkie projekty</option>
+                        <option value="animacja">Animacja</option>
+                        <option value="polecane">Polecane</option>
+                        <option value="Pilot">Pilot</option>
+                        <option value="Oficjalne">Oficjalne</option>
+                        <option value="Scenka">Scenka</option>
+                        <option value="Cover">Cover</option>
+                    </select>
+
                     {
                         orderAsc?(
                             <button onClick={()=>setOrderAsc(false)} className="bg-gradient-to-br  from-emerald-500 to-cyan-500 mx-2 ml-4 text-gray-100 shadow-gray-400 shadow-xl/20 hover:scale-110
