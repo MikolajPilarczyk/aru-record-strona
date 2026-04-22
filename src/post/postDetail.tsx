@@ -4,6 +4,7 @@ import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
 import { Calendar } from 'lucide-react';
 import MuxPlayer from '@mux/mux-player-react';
+import {Helmet} from "react-helmet-async";
 
 export function PostDetail() {
     const { id } = useParams();
@@ -16,7 +17,16 @@ export function PostDetail() {
             title,
             publishedAt,
             body,
+            image,
             "cast": cast[]{
+                characterName,
+                "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
+            },
+            "techCast": techCast[]{
+                characterName,
+                "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
+            },
+            "partnerCast": partnerCast[]{
                 characterName,
                 "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
             },
@@ -46,6 +56,14 @@ export function PostDetail() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
+            <Helmet>
+                <title>{post.title}</title>
+                <meta property="og:title" content={post.title} />
+                {
+                    post.image?(<meta property="og:image" content={urlFor(post.image).url()} />):(<meta property="og:image" content="/scul%20gitara.png" />)
+                }
+            </Helmet>
+
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
 
                 <div className="mb-8">
@@ -142,6 +160,100 @@ export function PostDetail() {
                         </div>
                     </div>
                 )}
+
+                {post.techCast && Array.isArray(post.techCast) && post.techCast.length > 0 && (
+                    <div className="mt-8 p-2">
+                        <h2 className="text-gray-200 text-xl font-bold mb-4">Realizacja techniczna  :</h2>
+                        <div className="grid grid-cols-1 gap-2">
+                            {post.techCast.map((member: any, index: number) => {
+                                if (!member?.actorDetail) return null;
+                                const { actorDetail, characterName } = member;
+
+                                return (
+                                    <Link
+                                        to={`/aktorzy-glosowi/${actorDetail._id}`}
+                                        key={actorDetail._id || index}
+                                        className="flex items-center gap-4 group hover:bg-white/5 p-2 rounded-xl transition-all"
+                                    >
+                                        <div className="w-16 h-16 shrink-0">
+                                            {actorDetail.image ? (
+                                                <img
+                                                    src={urlFor(actorDetail.image).width(200).height(200).url()}
+                                                    alt={actorDetail.imie || "Aktor"}
+                                                    className="w-full h-full rounded-full object-cover border-2 border-emerald-500/20"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-gray-600 text-[10px] text-center border-2 border-gray-700 p-1">
+                                                    Brak foto
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="flex flex-col min-w-0">
+                                            <h3 className="text-gray-50 font-semibold truncate">
+                                                {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
+                                            </h3>
+                                            <span className="bg-gradient-to-b from-emerald-400 to-emerald-600 bg-clip-text text-transparent text-sm font-medium">
+                                                {characterName || "Nieokreślona"}
+                                            </span>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
+
+
+
+
+
+                {post.partnerCast && Array.isArray(post.partnerCast) && post.partnerCast.length > 0 && (
+                    <div className="mt-8 p-2">
+                        <h2 className="text-gray-200 text-xl font-bold mb-4">Występ goścninny:</h2>
+                        <div className="grid grid-cols-1 gap-2">
+                            {post.partnerCast.map((member: any, index: number) => {
+                                if (!member?.actorDetail) return null;
+                                const { actorDetail, characterName } = member;
+
+                                return (
+                                    <div
+                                        key={actorDetail._id || index}
+                                        className="flex items-center gap-4 group hover:bg-white/5 p-2 rounded-xl transition-all"
+                                    >
+                                        <div className="w-16 h-16 shrink-0">
+                                            {actorDetail.image ? (
+                                                <img
+                                                    src={urlFor(actorDetail.image).width(200).height(200).url()}
+                                                    alt={actorDetail.imie || "Aktor"}
+                                                    className="w-full h-full rounded-full object-cover border-2 border-emerald-500/20"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-gray-600 text-[10px] text-center border-2 border-gray-700 p-1">
+                                                    <img
+                                                        src={"/scul_partnerski.png"}
+                                                        alt={actorDetail.imie || "Aktor"}
+                                                        className="w-full h-full rounded-full object-cover border-2 border-emerald-500/20"
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="flex flex-col min-w-0">
+                                            <h3 className="text-gray-50 font-semibold truncate">
+                                                {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
+                                            </h3>
+                                            <span className="bg-gradient-to-b from-emerald-400 to-emerald-600 bg-clip-text text-transparent text-sm font-medium">
+                                                {characterName || "Nieokreślona"}
+                                            </span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
+
             </div>
         </div>
     );

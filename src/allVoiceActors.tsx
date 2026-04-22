@@ -5,10 +5,13 @@ import { Search } from "lucide-react";
 
 export function AllVoiceActors() {
     const [restActors, setRestActors] = useState<any[]>([]);
+    const [partnerActors, setPartnerActors] = useState<any[]>([]);
+
     const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(true);
 
-    // Funkcja pobierająca dane - reużywalna
+
+
     const fetchActors = (filterQuery = '') => {
         setLoading(true);
 
@@ -62,6 +65,24 @@ export function AllVoiceActors() {
 
     useEffect(() => {
         fetchActors();
+
+
+        const partnerActorsQuery = `*[_type == "partnerVoiceAcotrs"] { 
+            _id, imie, ksywka, nazwisko, slug}`;
+
+
+
+
+        client.fetch(partnerActorsQuery)
+            .then((data) => {
+                setPartnerActors(data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error(err);
+                setLoading(false);
+            });
+
     }, []);
 
     return (
@@ -128,6 +149,7 @@ export function AllVoiceActors() {
                 {loading ? (
                     <div className="text-center py-20 text-gray-400">Węszenie w bazie danych...</div>
                 ) : restActors.length > 0 ? (
+                        <div>
                     <div className="flex flex-wrap gap-8 justify-center py-10">
                         {restActors.map((actor) => (
                             <Link
@@ -169,7 +191,58 @@ export function AllVoiceActors() {
                                 </div>
                             </Link>
                         ))}
+
                     </div>
+                            <div>
+                                <h2 className="text-gray-100 px-2 text-2xl my-7 md:ml-20 text-3xl">Partnerzy</h2>
+
+                                <div className="flex flex-wrap gap-8  py-10">
+                                    {
+                                        partnerActors.length > 0 && (
+                                            partnerActors.map((actor) => (
+                                                <div key={actor._id} className={"w-70 group"}>
+                                                    <div className="relative bg-gray-900 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 hover:scale-105 h-80 shadow-2xl">
+                                                        {/* Kontener obrazu z zabezpieczeniem */}
+                                                        <div className="absolute inset-0">
+                                                            {actor.image ? (
+                                                                <img
+                                                                    src={urlFor(actor.image).url()}
+                                                                    alt={actor.imie}
+                                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                                                />
+                                                            ) : (
+                                                                <img
+                                                                    src={"/scul_partnerski.png"}
+
+                                                                    alt={actor.imie}
+                                                                    className="w-full h-full object-cover  group-hover:scale-110 transition-transform duration-700"
+                                                                />
+                                                            )}
+                                                            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90" />
+                                                        </div>
+
+                                                        {/* Treść */}
+                                                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                                                            <div className="flex items-center">
+                                                                <div className="w-1 h-10 bg-green-400 mr-3 rounded-full shadow-[0_0_10px_#4ade80]" />
+                                                                <h3 className="text-xl text-white font-black uppercase tracking-tighter">
+                                                                    {actor.imie || "Anonim"}
+                                                                    {actor.ksywka && (
+                                                                        <span className="block text-green-400 text-sm font-medium normal-case">"{actor.ksywka}"</span>
+                                                                    )}
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        )
+                                    }
+
+                                </div>
+                            </div>
+
+                        </div>
                 ) : (
                     <div className="h-64 flex flex-col items-center justify-center">
                         <h3 className="text-gray-400 text-3xl italic">Pusto tu... jak w pustym kanale.</h3>
