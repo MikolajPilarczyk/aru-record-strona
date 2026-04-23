@@ -39,19 +39,20 @@ export function Navigation() {
                 Portfolio
               </a>
             </Link>
-            <Link to="/about">
-              <a
-                  className="text-gray-300 hover:text-emerald-500 transition-colors"
-              >
-                O nas
-              </a>
-            </Link>
+
             <Link to="/aktorzy-glosowi">
             <a
                 className="text-gray-300 hover:text-emerald-500 transition-colors"
             >
               Aktorzy
             </a>
+            </Link>
+            <Link to="/about">
+              <a
+                  className="text-gray-300 hover:text-emerald-500 transition-colors"
+              >
+                O nas
+              </a>
             </Link>
 
 

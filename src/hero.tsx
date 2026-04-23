@@ -8,6 +8,18 @@ export function Hero() {
   const [ratImages] = useState(["/scur_piwo.png","/scul_partnerski.png","/szczur%20basic.png"])
   const [randomNumber, setRandomNumber] = useState(0);
 
+  const nextImage = () =>
+  {
+      if (randomNumber < ratImages.length-1)
+      {
+        setRandomNumber(randomNumber+1);
+      }
+      else  if(randomNumber == ratImages.length-1)
+      {
+        setRandomNumber(0);
+      }
+  }
+
   useEffect(() => {
     setRandomNumber(Math.floor(Math.random() * ratImages.length) );
 
@@ -66,7 +78,7 @@ export function Hero() {
                 </div>
 
                 <div className="relative">
-                  <img src={ratImages[randomNumber]} alt="scur" className="relative z-20 w-full h-auto transition-all duration-75" />
+                  <img src={ratImages[randomNumber]} onClick={()=> nextImage()} alt="scur" className="relative z-20 w-full h-auto transition-all duration-150 hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] rounded-2xl blur-3xl opacity-20"></div>
                 </div>
               </div>

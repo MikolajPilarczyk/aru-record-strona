@@ -91,7 +91,7 @@ const LatestVideos: React.FC = () => {
   if (loading) return <p>Ładowanie filmów...</p>;
 
   return (
-        <section id="voices" className="relative py-20 bg-gradient-to-b from-[#505B6C] pt-50 to-[#172440] overflow-hidden sm:w-screen px-7 max-w-full">
+        <section id="voices" className="relative py-20 bg-gradient-to-b from-[#505B6C] pt-25 to-[#172440] overflow-hidden sm:w-screen px-7 max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-left mb-16 grid grid-cols-2">
             <div>
