@@ -5,10 +5,12 @@ import { client, urlFor } from './sanityClient';
 
 export function Hero() {
   const [posts, setPosts] = useState<any[]>([]);
-  //const rats = useState(["/scur_piwo.png"])
-
+  const [ratImages] = useState(["/scur_piwo.png","/scul_partnerski.png","/szczur%20basic.png"])
+  const [randomNumber, setRandomNumber] = useState(0);
 
   useEffect(() => {
+    setRandomNumber(Math.floor(Math.random() * ratImages.length) );
+
     client
         .fetch('*[_type == "post"] | order(publishedAt desc) {_id,title,slug,publishedAt,image,body}')
         .then(setPosts)
@@ -64,7 +66,7 @@ export function Hero() {
                 </div>
 
                 <div className="relative">
-                  <img src="/scur_piwo.png" alt="scur" className="relative z-20 w-full h-auto" />
+                  <img src={ratImages[randomNumber]} alt="scur" className="relative z-20 w-full h-auto transition-all duration-75" />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] rounded-2xl blur-3xl opacity-20"></div>
                 </div>
               </div>

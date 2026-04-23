@@ -15,12 +15,15 @@
     "sanity"
   ],
   "dependencies": {
+    "@mux/mux-player-react": "^3.11.7",
     "@sanity/image-url": "^2.0.3",
-    "@sanity/vision": "^5.13.0",
+    "@sanity/vision": "^5.22.0",
     "next-sanity": "^12.1.0",
     "react": "^19.1",
     "react-dom": "^19.1",
-    "sanity": "^5.13.0",
+    "react-player": "^3.4.0",
+    "sanity": "^5.22.0",
+    "sanity-plugin-mux-input": "^2.17.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
