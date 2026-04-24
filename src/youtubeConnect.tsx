@@ -28,6 +28,10 @@ const LatestVideos: React.FC = () => {
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+
+  const [rotation, setRotation] = useState(0)
+
+
   const API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY;
   const CHANNEL_ID = 'UCmyO_-MSJSW3m1kyJqg5YvQ';
 
@@ -101,7 +105,7 @@ const LatestVideos: React.FC = () => {
                 Projekty, przy których Aru Record maczało swoje szczurze palce
               </p>
             </div>
-            <img src={"/scul%20like.png"}  alt="scul-lajk" className="w-45 mx-95"/>
+            <img src={"/scul%20like.png"} alt="scul-lajk" className={`w-45 mx-95`} onClick={()=> setRotation(rotation+45)}  style={{ transform: `rotate(${rotation}deg)`}}/>
 
 
           </div>

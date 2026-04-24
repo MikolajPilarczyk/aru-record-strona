@@ -7,6 +7,8 @@ import { ArrowRight } from 'lucide-react';
 function VoiceActors() {
     const [actors, setActors] = useState<any[]>([]);
 
+    const [rotation, setRotation] = useState(0);
+
     useEffect(() => {
       client.fetch('*[_type == "voiceAcotrs"][0..3]{ _id, imie,ksywka,nazwisko, slug, specialization, image, body }')
         .then(setActors)
@@ -26,13 +28,13 @@ function VoiceActors() {
 
               <div className="text-left mb-16 grid grid-cols-2">
                   <div>
-                      <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasi Aktorzy</h2>
+                      <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasza Zgraja</h2>
                       <div className="w-60 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto float-left mb-5" />
                       <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
                           Poznaj naszych doświadczonych aktorów, którzy nadają charakter każdemu projektowi
                       </p>
                   </div>
-                <img src="/scul%20love.png" alt="scul-plose" className="w-45 mx-95"/>
+                <img src="/scul%20love.png" alt="scul-plose" className="w-45 mx-95"  onClick={()=> setRotation(rotation+45)}  style={{ transform: `rotate(${rotation}deg)`}}/>
               </div>
 
 

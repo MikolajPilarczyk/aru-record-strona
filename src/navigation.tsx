@@ -17,7 +17,7 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-2">
             <img src={"/ARU_logo.png"} alt="Logo" className={"w-15 h-15 p-1 rounded-lg"} />
-            <Link to="/">
+            <Link to="/" onClick={()=>{window.scrollTo(0, 0)}}>
             <p className="text-xl font-bold text-white">Aru Record</p>
             </Link>
           </div>

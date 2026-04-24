@@ -9,9 +9,7 @@ import {Helmet} from "react-helmet-async";
 
 
 export function     VoiceActorsDetail() {
-    // ... (portableTextComponents bez zmian)
     const portableTextComponents: PortableTextComponents = {
-        // ... Twój poprzedni kod komponentów ...
         types: {
             image: ({ value }) => (
                 <div className="my-8">

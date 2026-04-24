@@ -1,5 +1,6 @@
 import { Mic2, Users, Trophy, Radio, ArrowRight } from 'lucide-react';
 import {Link} from "react-router-dom";
+import {useEffect} from "react";
 
 export function About() {
   const stats = [
@@ -8,6 +9,11 @@ export function About() {
     { label: '50+ różnych głosów', value: 'Obszerna baza aktorów', icon: Users },
     { label: 'doświadczeni dialogiści oraz adiustatorzy', value: 'Dokładne i staranne tłumaczenia ', icon: Radio },
   ];
+
+  useEffect(() => {
+
+    window.scrollTo(0, 0);
+  })
 
   return (
     <section id="about" className="relative min-h-screen w-full flex items-center  bg-gradient-to-b from-gray-900 to-[#172440]  overflow-hidden py-20  pt-35">

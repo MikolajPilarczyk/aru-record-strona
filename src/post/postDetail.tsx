@@ -12,7 +12,7 @@ export function PostDetail() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Zaktualizowane zapytanie: pobieramy też URL dla nativeVideo
+        window.scrollTo(0, 0);
         const query = `*[_type == "post" && _id == $id][0]{ 
             title,
             publishedAt,

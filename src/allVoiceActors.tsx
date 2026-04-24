@@ -32,7 +32,7 @@ export function AllVoiceActors() {
                 body,
                 // Sprawdzamy match tutaj - to zwróci true/false
                 "priority": specialization match "Oficjalne*"
-            } | order(priority desc, ksywka asc)`;
+            } | order(priority desc, lower(ksywka) asc)`;
         }
 
 
@@ -93,7 +93,7 @@ export function AllVoiceActors() {
                     <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasza zgraja</h2>
                     <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-emerald-500 mx-auto rounded-full" />
                     <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-                        Poznaj naszych aktorów głosowych, którzy nadają charakter każdemu projektowi
+                        Poznaj naszą ekipe, każdy z nas dokłada cegiełke do nadania charakteru każdemu projektowi
                     </p>
 
                     {/* Wielkanocne jajko - Szczur Romek */}
@@ -104,7 +104,7 @@ export function AllVoiceActors() {
                     )}
                 </div>
 
-                <h2 className="text-gray-100 px-2 text-2xl my-7 md:ml-20">Wyszukaj aktora</h2>
+                <h2 className="text-gray-100 px-2 text-2xl my-7 md:ml-20">Wyszukaj członka</h2>
 
                 <form
                     onSubmit={handleSubmit}
