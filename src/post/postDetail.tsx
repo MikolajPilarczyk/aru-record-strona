@@ -199,7 +199,7 @@ export function PostDetail() {
                                             <h3 className="text-gray-50 font-semibold truncate">
                                                 {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
                                             </h3>
-                                            <span className="bg-gradient-to-b from-emerald-400 to-emerald-600 bg-clip-text text-transparent text-sm font-medium">
+                                            <span className="bg-gradient-to-b from-cyan-600 to-sky-400 bg-clip-text text-transparent text-sm font-medium">
                                                 {characterName || "Nieokreślona"}
                                             </span>
                                         </div>
@@ -249,7 +249,7 @@ export function PostDetail() {
                                             <h3 className="text-gray-50 font-semibold truncate">
                                                 {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
                                             </h3>
-                                            <span className="bg-gradient-to-b from-emerald-400 to-emerald-600 bg-clip-text text-transparent text-sm font-medium">
+                                            <span className="bg-gradient-to-b from-sky-50 to-blue-200 bg-clip-text text-transparent text-sm font-medium">
                                                 {characterName || "Nieokreślona"}
                                             </span>
                                         </div>
