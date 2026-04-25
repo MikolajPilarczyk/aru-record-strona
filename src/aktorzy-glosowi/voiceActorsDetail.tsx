@@ -148,43 +148,43 @@ export function     VoiceActorsDetail() {
                                     <div key={index} className={"text-gray-200 text-lg"}>
                                         {
                                             social.platform =="discord" ?(
-                                                    <div className="flex items-center gap-2">
+                                                    <div className="flex items-center gap-2 my-5 ">
                                                         <FontAwesomeIcon
                                                             icon={faDiscord}
                                                             size="xl"
-                                                            className={"text-gray-50"}
+                                                            className="bg-[#5865F2] p-1.5 py-2 rounded-xl shadow-lg shadow-[#5865F2]/20"
                                                         />
                                                         {social.username}
 
 
                                                     </div>
                                                 )
-                                                : social.platfrom == "instagrm"?(
-                                                    <div>
+                                                : social.platform == "instagram"?(
+                                                    <div className="flex items-center gap-2 my-5">
                                                         <FontAwesomeIcon
                                                             icon={faInstagram}
                                                             size="xl"
-                                                            className={"text-gray-50"}
+                                                            className={"text-gray-50 p-1.5 py-2 rounded-lg bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]"}
                                                         />
 
                                                         {social.username}</div>
-                                                ) : social.platfrom =="tiktok"?(
-                                                    <div>
+                                                ) : social.platform =="tiktok"?(
+                                                    <div className="flex items-center gap-2 ml-1 my-5">
                                                         <FontAwesomeIcon
                                                             icon={faTiktok}
                                                             size="xl"
-                                                            className={"text-gray-50"}
+                                                            className="text-white drop-shadow-[2px_0px_0px_#EE1D52] drop-shadow-[-2px_0px_0px_#69C9D0]"
                                                         />
 
                                                         {social.username}</div>
-                                                ) : (
-                                                    <div><FontAwesomeIcon
+                                                ) : social.platform =="youtube"?(
+                                                    <div className="flex items-center gap-2 my-5"><FontAwesomeIcon
                                                         icon={faYoutube}
                                                         size="xl"
-                                                        className={"text-gray-50"}
+                                                        className="text-white py-2 bg-[#FF0000] rounded-lg p-1.5 size-8 flex items-center justify-center"
                                                     />
                                                         {social.username}</div>
-                                                )
+                                                ):(<div></div>)
                                         }
 
                                     </div>
