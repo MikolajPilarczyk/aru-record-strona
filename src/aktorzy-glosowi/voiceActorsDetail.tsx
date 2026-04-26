@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { client, urlFor } from '../sanityClient';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import { faDiscord, faYoutube,faInstagram, faTiktok} from '@fortawesome/free-brands-svg-icons';
+import {faLink} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Helmet} from "react-helmet-async";
 
@@ -37,7 +38,8 @@ export function     VoiceActorsDetail() {
             _id, imie, ksywka, nazwisko, specialization, image, body,
                 socials[]{
                     platform,
-                    username
+                    username,
+                    url
                 },
             "demo": demo[]{
                 "url": asset->url,
@@ -143,12 +145,14 @@ export function     VoiceActorsDetail() {
                     {/*Sekcja z socialami*/}
                     {
                         actors.socials?(
-                            <div>
+                            <div className={"pt-3"}>
+                                <h2 className={"text-gray-300 text-3xl"}>Socjale</h2>
                                 {actors.socials.map((social: any, index: number) => (
-                                    <div key={index} className={"text-gray-200 text-lg"}>
+                                    <div key={index} className={"text-gray-200 text-lg pl-1 hover:text-gray-100 cursor-pointer "}>
                                         {
                                             social.platform =="discord" ?(
-                                                    <div className="flex items-center gap-2 my-5 ">
+                                                <a href={social.url} target="_blank" >
+                                                    <div className="flex items-center gap-2 my-5 hover:scale-105 transition-all duration-200 w-90">
                                                         <FontAwesomeIcon
                                                             icon={faDiscord}
                                                             size="xl"
@@ -158,33 +162,55 @@ export function     VoiceActorsDetail() {
 
 
                                                     </div>
+                                                </a>
                                                 )
                                                 : social.platform == "instagram"?(
-                                                    <div className="flex items-center gap-2 my-5">
-                                                        <FontAwesomeIcon
-                                                            icon={faInstagram}
-                                                            size="xl"
-                                                            className={"text-gray-50 p-1.5 py-2 rounded-lg bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]"}
-                                                        />
+                                                    <a href={social.url} target="_blank" >
+                                                        <div className="flex items-center gap-2 my-5 hover:scale-105 transition-all duration-200 w-90">
+                                                            <FontAwesomeIcon
+                                                                icon={faInstagram}
+                                                                size="xl"
+                                                                className={"text-gray-50 p-1.5 py-2 rounded-lg bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]"}
+                                                                href={social.url}
+                                                            />
 
-                                                        {social.username}</div>
+                                                            {social.username}</div>
+                                                        </a>
                                                 ) : social.platform =="tiktok"?(
-                                                    <div className="flex items-center gap-2 ml-1 my-5">
-                                                        <FontAwesomeIcon
-                                                            icon={faTiktok}
-                                                            size="xl"
-                                                            className="text-white drop-shadow-[2px_0px_0px_#EE1D52] drop-shadow-[-2px_0px_0px_#69C9D0]"
-                                                        />
+                                                    <a href={social.url} target="_blank" >
+                                                        <div className="flex items-center gap-2 ml-1 my-5 hover:scale-105 transition-all duration-200 w-90">
+                                                            <FontAwesomeIcon
+                                                                icon={faTiktok}
+                                                                size="xl"
+                                                                className="text-white drop-shadow-[2px_0px_0px_#EE1D52] drop-shadow-[-2px_0px_0px_#69C9D0]"
+                                                            />
 
-                                                        {social.username}</div>
+                                                            {social.username} </div>
+                                                    </a>
+
                                                 ) : social.platform =="youtube"?(
-                                                    <div className="flex items-center gap-2 my-5"><FontAwesomeIcon
-                                                        icon={faYoutube}
-                                                        size="xl"
-                                                        className="text-white py-2 bg-[#FF0000] rounded-lg p-1.5 size-8 flex items-center justify-center"
-                                                    />
-                                                        {social.username}</div>
-                                                ):(<div></div>)
+                                                    <a href={social.url} target="_blank" >
+                                                        <div className="flex items-center gap-2 my-5 hover:scale-105 transition-all duration-200 w-90"><FontAwesomeIcon
+                                                            icon={faYoutube}
+                                                            size="xl"
+                                                            className="text-white py-2 bg-[#FF0000] rounded-lg p-1.5 size-8 flex items-center justify-center"
+                                                            href={social.url}
+
+                                                        />
+                                                            {social.username}</div>
+                                                    </a>
+                                                ):(
+                                                    <a href={social.url} target="_blank" >
+                                                        <div className="flex items-center gap-2 my-5 hover:scale-105 transition-all duration-200 w-90"><FontAwesomeIcon
+                                                            icon={faLink}
+                                                            size="xl"
+                                                            className="text-white py-2  rounded-lg p-1.5 size-8 flex items-center justify-center"
+                                                            href={social.url}
+
+                                                        />
+                                                            {social.username}</div>
+                                                    </a>
+                                                )
                                         }
 
                                     </div>
