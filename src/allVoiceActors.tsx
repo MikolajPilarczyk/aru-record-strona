@@ -196,9 +196,9 @@ export function AllVoiceActors() {
                     </div>
                             <div>
                                 {partnerActors.length > 0 && (
-                                <h2 className="text-gray-100 px-2 text-2xl my-7 md:ml-20 text-3xl">Partnerzy</h2>
+                                <h2 className="text-gray-100 px-2 text-2xl my-7 md:ml-20 text-4xl mb-10">Występ Gościnny</h2>
                                 )}
-                                <div className="flex flex-wrap gap-8  py-10">
+                                <div className="flex flex-wrap gap-8 py-10 ml-7">
                                     {
                                         partnerActors.length > 0 && (
                                             partnerActors.map((actor) => (
@@ -225,11 +225,11 @@ export function AllVoiceActors() {
                                                         {/* Treść */}
                                                         <div className="absolute bottom-0 left-0 right-0 p-6">
                                                             <div className="flex items-center">
-                                                                <div className="w-1 h-10 bg-green-400 mr-3 rounded-full shadow-[0_0_10px_#4ade80]" />
+                                                                <div className="w-1 h-10 bg-blue-200 mr-3 rounded-full shadow-[0_0_10px_#4ade80]" />
                                                                 <h3 className="text-xl text-white font-black uppercase tracking-tighter">
                                                                     {actor.imie || "Anonim"}
                                                                     {actor.ksywka && (
-                                                                        <span className="block text-green-400 text-sm font-medium normal-case">"{actor.ksywka}"</span>
+                                                                        <span className="block text-blue-200 text-sm font-medium normal-case">"{actor.ksywka}"</span>
                                                                     )}
                                                                 </h3>
                                                             </div>

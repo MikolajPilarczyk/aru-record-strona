@@ -88,6 +88,7 @@ export const voiceActor = defineType({
                   {title: 'Instagram', value: 'instagram'},
                   {title: 'TikTok', value: 'tiktok'},
                   {title: 'Discord', value: 'discord'},
+                  {title: 'Pozostałe Sociaje', value: 'others'},
                 ],
               },
             },
@@ -96,6 +97,11 @@ export const voiceActor = defineType({
               title: 'Nazwa użytkownika',
               type: 'string',
               description: 'Np. @nazwa_uzytkownika lub sam nick',
+            },
+            {
+              name: 'url',
+              title: 'Link do profilu',
+              type: 'string',
             },
           ],
           preview: {
