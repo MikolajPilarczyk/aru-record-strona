@@ -1,6 +1,7 @@
 import { Mic2, Users, Trophy, Radio, ArrowRight } from 'lucide-react';
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
+import { Seo } from "./seo";
 
 export function About() {
   const stats = [
@@ -17,6 +18,11 @@ export function About() {
 
   return (
     <section id="about" className="relative min-h-screen w-full flex items-center  bg-gradient-to-b from-gray-900 to-[#172440]  overflow-hidden py-20  pt-35">
+      <Seo
+        title="O nas"
+        description="Poznaj AruRecord - polskie studio dubbingu, lokalizacji i realizacji głosu do filmów, seriali, gier, animacji oraz reklam."
+        path="/about"
+      />
       
       {/* Tło z mocniejszymi akcentami świetlnymi */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-green-500/10 rounded-full blur-[120px] -z-10" />

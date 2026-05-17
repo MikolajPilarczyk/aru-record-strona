@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { client, urlFor } from "./sanityClient.ts";
 import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
+import { Seo } from "./seo.tsx";
 
 export function AllVoiceActors() {
     const [restActors, setRestActors] = useState<any[]>([]);
@@ -88,6 +89,11 @@ export function AllVoiceActors() {
 
     return (
         <section id="voices" className="relative py-30 bg-gradient-to-b from-[#14203D] to-[#172440] min-h-screen">
+            <Seo
+                title="Aktorzy głosowi"
+                description="Poznaj aktorów głosowych, realizatorów, reżyserów i dialogistów współpracujących z AruRecord."
+                path="/aktorzy-glosowi"
+            />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasza zgraja</h2>

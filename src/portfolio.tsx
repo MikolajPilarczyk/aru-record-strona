@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {client, urlFor} from "./sanityClient.ts";
 import {Link} from "react-router-dom";
 import {Search, Calendar, CalendarArrowUp,CalendarArrowDown } from "lucide-react";
+import { Seo } from "./seo.tsx";
 
 export function Portfolio()  {
     const [posts, setPosts] = useState<any[]>([]);
@@ -50,6 +51,11 @@ export function Portfolio()  {
 
     return (
         <section id="voices" className="relative py-20 bg-gradient-to-b from-[#14203D] to-[#172440] md:min-h-screen ">
+            <Seo
+                title="Portfolio"
+                description="Zobacz portfolio AruRecord: dubbing, spolszczenia, animacje, scenki, covery i inne projekty głosowe naszego studia."
+                path="/portfolio"
+            />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
 

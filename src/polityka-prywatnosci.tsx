@@ -1,7 +1,15 @@
+import { Seo } from "./seo";
+
 export function PrivatePolicy()
 {
     return (
             <div className="min-h-screen  bg-gradient-to-b from-[#14203D] to-[#172440] py-12 px-4 flex justify-center items-start ">
+                <Seo
+                    title="Polityka prywatności"
+                    description="Polityka prywatności strony AruRecord, informacje o formularzu kontaktowym, analityce i przetwarzaniu danych."
+                    path="/polityka-prywatnosci"
+                    noindex
+                />
                 <div className="w-full max-w-3xl 0 rounded-2xl p-8">
 
                     <h1 className="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-4">

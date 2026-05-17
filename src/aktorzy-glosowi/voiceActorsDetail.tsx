@@ -5,7 +5,7 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import { faDiscord, faYoutube,faInstagram, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import {faLink} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Helmet} from "react-helmet-async";
+import { Seo } from "../seo";
 
 
 
@@ -91,9 +91,25 @@ export function     VoiceActorsDetail() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
-            <Helmet>
-                <title>{actors.ksywka}</title>
-            </Helmet>
+            <Seo
+                title={`${actors.imie || ''} ${actors.ksywka ? `"${actors.ksywka}"` : ''} ${actors.nazwisko || ''}`.trim()}
+                description={`${actors.imie || actors.ksywka || 'Aktor głosowy'} - ${actors.specialization || 'aktor głosowy'} w zespole AruRecord. Posłuchaj próbek głosowych i zobacz wystąpienia.`}
+                path={`/aktorzy-glosowi/${id}`}
+                image={actors.image ? urlFor(actors.image).width(1200).height(630).url() : '/scul_partnerski.png'}
+                type="profile"
+                jsonLd={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Person',
+                    name: `${actors.imie || ''} ${actors.ksywka ? `"${actors.ksywka}"` : ''} ${actors.nazwisko || ''}`.trim(),
+                    image: actors.image ? urlFor(actors.image).width(1200).height(630).url() : undefined,
+                    jobTitle: actors.specialization || 'Aktor głosowy',
+                    worksFor: {
+                        '@type': 'Organization',
+                        name: 'AruRecord',
+                    },
+                    sameAs: actors.socials?.map((social: any) => social.url).filter(Boolean),
+                }}
+            />
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
                 <div className="p-8 md:p-12">
                     {/* Nagłówek i zdjęcie */}
