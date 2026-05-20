@@ -4,16 +4,7 @@ import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
 import { Calendar } from 'lucide-react';
 import MuxPlayer from '@mux/mux-player-react';
-import { Seo, SITE_NAME } from "../seo";
 
-function plainTextFromPortableText(blocks: any[] = []) {
-    return blocks
-        .filter((block) => block?._type === 'block' && Array.isArray(block.children))
-        .flatMap((block) => block.children.map((child: any) => child?.text).filter(Boolean))
-        .join(' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-}
 
 export function PostDetail() {
     const { id } = useParams();
@@ -66,31 +57,7 @@ export function PostDetail() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
-            <Seo
-                title={post.title}
-                description={
-                    plainTextFromPortableText(post.body).slice(0, 155) ||
-                    `Projekt portfolio studia ${SITE_NAME}: ${post.title}.`
-                }
-                path={`/post/${id}`}
-                image={post.image ? urlFor(post.image).width(1200).height(630).url() : '/scul%20love.png'}
-                type="article"
-                publishedTime={post.publishedAt}
-                jsonLd={{
-                    '@context': 'https://schema.org',
-                    '@type': 'CreativeWork',
-                    name: post.title,
-                    description:
-                        plainTextFromPortableText(post.body).slice(0, 155) ||
-                        `Projekt portfolio studia ${SITE_NAME}: ${post.title}.`,
-                    image: post.image ? urlFor(post.image).width(1200).height(630).url() : undefined,
-                    datePublished: post.publishedAt,
-                    publisher: {
-                        '@type': 'Organization',
-                        name: SITE_NAME,
-                    },
-                }}
-            />
+
 
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
 

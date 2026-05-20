@@ -16,6 +16,9 @@ export function About() {
     window.scrollTo(0, 0);
   })
 
+
+
+  
   return (
     <section id="about" className="relative min-h-screen w-full flex items-center  bg-gradient-to-b from-gray-900 to-[#172440]  overflow-hidden py-20  pt-35">
       <Seo
