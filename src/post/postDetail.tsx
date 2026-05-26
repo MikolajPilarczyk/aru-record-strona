@@ -2,17 +2,20 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
-import { Calendar } from 'lucide-react';
+import { Calendar, AlertTriangle } from 'lucide-react'; // Dodałem ikonkę ostrzeżenia
 import MuxPlayer from '@mux/mux-player-react';
-
 
 export function PostDetail() {
     const { id } = useParams();
     const [post, setPost] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [videoError, setVideoError] = useState(false); // Nowy stan do łapania błędu kodeka
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        // Resetujemy stan błędu wideo przy zmianie postu
+        setVideoError(false);
+
         const query = `*[_type == "post" && _id == $id][0]{ 
             title,
             publishedAt,
@@ -24,7 +27,6 @@ export function PostDetail() {
             },
             "techCast": techCast[]{
                 characterName,
-                
                 "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
             },
             "partnerCast": partnerCast[]{
@@ -57,10 +59,7 @@ export function PostDetail() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
-
-
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
-
                 <div className="mb-8">
                     {/* LOGIKA WYŚWIETLANIA: MUX -> Native Video -> Brak */}
                     {post.videoData?.playbackId ? (
@@ -72,14 +71,29 @@ export function PostDetail() {
                         />
                     ) : post.nativeVideoUrl ? (
                         <div className="rounded-xl overflow-hidden shadow-xl bg-black border border-gray-800">
-                            <video
-                                src={post.nativeVideoUrl}
-                                controls
-                                className="w-full aspect-video"
-                                controlsList="nodownload" // Opcjonalnie: blokuje przycisk pobierania
-                            >
-                                Twoja przeglądarka nie wspiera odtwarzacza wideo.
-                            </video>
+                            {/* Jeśli wystąpił błąd kodeka, renderujemy ładny komunikat dla użytkownika */}
+                            {videoError ? (
+                                <div className="w-full aspect-video flex flex-col items-center justify-center bg-gray-950 p-6 text-center text-white">
+                                    <AlertTriangle className="w-12 h-12 text-amber-500 mb-3" />
+                                    <h3 className="text-xl font-bold text-gray-100">Format wideo nie jest wspierany</h3>
+                                    <p className="text-sm text-gray-400 mt-2 max-w-md">
+                                        Twoja przeglądarka (np. Firefox) nie obsługuje kodeka **H.265 / HEVC** użytego w tym pliku.
+                                    </p>
+                                    <p className="text-xs text-gray-500 mt-1 max-w-sm">
+                                        Uruchom stronę w Chrome, Edge, Safari lub zainstaluj wtyczkę HEVC w systemie.
+                                    </p>
+                                </div>
+                            ) : (
+                                <video
+                                    src={post.nativeVideoUrl}
+                                    controls
+                                    className="w-full aspect-video"
+                                    controlsList="nodownload"
+                                    onError={() => setVideoError(true)} // Wyłapuje brak wsparcia dla H.265
+                                >
+                                    Twoja przeglądarka nie wspiera odtwarzacza wideo.
+                                </video>
+                            )}
                         </div>
                     ) : (
                         <div className="bg-black/20 aspect-video flex items-center justify-center text-gray-500 rounded-xl border border-gray-800 italic">
@@ -92,7 +106,6 @@ export function PostDetail() {
                     {post.title || "Tytuł niedostępny"}
                 </h1>
 
-                {/* Reszta Twojego kodu (Data, Body, Cast) pozostaje bez zmian */}
                 <div className="text-gray-400 text-m flex items-center m-2">
                     <Calendar className="w-4 h-4 text-gray-400 mr-2 shrink-0" />
                     <span>
@@ -152,9 +165,6 @@ export function PostDetail() {
                                     </Link>
                                 );
                             })}
-
-
-
                         </div>
                     </div>
                 )}
@@ -201,11 +211,6 @@ export function PostDetail() {
                     </div>
                 )}
 
-
-
-
-
-
                 {post.partnerCast && Array.isArray(post.partnerCast) && post.partnerCast.length > 0 && (
                     <div className="mt-8 p-2">
                         <h2 className="text-gray-200 text-xl font-bold mb-4">Występ gościnny:</h2>
@@ -250,8 +255,6 @@ export function PostDetail() {
                         </div>
                     </div>
                 )}
-
-                {/*Występ gościnny*/}
             </div>
         </div>
     );
