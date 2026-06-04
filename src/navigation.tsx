@@ -77,7 +77,7 @@ export function Navigation() {
 
           {/* MOBILE MENU */}
           {isOpen && (
-              <div className="md:hidden py-4 border-t border-slate-800 flex flex-col gap-4 animate-fadeIn">
+              <div className="md:hidden py-4  flex flex-col gap-4 animate-fadeIn justify-center items-center bg-slate-700 opacity-80  rounded-b-2xl ">
                 <Link
                     to="/"
                     onClick={handleLinkClick}
@@ -102,13 +102,13 @@ export function Navigation() {
                 <Link
                     to="/about"
                     onClick={handleLinkClick}
-                    className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
+                    className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1 justify-center items-center z-50"
                 >
                   O nas
                 </Link>
 
-                <HashLink to="/#contact" onClick={() => setIsOpen(false)} className="w-full">
-                  <button className="w-full text-center px-6 py-2 bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] text-white rounded-lg font-medium">
+                <HashLink to="/#contact" onClick={() => setIsOpen(false)} >
+                  <button  className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1 justify-center items-center z-50">
                     Kontakt
                   </button>
                 </HashLink>
