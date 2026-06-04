@@ -8,6 +8,7 @@ import { VoiceActorsDetail } from "./aktorzy-glosowi/voiceActorsDetail"
 import {AllVoiceActors} from "./allVoiceActors.tsx";
 import {Portfolio} from "./portfolio.tsx";
 import {PrivatePolicy} from "./polityka-prywatnosci.tsx";
+import {NotFoundPage} from "./404.tsx";
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
           <Route path="/aktorzy-glosowi" element={<AllVoiceActors />} />
           <Route path="/aktorzy-glosowi/:id" element={<VoiceActorsDetail />} />
           <Route path="/polityka-prywatnosci" element={<PrivatePolicy />} />
+          <Route path="*" element={<NotFoundPage />}/>
 
 
     </Routes> 
