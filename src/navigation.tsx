@@ -1,98 +1,120 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import './App.css';
 import './index.css';
-import { HashLink } from 'react-router-hash-link';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const menuItems = [
-    { label: 'Kontakt', href: ' #contact' },
-  ];
+  // Funkcja pomocnicza do zamykania menu i przewijania na samą górę
+  const handleLinkClick = () => {
+    setIsOpen(false);
+    window.scrollTo(0, 0);
+  };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center gap-2">
-            <img src={"/ARU_logo.png"} alt="Logo" className={"w-15 h-15 p-1 rounded-lg"} />
-            <Link to="/" onClick={()=>{window.scrollTo(0, 0)}}>
-            <p className="text-xl font-bold text-white">Aru Record</p>
-            </Link>
-          </div>
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b border-slate-800 ">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
+            {/* LOGO */}
+            <div className="flex items-center gap-2">
+              <Link to="/" onClick={handleLinkClick} className="flex items-center gap-2">
+                <img src="/ARU_logo.png" alt="Logo" className="w-13 h-13 p-1 rounded-lg" />
+                <p className="text-xl font-bold text-white">Aru Record</p>
+              </Link>
+            </div>
 
-            <Link to="/">
-              <a
-                  className="text-gray-300 hover:text-emerald-500 transition-colors"
-              >
+            {/* DESKTOP MENU */}
+            <div className="hidden md:flex items-center gap-8">
+              <Link to="/" className="text-gray-300 hover:text-emerald-500 transition-colors">
                 Start
-              </a>
-            </Link>
-            <Link to="/portfolio">
-              <a
-                  className="text-gray-300 hover:text-emerald-500 transition-colors"
-              >
+              </Link>
+              <Link to="/portfolio" className="text-gray-300 hover:text-emerald-500 transition-colors">
                 Portfolio
-              </a>
-            </Link>
-
-            <Link to="/aktorzy-glosowi">
-            <a
-                className="text-gray-300 hover:text-emerald-500 transition-colors"
-            >
-              Aktorzy
-            </a>
-            </Link>
-            <Link to="/about">
-              <a
-                  className="text-gray-300 hover:text-emerald-500 transition-colors"
-              >
+              </Link>
+              <Link to="/aktorzy-glosowi" className="text-gray-300 hover:text-emerald-500 transition-colors">
+                Aktorzy
+              </Link>
+              <Link to="/about" className="text-gray-300 hover:text-emerald-500 transition-colors">
                 O nas
-              </a>
-            </Link>
+              </Link>
 
+              <HashLink to="/#contact">
+                <button className="px-6 py-2 bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] hover:scale-105 transition-all duration-200 text-white rounded-lg">
+                  Kontakt
+                </button>
+              </HashLink>
+            </div>
 
-
-             <Link to="/about">
-               <HashLink to="/#contact">
-            <button className="px-6 py-2 bg-gradient-to-r  bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] hover:scale-105 transition-all duration-200 text-white rounded-lg bg-clip-padding">
-              Kontakt
+            {/* MOBILE MENU BUTTON (Hamburger / Paski) */}
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="md:hidden text-white focus:outline-none relative w-8 h-8 flex flex-col justify-center items-center z-50"
+                aria-label="Toggle menu"
+            >
+              {/* Górny pasek */}
+              <span
+                  className={`block absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out ${
+                      isOpen ? 'rotate-45' : '-translate-y-2'
+                  }`}
+              />
+              {/* Środkowy pasek */}
+              <span
+                  className={`block absolute h-0.5 w-6 bg-current transform transition duration-200 ease-in-out ${
+                      isOpen ? 'opacity-0' : 'opacity-100'
+                  }`}
+              />
+              {/* Dolny pasek */}
+              <span
+                  className={`block absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out ${
+                      isOpen ? '-rotate-45' : 'translate-y-2'
+                  }`}
+              />
             </button>
-               </HashLink>
-            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white"
-          >
-          </button>
+          {/* MOBILE MENU */}
+          {isOpen && (
+              <div className="md:hidden py-4 border-t border-slate-800 flex flex-col gap-4 animate-fadeIn">
+                <Link
+                    to="/"
+                    onClick={handleLinkClick}
+                    className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
+                >
+                  Start
+                </Link>
+                <Link
+                    to="/portfolio"
+                    onClick={handleLinkClick}
+                    className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
+                >
+                  Portfolio
+                </Link>
+                <Link
+                    to="/aktorzy-glosowi"
+                    onClick={handleLinkClick}
+                    className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
+                >
+                  Aktorzy
+                </Link>
+                <Link
+                    to="/about"
+                    onClick={handleLinkClick}
+                    className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
+                >
+                  O nas
+                </Link>
+
+                <HashLink to="/#contact" onClick={() => setIsOpen(false)} className="w-full">
+                  <button className="w-full text-center px-6 py-2 bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] text-white rounded-lg font-medium">
+                    Kontakt
+                  </button>
+                </HashLink>
+              </div>
+          )}
         </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-800">
-            {menuItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block py-2 text-gray-300 hover:text-orange-500 transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
-            <button className="w-full mt-4 px-6 py-2 bg-gradient-to-r from-orange-500 to-cyan-500 text-white rounded-lg  hover:opacity-90 transition-opacity">
-              Wycena
-            </button>
-          </div>
-        )}
-      </div>
-    </nav>
+      </nav>
   );
 }
