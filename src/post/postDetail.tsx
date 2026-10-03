@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { LocalizedLink as Link } from '../LocalizedLink';
+import { useLang } from '../useLang';
 import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
 import { Calendar } from 'lucide-react';
@@ -16,6 +19,8 @@ function extractYouTubeId(url: string) {
 }
 
 export function PostDetail() {
+    const { t } = useTranslation();
+    const { formatDate } = useLang();
     const { id } = useParams();
     const [post, setPost] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -78,11 +83,11 @@ export function PostDetail() {
     }, [id]);
 
     if (loading) {
-        return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Ładowanie...</div>;
+        return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">{t('common.loading')}</div>;
     }
 
     if (!post) {
-        return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Nie znaleziono wpisu.</div>;
+        return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">{t('postDetail.notFound')}</div>;
     }
 
     return (
@@ -109,19 +114,15 @@ export function PostDetail() {
                 </div>
 
                 <h1 className="text-5xl md:text-3xl font-luckiest py-2 text-white mb-2 px-2">
-                    {post.title || "Tytuł niedostępny"}
+                    {post.title || t('postDetail.untitled')}
                 </h1>
 
                 <div className="text-gray-400 text-m flex items-center m-2">
                     <Calendar className="w-4 h-4 text-gray-400 mr-2 shrink-0" />
                     <span>
                         {post.publishedAt
-                            ? new Date(post.publishedAt).toLocaleDateString('pl-PL', {
-                                day: 'numeric',
-                                month: 'long',
-                                year: 'numeric'
-                            })
-                            : 'Data nieznana'}
+                            ? formatDate(post.publishedAt)
+                            : t('postDetail.dateUnknown')}
                     </span>
                 </div>
 
@@ -129,13 +130,13 @@ export function PostDetail() {
                     {post.body && post.body.length > 0 ? (
                         <PortableText value={post.body} />
                     ) : (
-                        <p className="italic text-gray-500">Ten wpis nie posiada opisu.</p>
+                        <p className="italic text-gray-500">{t('postDetail.noDescription')}</p>
                     )}
                 </div>
 
                 {post.cast && Array.isArray(post.cast) && post.cast.length > 0 && (
                     <div className="mt-8 p-2">
-                        <h2 className="text-gray-200 text-xl font-bold mb-4">W tej produkcji wystąpili:</h2>
+                        <h2 className="text-gray-200 text-xl font-bold mb-4">{t('postDetail.castHeading')}</h2>
                         <div className="grid grid-cols-1 gap-2">
                             {post.cast.map((member: any, index: number) => {
                                 if (!member?.actorDetail) return null;
@@ -151,21 +152,21 @@ export function PostDetail() {
                                             {actorDetail.image ? (
                                                 <img
                                                     src={urlFor(actorDetail.image).width(200).height(200).url()}
-                                                    alt={actorDetail.imie || "Aktor"}
+                                                    alt={actorDetail.imie || t('postDetail.actorAlt')}
                                                     className="w-full h-full rounded-full object-cover border-2 border-emerald-500/20"
                                                 />
                                             ) : (
                                                 <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-gray-600 text-[10px] text-center border-2 border-gray-700 p-1">
-                                                    Brak foto
+                                                    {t('voices.noPhoto')}
                                                 </div>
                                             )}
                                         </div>
                                         <div className="flex flex-col min-w-0">
                                             <h3 className="text-gray-50 font-semibold truncate">
-                                                {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
+                                                {`${actorDetail.imie || t('postDetail.unknown')} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
                                             </h3>
                                             <span className="bg-gradient-to-b from-emerald-400 to-emerald-600 bg-clip-text text-transparent text-sm font-medium">
-                                                {characterName || "Nieokreślona"}
+                                                {characterName || t('postDetail.unspecified')}
                                             </span>
                                         </div>
                                     </Link>
@@ -177,7 +178,7 @@ export function PostDetail() {
 
                 {post.techCast && Array.isArray(post.techCast) && post.techCast.length > 0 && (
                     <div className="mt-8 p-2">
-                        <h2 className="text-gray-200 text-xl font-bold mb-4">Realizacja techniczna  :</h2>
+                        <h2 className="text-gray-200 text-xl font-bold mb-4">{t('postDetail.techHeading')}</h2>
                         <div className="grid grid-cols-1 gap-2">
                             {post.techCast.map((member: any, index: number) => {
                                 if (!member?.actorDetail) return null;
@@ -193,21 +194,21 @@ export function PostDetail() {
                                             {actorDetail.image ? (
                                                 <img
                                                     src={urlFor(actorDetail.image).width(200).height(200).url()}
-                                                    alt={actorDetail.imie || "Aktor"}
+                                                    alt={actorDetail.imie || t('postDetail.actorAlt')}
                                                     className="w-full h-full rounded-full object-cover border-2 border-emerald-500/20"
                                                 />
                                             ) : (
                                                 <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-gray-600 text-[10px] text-center border-2 border-gray-700 p-1">
-                                                    Brak foto
+                                                    {t('voices.noPhoto')}
                                                 </div>
                                             )}
                                         </div>
                                         <div className="flex flex-col min-w-0">
                                             <h3 className="text-gray-50 font-semibold truncate">
-                                                {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
+                                                {`${actorDetail.imie || t('postDetail.unknown')} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
                                             </h3>
                                             <span className="bg-gradient-to-b from-emerald-50 to-orange-400 bg-clip-text text-transparent text-sm font-medium">
-                                                {characterName || "Nieokreślona"}
+                                                {characterName || t('postDetail.unspecified')}
                                             </span>
                                         </div>
                                     </Link>
@@ -219,7 +220,7 @@ export function PostDetail() {
 
                 {post.partnerCast && Array.isArray(post.partnerCast) && post.partnerCast.length > 0 && (
                     <div className="mt-8 p-2">
-                        <h2 className="text-gray-200 text-xl font-bold mb-4">Występ gościnny:</h2>
+                        <h2 className="text-gray-200 text-xl font-bold mb-4">{t('postDetail.guestHeading')}</h2>
                         <div className="grid grid-cols-1 gap-2">
                             {post.partnerCast.map((member: any, index: number) => {
                                 if (!member?.actorDetail) return null;
@@ -234,14 +235,14 @@ export function PostDetail() {
                                             {actorDetail.image ? (
                                                 <img
                                                     src={urlFor(actorDetail.image).width(200).height(200).url()}
-                                                    alt={actorDetail.imie || "Aktor"}
+                                                    alt={actorDetail.imie || t('postDetail.actorAlt')}
                                                     className="w-full h-full rounded-full object-cover border-2 border-emerald-500/20"
                                                 />
                                             ) : (
                                                 <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-gray-600 text-[10px] text-center border-2 border-gray-700 p-1">
                                                     <img
                                                         src={"/scul_partnerski.png"}
-                                                        alt={actorDetail.imie || "Aktor"}
+                                                        alt={actorDetail.imie || t('postDetail.actorAlt')}
                                                         className="w-full h-full rounded-full object-cover border-2 border-emerald-500/20"
                                                     />
                                                 </div>
@@ -249,10 +250,10 @@ export function PostDetail() {
                                         </div>
                                         <div className="flex flex-col min-w-0">
                                             <h3 className="text-gray-50 font-semibold truncate">
-                                                {`${actorDetail.imie || 'Nieznany'} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
+                                                {`${actorDetail.imie || t('postDetail.unknown')} ${actorDetail.ksywka ? `"${actorDetail.ksywka}"` : ''} ${actorDetail.nazwisko || ''}`.trim()}
                                             </h3>
                                             <span className="bg-gradient-to-b from-sky-50 to-blue-200 bg-clip-text text-transparent text-sm font-medium">
-                                                {characterName || "Nieokreślona"}
+                                                {characterName || t('postDetail.unspecified')}
                                             </span>
                                         </div>
                                     </div>

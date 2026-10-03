@@ -1,11 +1,16 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { useTranslation } from 'react-i18next';
+import { LocalizedLink as Link } from './LocalizedLink';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { useLang } from './useLang';
 import './App.css';
 import './index.css';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
+  const { localePath } = useLang();
 
   // Funkcja pomocnicza do zamykania menu i przewijania na samą górę
   const handleLinkClick = () => {
@@ -21,7 +26,7 @@ export function Navigation() {
             {/* LOGO */}
             <div className="flex items-center gap-2">
               <Link to="/" onClick={handleLinkClick} className="flex items-center gap-2">
-                <img src="/ARU_logo.png" alt="Logo" className="w-13 h-13 p-1 rounded-lg" />
+                <img src="/ARU_logo.png" alt={t('nav.logoAlt')} className="w-13 h-13 p-1 rounded-lg" />
                 <p className="text-xl font-bold text-white">Aru Record</p>
               </Link>
             </div>
@@ -29,21 +34,23 @@ export function Navigation() {
             {/* DESKTOP MENU */}
             <div className="hidden md:flex items-center gap-8">
               <Link to="/" className="text-gray-300 hover:text-emerald-500 transition-colors">
-                Start
+                {t('nav.home')}
               </Link>
               <Link to="/portfolio" className="text-gray-300 hover:text-emerald-500 transition-colors">
-                Portfolio
+                {t('nav.portfolio')}
               </Link>
               <Link to="/aktorzy-glosowi" className="text-gray-300 hover:text-emerald-500 transition-colors">
-                Aktorzy
+                {t('nav.actors')}
               </Link>
               <Link to="/about" className="text-gray-300 hover:text-emerald-500 transition-colors">
-                O nas
+                {t('nav.about')}
               </Link>
 
-              <HashLink to="/#contact">
+              <LanguageSwitcher />
+
+              <HashLink to={localePath('/#contact')}>
                 <button className="px-6 py-2 bg-gradient-to-r from-[#1e7707] to-[#2ca3e1] hover:scale-105 transition-all duration-200 text-white rounded-lg">
-                  Kontakt
+                  {t('nav.contact')}
                 </button>
               </HashLink>
             </div>
@@ -52,7 +59,7 @@ export function Navigation() {
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="md:hidden text-white focus:outline-none relative w-8 h-8 flex flex-col justify-center items-center z-50"
-                aria-label="Toggle menu"
+                aria-label={t('nav.toggleMenu')}
             >
               {/* Górny pasek */}
               <span
@@ -83,33 +90,35 @@ export function Navigation() {
                     onClick={handleLinkClick}
                     className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
                 >
-                  Start
+                  {t('nav.home')}
                 </Link>
                 <Link
                     to="/portfolio"
                     onClick={handleLinkClick}
                     className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
                 >
-                  Portfolio
+                  {t('nav.portfolio')}
                 </Link>
                 <Link
                     to="/aktorzy-glosowi"
                     onClick={handleLinkClick}
                     className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1"
                 >
-                  Aktorzy
+                  {t('nav.actors')}
                 </Link>
                 <Link
                     to="/about"
                     onClick={handleLinkClick}
                     className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1 justify-center items-center z-50"
                 >
-                  O nas
+                  {t('nav.about')}
                 </Link>
 
-                <HashLink to="/#contact" onClick={() => setIsOpen(false)} >
+                <LanguageSwitcher onClick={() => setIsOpen(false)} />
+
+                <HashLink to={localePath('/#contact')} onClick={() => setIsOpen(false)} >
                   <button  className="text-gray-300 hover:text-emerald-500 transition-colors px-2 py-1 justify-center items-center z-50">
-                    Kontakt
+                    {t('nav.contact')}
                   </button>
                 </HashLink>
               </div>

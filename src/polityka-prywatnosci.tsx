@@ -1,78 +1,83 @@
+import { useTranslation } from "react-i18next";
 import { Seo } from "./seo";
+import { useLang } from "./useLang";
 
 export function PrivatePolicy()
 {
+    const { t } = useTranslation();
+    const { locale } = useLang();
+
     return (
             <div className="min-h-screen  bg-gradient-to-b from-[#14203D] to-[#172440] py-12 px-4 flex justify-center items-start ">
                 <Seo
-                    title="Polityka prywatności"
-                    description="Polityka prywatności strony AruRecord, informacje o formularzu kontaktowym, analityce i przetwarzaniu danych."
+                    title={t('privacy.seo.title')}
+                    description={t('privacy.seo.description')}
                     path="/polityka-prywatnosci"
                     noindex
                 />
                 <div className="w-full max-w-3xl 0 rounded-2xl p-8">
 
                     <h1 className="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-4">
-                        Polityka Prywatności
+                        {t('privacy.title')}
                     </h1>
 
                     <div className="space-y-8 text-gray-300">
 
                         {/* 1. Administrator Danych */}
                         <section>
-                            <h2 className="text-xl font-semibold text-white mb-3">1. Administrator Danych</h2>
+                            <h2 className="text-xl font-semibold text-white mb-3">{t('privacy.controller.heading')}</h2>
                             <p>
-                                Administratorem danych osobowych zbieranych za pośrednictwem strony jest: <br />
-                                <span className="text-purple-400 font-mono text-sm">[TWOJE IMIĘ I NAZWISKO / NAZWA FIRMY]</span><br />
-                                Adres do kontaktu: <span className="text-purple-400 font-mono text-sm">[TWÓJ E-MAIL KONTAKTOWY]</span>
+                                {t('privacy.controller.intro')} <br />
+                                <span className="text-purple-400 font-mono text-sm">{t('privacy.controller.namePlaceholder')}</span><br />
+                                {t('privacy.controller.contactLabel')} <span className="text-purple-400 font-mono text-sm">{t('privacy.controller.emailPlaceholder')}</span>
                             </p>
                         </section>
 
                         {/* 2. Formularz Kontaktowy */}
                         <section>
-                            <h2 className="text-xl font-semibold text-white mb-3">2. Formularz Kontaktowy</h2>
+                            <h2 className="text-xl font-semibold text-white mb-3">{t('privacy.form.heading')}</h2>
                             <p>
-                                Dane podane w formularzu kontaktowym (imię, adres e-mail, treść wiadomości) przetwarzane są wyłącznie w celu udzielenia odpowiedzi na Twoje zapytanie.
+                                {t('privacy.form.text')}
                             </p>
                         </section>
 
                         {/* 3. Google Analytics i Reklamy */}
                         <section>
-                            <h2 className="text-xl font-semibold text-white mb-3">3. Analityka i Reklamy (Google)</h2>
+                            <h2 className="text-xl font-semibold text-white mb-3">{t('privacy.analytics.heading')}</h2>
                             <ul className="list-disc pl-5 space-y-2">
                                 <li>
-                                    <strong>Google Analytics:</strong> Korzystamy z narzędzi Google w celu zbierania anonimowych statystyk ruchu na stronie (np. czas spędzony na stronie, rodzaj przeglądarki). Dane te pomagają nam ulepszać serwis.
+                                    <strong>{t('privacy.analytics.ga.label')}</strong> {t('privacy.analytics.ga.text')}
                                 </li>
                                 <li>
-                                    <strong>Reklamy Google (AdSense):</strong> Na stronie mogą być wyświetlane reklamy. Google korzysta z plików cookies (np. cookie DART), aby wyświetlać reklamy dopasowane do Twoich zainteresowań na podstawie wizyt w tym i innych serwisach.
+                                    <strong>{t('privacy.analytics.ads.label')}</strong> {t('privacy.analytics.ads.text')}
                                 </li>
                                 <li>
-                                    Możesz zarządzać ustawieniami reklam lub zrezygnować z personalizacji w ustawieniach swojego konta Google.
+                                    {t('privacy.analytics.manage')}
                                 </li>
                             </ul>
                         </section>
 
                         {/* 4. Odbiorcy Danych */}
                         <section>
-                            <h2 className="text-xl font-semibold text-white mb-3">4. Kto odbiera dane?</h2>
-                            <p className="mb-2">Twoje dane mogą być przekazywane następującym podmiotom:</p>
+                            <h2 className="text-xl font-semibold text-white mb-3">{t('privacy.recipients.heading')}</h2>
+                            <p className="mb-2">{t('privacy.recipients.intro')}</p>
                             <ul className="list-disc pl-5 space-y-2">
-                                <li><strong>Operator hostingu:</strong> <span className="text-purple-400 font-mono text-sm">[NAZWA HOSTINGU, np. Vercel / Netlify]</span> – w celu przechowywania danych na serwerze.</li>
-                                <li><strong>Google LLC:</strong> W zakresie usług analitycznych i reklamowych.</li>
-                                <li><strong>Uprawnione organy państwowe:</strong> Tylko jeśli wystąpią z taką prośbą na podstawie przepisów prawa.</li>
+                                <li><strong>{t('privacy.recipients.hosting.label')}</strong> <span className="text-purple-400 font-mono text-sm">{t('privacy.recipients.hosting.placeholder')}</span> {t('privacy.recipients.hosting.text')}</li>
+                                <li><strong>{t('privacy.recipients.google.label')}</strong> {t('privacy.recipients.google.text')}</li>
+                                <li><strong>{t('privacy.recipients.authorities.label')}</strong> {t('privacy.recipients.authorities.text')}</li>
                             </ul>
                         </section>
 
                         {/* 5. Prawa Użytkownika */}
                         <section>
-                            <h2 className="text-xl font-semibold text-white mb-3">5. Twoje Prawa</h2>
+                            <h2 className="text-xl font-semibold text-white mb-3">{t('privacy.rights.heading')}</h2>
                             <p>
-                                Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia ("prawo do bycia zapomnianym"), ograniczenia przetwarzania oraz prawo do wniesienia sprzeciwu wobec przetwarzania.
+                                {t('privacy.rights.text')}
                             </p>
                         </section>
 
                         <div className="pt-8 text-sm text-gray-500 italic border-t border-gray-700 text-center">
-                            Ostatnia aktualizacja: {new Date().toLocaleDateString('pl-PL')}
+                            {t('privacy.lastUpdate', { date: new Date().toLocaleDateString(locale) })}
                         </div>
 
                     </div>

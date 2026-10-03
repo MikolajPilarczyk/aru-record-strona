@@ -1,5 +1,5 @@
-
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { createClient } from '@sanity/client'
 import he from 'he';
 
@@ -25,6 +25,7 @@ const client = createClient({
 
 
 const LatestVideos: React.FC = () => {
+  const { t } = useTranslation();
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -92,17 +93,17 @@ const LatestVideos: React.FC = () => {
     }
   }, [videos]);
 
-  if (loading) return <p>Ładowanie filmów...</p>;
+  if (loading) return <p>{t('videos.loading')}</p>;
 
   return (
         <section id="voices" className="relative py-20 bg-gradient-to-b from-[#505B6C] pt-25 to-[#172440] overflow-hidden sm:w-screen px-7 max-w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-left mb-16 grid grid-cols-2">
             <div>
-              <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasze współprace</h2>
+              <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">{t('videos.title')}</h2>
               <div className="lg:w-120   h-1 bg-gradient-to-r from-cyan-500 to-green-500 mx-auto float-left mb-5 w-70" />
               <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
-                Projekty, przy których Aru Record maczało swoje szczurze palce
+                {t('videos.subtitle')}
               </p>
             </div>
             <img src={"/scul%20like.png"} alt="scul-lajk" className={`w-45 mx-95`} onClick={()=> setRotation(rotation+45)}  style={{ transform: `rotate(${rotation}deg)`}}/>
@@ -147,10 +148,6 @@ const LatestVideos: React.FC = () => {
           </div>
         </div>
       </section>
-
-     
-        
-       
 
   );
 };

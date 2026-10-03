@@ -1,8 +1,9 @@
 import {ArrowRight, Calendar} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { client, urlFor } from './sanityClient';
-import { Link } from 'react-router-dom';
 import './index.css';
+
+import { LocalizedLink as Link } from './LocalizedLink';
 
 function Posty() {
     const [posts, setPosts] = useState<any[]>([]);

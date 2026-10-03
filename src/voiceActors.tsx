@@ -1,10 +1,12 @@
 import  { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { client, urlFor } from './sanityClient';
-import { Link } from 'react-router-dom';
+import { LocalizedLink as Link } from './LocalizedLink';
 import './index.css';
 import { ArrowRight } from 'lucide-react';
 
 function VoiceActors() {
+    const { t } = useTranslation();
     const [actors, setActors] = useState<any[]>([]);
 
     const [rotation, setRotation] = useState(0);
@@ -28,10 +30,10 @@ function VoiceActors() {
 
               <div className="text-left mb-16 grid grid-cols-2">
                   <div>
-                      <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">Nasza Zgraja</h2>
+                      <h2 className="text-4xl md:text-5xl mb-4 text-white font-luckiest">{t('voicesHome.title')}</h2>
                       <div className="w-60 h-1 bg-gradient-to-r from-green-500 to-emerald-500 mx-auto float-left mb-5" />
                       <p className="text-gray-400 mt-4 max-w-2xl text-left clear-both">
-                          Poznaj naszych doświadczonych aktorów, którzy nadają charakter każdemu projektowi
+                          {t('voicesHome.subtitle')}
                       </p>
                   </div>
                 <img src="/scul%20love.png" alt="scul-plose" className="w-45 mx-95"  onClick={()=> setRotation(rotation+45)}  style={{ transform: `rotate(${rotation}deg)`}}/>
@@ -89,7 +91,7 @@ function VoiceActors() {
             ))}
           </div>
             <div className="justify-items-center">
-                <button className={" border-1 border-green-500  text-green-400 hover:scale-105 transition-all p-4 rounded-xl   flex my-10  shadow-green-500/50 shadow-xl/20 "}><Link to="/aktorzy-glosowi">  Zobacz wszystkich naszych aktorów </Link><ArrowRight></ArrowRight></button>
+                <button className={" border-1 border-green-500  text-green-400 hover:scale-105 transition-all p-4 rounded-xl   flex my-10  shadow-green-500/50 shadow-xl/20 "}><Link to="/aktorzy-glosowi">  {t('voicesHome.cta')} </Link><ArrowRight></ArrowRight></button>
 
             </div>
 

@@ -3,12 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord, faYoutube, faInstagram, faTiktok, faBluesky } from '@fortawesome/free-brands-svg-icons';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
+import { useLang } from './useLang';
 
 export function Contact() {
+  const { t } = useTranslation();
+  const { lang, locale } = useLang();
   const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState<'success' | 'error' | null>(null);
-  const currentTime = new Date().toLocaleString('pl-PL');
   const {
     register,
     handleSubmit,
@@ -16,7 +19,7 @@ export function Contact() {
     formState: { errors }
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     setIsSending(true);
     setStatus(null);
 
@@ -28,7 +31,8 @@ export function Contact() {
             name: data.fullName,
             email: data.email,
             message: data.message,
-            time: currentTime,
+            time: new Date().toLocaleString(locale),
+            language: lang, // opcjonalnie: dodaj {{language}} w szablonie EmailJS
           },
           '6z4rR7DOS8-R-xdXb'
       );
@@ -47,7 +51,7 @@ export function Contact() {
       <section id="contact" className="relative py-20 bg-gradient-to-b from-[#14203D] to-[#172440] w-screen max-w-screen overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl mb-4 text-white">Skontaktuj się z nami</h2>
+            <h2 className="text-4xl md:text-5xl mb-4 text-white">{t('contact.title')}</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-green-500 mx-auto rounded-full" />
           </div>
 
@@ -80,7 +84,7 @@ export function Contact() {
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
                     <FontAwesomeIcon icon={faYoutube} size="xl" className="text-gray-50" />
                   </div>
-                  <h3 className="text-xl text-gray-200 hover:text-emerald-100">Kanał YouTube</h3>
+                  <h3 className="text-xl text-gray-200 hover:text-emerald-100">{t('contact.youtube')}</h3>
                 </a>
               </div>
 
@@ -90,7 +94,7 @@ export function Contact() {
                   <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
                     <FontAwesomeIcon icon={faDiscord} size="xl" className="text-gray-50" />
                   </div>
-                  <h3 className="text-xl text-gray-200 hover:text-emerald-100">Serwer Discord</h3>
+                  <h3 className="text-xl text-gray-200 hover:text-emerald-100">{t('contact.discord')}</h3>
                 </a>
               </div>
 
@@ -119,52 +123,52 @@ export function Contact() {
             <div className="bg-[#172440] backdrop-blur-sm rounded-xl p-8 border border-slate-700 shadow-xl">
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <div>
-                  <label className="block text-gray-300 mb-2">Imię i nazwisko</label>
+                  <label className="block text-gray-300 mb-2">{t('contact.form.fullName')}</label>
                   <input
                       type="text"
-                      {...register("fullName", { required: "To pole jest wymagane" })}
+                      {...register("fullName", { required: t('contact.errors.required') })}
                       className={`w-full px-4 py-3 bg-gray-700 border ${errors.fullName ? 'border-red-500' : 'border-gray-600'} rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors`}
-                      placeholder="Jan Kowalski"
+                      placeholder={t('contact.form.fullNamePlaceholder')}
                   />
                   {errors.fullName && <p className="text-red-400 text-xs mt-1">{errors.fullName.message?.toString()}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-gray-300 mb-2">Email</label>
+                  <label className="block text-gray-300 mb-2">{t('contact.form.email')}</label>
                   <input
                       type="email"
                       {...register("email", {
-                        required: "Email jest wymagany",
-                        pattern: { value: /^\S+@\S+$/i, message: "Niepoprawny format email" }
+                        required: t('contact.errors.emailRequired'),
+                        pattern: { value: /^\S+@\S+$/i, message: t('contact.errors.emailInvalid') }
                       })}
                       className={`w-full px-4 py-3 bg-gray-700 border ${errors.email ? 'border-red-500' : 'border-gray-600'} rounded-lg text-white focus:outline-none focus:border-cyan-500 transition-colors`}
-                      placeholder="jan@example.com"
+                      placeholder={t('contact.form.emailPlaceholder')}
                   />
                   {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message?.toString()}</p>}
                 </div>
 
                 <div>
-                  <label className="block text-gray-300 mb-2">Wiadomość</label>
+                  <label className="block text-gray-300 mb-2">{t('contact.form.message')}</label>
                   <textarea
                       rows={4}
                       {...register("message", {
-                        required: "Napisz chociaż kilka słów",
-                        minLength: { value: 10, message: "Wiadomość musi mieć min. 10 znaków" }
+                        required: t('contact.errors.messageRequired'),
+                        minLength: { value: 10, message: t('contact.errors.messageMinLength') }
                       })}
                       className={`w-full px-4 py-3 bg-gray-700 border ${errors.message ? 'border-red-500' : 'border-gray-600'} rounded-lg text-white focus:outline-none focus:border-purple-500 transition-colors resize-none`}
-                      placeholder="Opisz swój projekt..."
+                      placeholder={t('contact.form.messagePlaceholder')}
                   />
                   {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message?.toString()}</p>}
                 </div>
 
                 {status === 'success' && (
                     <div className="bg-emerald-500/10 border border-emerald-500 text-emerald-400 p-3 rounded-lg text-center">
-                      Wiadomość wysłana pomyślnie!
+                      {t('contact.status.success')}
                     </div>
                 )}
                 {status === 'error' && (
                     <div className="bg-red-500/10 border border-red-500 text-red-400 p-3 rounded-lg text-center">
-                      Błąd wysyłki. Spróbuj ponownie.
+                      {t('contact.status.error')}
                     </div>
                 )}
 
@@ -173,7 +177,7 @@ export function Contact() {
                     disabled={isSending}
                     className="w-full px-6 py-4 bg-gradient-to-r from-emerald-500 to-purple-500 text-white rounded-lg hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:pointer-events-none font-bold"
                 >
-                  {isSending ? "Wysyłanie..." : "Wyślij wiadomość"}
+                  {isSending ? t('contact.form.sending') : t('contact.form.submit')}
                 </button>
               </form>
             </div>
@@ -182,7 +186,7 @@ export function Contact() {
 
         {/* Footer Image */}
         <div className="w-full mt-20">
-          <img src="/scul%20płaski.png" alt="Footer" className="w-full h-auto object-contain px-4 md:px-20 lg:px-40" />
+          <img src="/scul%20płaski.png" alt={t('contact.footerImageAlt')} className="w-full h-auto object-contain px-4 md:px-20 lg:px-40" />
         </div>
       </section>
   );

@@ -1,0 +1,281 @@
+{
+  "seo": {
+    "siteTagline": "dubbing and localization studio",
+    "defaultDescription": "AruRecord is a Polish dubbing and localization studio. We create Polish localizations and dubbing for films, series, animation, games, commercials and audiobooks."
+  },
+
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "actors": "Actors",
+    "about": "About us",
+    "contact": "Contact",
+    "logoAlt": "Logo",
+    "toggleMenu": "Toggle menu"
+  },
+
+  "footer": {
+    "rights": "© {{year}} Aru Record. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+
+  "common": {
+    "loading": "Loading...",
+    "noImage": "No image",
+    "noDate": "No date"
+  },
+
+  "hero": {
+    "titleLine1": "The Rat Gang",
+    "titleLine2": "got their paws on the microphones and is doing dubbing",
+    "description": "We are a fast-growing studio specializing in Polish localization and dubbing for films, series, games, animation and advertising materials. We guarantee the highest quality and a pleasant collaboration.",
+    "ctaWork": "See our work",
+    "ctaContact": "Contact",
+    "ratAlt": "rat mascot"
+  },
+
+  "portfolio": {
+    "seo": {
+      "title": "Portfolio",
+      "description": "Browse the AruRecord portfolio: dubbing, Polish localization, animations, skits, covers and other voice projects by our studio."
+    },
+    "title": "Our Portfolio",
+    "subtitle": "Here are the projects we've worked on recently",
+    "ctaAll": "See our full portfolio",
+    "searchHeading": "Search our projects",
+    "easterEggPhrase": "Rats Fighting With Lightsabers",
+    "easterEggAlert": "Pow Pow",
+    "search": "Search",
+    "sortOldest": "Oldest first",
+    "sortNewest": "Newest first",
+    "filters": {
+      "all": "All projects",
+      "animation": "Animation",
+      "featured": "Featured",
+      "pilot": "Pilot",
+      "official": "Official",
+      "skit": "Skit",
+      "cover": "Cover"
+    }
+  },
+
+  "voicesHome": {
+    "title": "Our Rat Pack",
+    "subtitle": "Meet our experienced actors who give every project its character",
+    "cta": "See all our actors"
+  },
+
+  "videos": {
+    "loading": "Loading videos...",
+    "title": "Our Collaborations",
+    "subtitle": "Projects Aru Record has dipped its rat paws into"
+  },
+
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We offer comprehensive, top-level service for dubbing projects",
+    "items": {
+      "film": {
+        "title": "Film and series dubbing",
+        "description": "Professional translation and voicing of film and TV productions."
+      },
+      "games": {
+        "title": "Game localization",
+        "description": "Full handling of dialogue, narration and sound effects in games."
+      },
+      "ads": {
+        "title": "Commercials and ads",
+        "description": "Voice production for commercials, promotional materials and presentations."
+      },
+      "voiceover": {
+        "title": "Voice-over narration",
+        "description": "Narration for documentaries, tutorials and educational materials."
+      },
+      "audiobooks": {
+        "title": "Audiobooks",
+        "description": "Audiobook recording with professional narrators with distinctive voices."
+      },
+      "translations": {
+        "title": "Language translation",
+        "description": "Dubbing in multiple languages with native speakers."
+      }
+    }
+  },
+
+  "postDetail": {
+    "notFound": "Post not found.",
+    "untitled": "Title unavailable",
+    "dateUnknown": "Date unknown",
+    "noDescription": "This post has no description.",
+    "castHeading": "Cast:",
+    "techHeading": "Technical production:",
+    "guestHeading": "Guest appearance:",
+    "unknown": "Unknown",
+    "unspecified": "Unspecified",
+    "actorAlt": "Actor"
+  },
+
+  "privacy": {
+    "seo": {
+      "title": "Privacy Policy",
+      "description": "AruRecord privacy policy: information about the contact form, analytics and data processing."
+    },
+    "title": "Privacy Policy",
+    "controller": {
+      "heading": "1. Data Controller",
+      "intro": "The controller of personal data collected through this website is:",
+      "namePlaceholder": "[YOUR NAME / COMPANY NAME]",
+      "contactLabel": "Contact address:",
+      "emailPlaceholder": "[YOUR CONTACT EMAIL]"
+    },
+    "form": {
+      "heading": "2. Contact Form",
+      "text": "Data provided in the contact form (name, email address, message content) is processed solely to respond to your enquiry."
+    },
+    "analytics": {
+      "heading": "3. Analytics and Advertising (Google)",
+      "ga": {
+        "label": "Google Analytics:",
+        "text": "We use Google tools to collect anonymous traffic statistics (e.g. time spent on the site, browser type). This data helps us improve the website."
+      },
+      "ads": {
+        "label": "Google Ads (AdSense):",
+        "text": "Ads may be displayed on the website. Google uses cookies (e.g. the DART cookie) to serve ads tailored to your interests based on your visits to this and other websites."
+      },
+      "manage": "You can manage your ad settings or opt out of personalization in your Google account settings."
+    },
+    "recipients": {
+      "heading": "4. Who receives the data?",
+      "intro": "Your data may be shared with the following parties:",
+      "hosting": {
+        "label": "Hosting provider:",
+        "placeholder": "[HOSTING NAME, e.g. Vercel / Netlify]",
+        "text": "– to store data on the server."
+      },
+      "google": {
+        "label": "Google LLC:",
+        "text": "For analytics and advertising services."
+      },
+      "authorities": {
+        "label": "Authorized public authorities:",
+        "text": "Only if they request it on the basis of legal provisions."
+      }
+    },
+    "rights": {
+      "heading": "5. Your Rights",
+      "text": "You have the right to access your data, to rectify it, to erase it (the “right to be forgotten”), to restrict its processing, and to object to its processing."
+    },
+    "lastUpdate": "Last updated: {{date}}"
+  },
+
+  "voiceActorDetail": {
+    "imageAlt": "Image",
+    "seoDescription": "{{name}} - {{specialization}} at AruRecord. Listen to voice samples and see their appearances.",
+    "demosHeading": "Voice samples",
+    "audioUnsupported": "Your browser does not support audio.",
+    "noBio": "No profile description.",
+    "socialsHeading": "Socials",
+    "appearancesHeading": "Appearances",
+    "inRole": "As: {{character}}",
+    "technicalHeading": "Technical credits"
+  },
+
+  "about": {
+    "seo": {
+      "title": "About us",
+      "description": "Meet AruRecord – a Polish dubbing, localization and voice production studio for films, series, games, animation and advertising."
+    },
+    "badge": "About us",
+    "titleLine1": "What is",
+    "titleLine2": "Aru Record?",
+    "description": "We are a team of enthusiasts combining passion with a professional approach. Our studio is a place where your productions can take on new colors thanks to our exceptional work. We specialize in creating top-quality projects while keeping an energetic pace. We are open to new commissions and collaboration proposals.",
+    "stats": {
+      "quality": {
+        "value": "Top quality",
+        "label": "high-end equipment and software"
+      },
+      "speed": {
+        "value": "Speed and professionalism",
+        "label": "lightning-fast turnaround"
+      },
+      "actors": {
+        "value": "Extensive actor database",
+        "label": "50+ different voices"
+      },
+      "translations": {
+        "value": "Accurate and careful translations",
+        "label": "experienced dialogue writers and script editors"
+      }
+    },
+    "cta": "See our projects",
+    "imageAlt": "Scur"
+  },
+
+  "voices": {
+    "seo": {
+      "title": "Voice actors",
+      "description": "Meet the voice actors, sound engineers, directors and dialogue writers working with AruRecord."
+    },
+    "title": "Our Rat Pack",
+    "subtitle": "Meet our crew – each of us adds a brick to give every project its own character",
+    "searchHeading": "Find a member",
+    "searchPlaceholder": "Enter a name or specialization...",
+    "searchButton": "Search",
+    "easterEggPhrase": "Romek the Rat fighting an alligator",
+    "filters": {
+      "all": "All voices",
+      "female": "Female voices",
+      "male": "Male voices",
+      "adult": "Adult voices",
+      "child": "Child voices",
+      "soundEngineer": "Sound engineer",
+      "director": "Director",
+      "dialogueWriter": "Dialogue writer",
+      "vocalist": "Vocalist"
+    },
+    "teamHeading": "Here's our rat brigade ({{total}})",
+    "loading": "Sniffing through the database...",
+    "noPhoto": "No photo",
+    "anonymous": "Anonymous",
+    "defaultSpecialization": "Voice actor",
+    "guestHeading": "Guest Appearances",
+    "emptyTitle": "Nothing here... like an empty sewer.",
+    "showAll": "Show everyone",
+    "easterEggAlt": "Easter Egg"
+  },
+
+  "contact": {
+    "title": "Get in touch",
+    "youtube": "YouTube channel",
+    "discord": "Discord server",
+    "form": {
+      "fullName": "Full name",
+      "fullNamePlaceholder": "John Smith",
+      "email": "Email",
+      "emailPlaceholder": "john@example.com",
+      "message": "Message",
+      "messagePlaceholder": "Describe your project...",
+      "submit": "Send message",
+      "sending": "Sending..."
+    },
+    "errors": {
+      "required": "This field is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email format",
+      "messageRequired": "Please write at least a few words",
+      "messageMinLength": "Message must be at least 10 characters long"
+    },
+    "status": {
+      "success": "Message sent successfully!",
+      "error": "Sending failed. Please try again."
+    },
+    "footerImageAlt": "Footer"
+  },
+
+  "notFound": {
+    "title": "Oops! Page not found",
+    "text": "Looks like you've wandered into the rat void. The page you're looking for may have been moved or never existed.",
+    "backHome": "Back to home page"
+  }
+}

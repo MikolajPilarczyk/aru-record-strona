@@ -1,5 +1,8 @@
+import { useTranslation } from 'react-i18next';
+import { LocalizedLink as Link } from './LocalizedLink';
 
 export function NotFoundPage() {
+    const { t } = useTranslation();
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12 flex flex-col items-center justify-center">
@@ -9,21 +12,21 @@ export function NotFoundPage() {
 
                 {/* Treść błędu */}
                 <h2 className="mt-4 text-2xl md:text-3xl font-semibold text-white">
-                    Ups! Strona nie została znaleziona
+                    {t('notFound.title')}
                 </h2>
 
                 <p className="mt-3 text-gray-400 max-w-sm mx-auto text-sm md:text-base">
-                    Wygląda na to, że trafiłeś w szczurzą próżnię. Strona, której szukasz, mogła zostać przeniesiona lub nigdy nie istniała.
+                    {t('notFound.text')}
                 </p>
 
                 {/* Przycisk akcji */}
                 <div className="mt-8">
-                    <a
-                        href="/"
+                    <Link
+                        to="/"
                         className="inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 transform hover:-translate-y-0.5"
                     >
-                        Wróć do strony głównej
-                    </a>
+                        {t('notFound.backHome')}
+                    </Link>
                 </div>
             </div>
         </div>

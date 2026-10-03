@@ -1,0 +1,281 @@
+{
+  "seo": {
+    "siteTagline": "studio dubbingu i lokalizacji",
+    "defaultDescription": "AruRecord to polskie studio dubbingu i lokalizacji. Tworzymy spolszczenia, dubbing do filmów, seriali, animacji, gier, reklam i audiobooków."
+  },
+
+  "nav": {
+    "home": "Start",
+    "portfolio": "Portfolio",
+    "actors": "Aktorzy",
+    "about": "O nas",
+    "contact": "Kontakt",
+    "logoAlt": "Logo",
+    "toggleMenu": "Przełącz menu"
+  },
+
+  "footer": {
+    "rights": "© {{year}} Aru Record. Wszelkie prawa zastrzeżone.",
+    "privacy": "Polityka prywatności",
+    "terms": "Regulamin"
+  },
+
+  "common": {
+    "loading": "Ładowanie...",
+    "noImage": "Brak zdjęcia",
+    "noDate": "Brak daty"
+  },
+
+  "hero": {
+    "titleLine1": "Banda Szczurów",
+    "titleLine2": "dorwała się do mikrofonów i robi dubbing",
+    "description": "Jesteśmy prężnie rozwijającym się studiem specjalizującym się w spolszczeniach i dubbingu do filmów, seriali, gier, animacji i materiałów reklamowych. Gwarantujemy najwyższą jakość i przyjemną współpracę.",
+    "ctaWork": "Zobacz nasze prace",
+    "ctaContact": "Kontakt",
+    "ratAlt": "scur"
+  },
+
+  "portfolio": {
+    "seo": {
+      "title": "Portfolio",
+      "description": "Zobacz portfolio AruRecord: dubbing, spolszczenia, animacje, scenki, covery i inne projekty głosowe naszego studia."
+    },
+    "title": "Nasze Portfolio",
+    "subtitle": "Oto projekty nad jakimi ostatnio pracowaliśmy",
+    "ctaAll": "Zobacz nasze całe portfolio",
+    "searchHeading": "Wyszukaj nasz projekt",
+    "easterEggPhrase": "Szczury Walczące na miecze świetlne",
+    "easterEggAlert": "Pow Pow",
+    "search": "Szukaj",
+    "sortOldest": "Najstarsze najpierw",
+    "sortNewest": "Najnowsze najpierw",
+    "filters": {
+      "all": "Wszystkie projekty",
+      "animation": "Animacja",
+      "featured": "Polecane",
+      "pilot": "Pilot",
+      "official": "Oficjalne",
+      "skit": "Scenka",
+      "cover": "Cover"
+    }
+  },
+
+  "voicesHome": {
+    "title": "Nasza Zgraja",
+    "subtitle": "Poznaj naszych doświadczonych aktorów, którzy nadają charakter każdemu projektowi",
+    "cta": "Zobacz wszystkich naszych aktorów"
+  },
+
+  "videos": {
+    "loading": "Ładowanie filmów...",
+    "title": "Nasze współprace",
+    "subtitle": "Projekty, przy których Aru Record maczało swoje szczurze palce"
+  },
+
+  "services": {
+    "title": "Nasze usługi",
+    "subtitle": "Oferujemy kompleksową obsługę projektów dubbingowych na najwyższym poziomie",
+    "items": {
+      "film": {
+        "title": "Dubbing filmów i seriali",
+        "description": "Profesjonalne tłumaczenie i udźwiękowienie produkcji filmowych i serialowych."
+      },
+      "games": {
+        "title": "Lokalizacja gier",
+        "description": "Kompleksowa obsługa dialogów, narracji i efektów dźwiękowych w grach."
+      },
+      "ads": {
+        "title": "Reklamy i spoty",
+        "description": "Produkcja głosowa do spotów reklamowych, materiałów promocyjnych i prezentacji."
+      },
+      "voiceover": {
+        "title": "Lektoring",
+        "description": "Lektor dla dokumentów, filmów instruktażowych i materiałów edukacyjnych."
+      },
+      "audiobooks": {
+        "title": "Audiobooki",
+        "description": "Nagranie audiobooków z profesjonalnymi lektorami o charakterystycznych głosach."
+      },
+      "translations": {
+        "title": "Tłumaczenia językowe",
+        "description": "Dubbing w wielu językach z rodzimymi lektorami."
+      }
+    }
+  },
+
+  "postDetail": {
+    "notFound": "Nie znaleziono wpisu.",
+    "untitled": "Tytuł niedostępny",
+    "dateUnknown": "Data nieznana",
+    "noDescription": "Ten wpis nie posiada opisu.",
+    "castHeading": "W tej produkcji wystąpili:",
+    "techHeading": "Realizacja techniczna:",
+    "guestHeading": "Występ gościnny:",
+    "unknown": "Nieznany",
+    "unspecified": "Nieokreślona",
+    "actorAlt": "Aktor"
+  },
+
+  "privacy": {
+    "seo": {
+      "title": "Polityka prywatności",
+      "description": "Polityka prywatności strony AruRecord, informacje o formularzu kontaktowym, analityce i przetwarzaniu danych."
+    },
+    "title": "Polityka Prywatności",
+    "controller": {
+      "heading": "1. Administrator Danych",
+      "intro": "Administratorem danych osobowych zbieranych za pośrednictwem strony jest:",
+      "namePlaceholder": "[TWOJE IMIĘ I NAZWISKO / NAZWA FIRMY]",
+      "contactLabel": "Adres do kontaktu:",
+      "emailPlaceholder": "[TWÓJ E-MAIL KONTAKTOWY]"
+    },
+    "form": {
+      "heading": "2. Formularz Kontaktowy",
+      "text": "Dane podane w formularzu kontaktowym (imię, adres e-mail, treść wiadomości) przetwarzane są wyłącznie w celu udzielenia odpowiedzi na Twoje zapytanie."
+    },
+    "analytics": {
+      "heading": "3. Analityka i Reklamy (Google)",
+      "ga": {
+        "label": "Google Analytics:",
+        "text": "Korzystamy z narzędzi Google w celu zbierania anonimowych statystyk ruchu na stronie (np. czas spędzony na stronie, rodzaj przeglądarki). Dane te pomagają nam ulepszać serwis."
+      },
+      "ads": {
+        "label": "Reklamy Google (AdSense):",
+        "text": "Na stronie mogą być wyświetlane reklamy. Google korzysta z plików cookies (np. cookie DART), aby wyświetlać reklamy dopasowane do Twoich zainteresowań na podstawie wizyt w tym i innych serwisach."
+      },
+      "manage": "Możesz zarządzać ustawieniami reklam lub zrezygnować z personalizacji w ustawieniach swojego konta Google."
+    },
+    "recipients": {
+      "heading": "4. Kto odbiera dane?",
+      "intro": "Twoje dane mogą być przekazywane następującym podmiotom:",
+      "hosting": {
+        "label": "Operator hostingu:",
+        "placeholder": "[NAZWA HOSTINGU, np. Vercel / Netlify]",
+        "text": "– w celu przechowywania danych na serwerze."
+      },
+      "google": {
+        "label": "Google LLC:",
+        "text": "W zakresie usług analitycznych i reklamowych."
+      },
+      "authorities": {
+        "label": "Uprawnione organy państwowe:",
+        "text": "Tylko jeśli wystąpią z taką prośbą na podstawie przepisów prawa."
+      }
+    },
+    "rights": {
+      "heading": "5. Twoje Prawa",
+      "text": "Masz prawo dostępu do swoich danych, ich sprostowania, usunięcia („prawo do bycia zapomnianym”), ograniczenia przetwarzania oraz prawo do wniesienia sprzeciwu wobec przetwarzania."
+    },
+    "lastUpdate": "Ostatnia aktualizacja: {{date}}"
+  },
+
+  "voiceActorDetail": {
+    "imageAlt": "Zdjęcie",
+    "seoDescription": "{{name}} - {{specialization}} w zespole AruRecord. Posłuchaj próbek głosowych i zobacz wystąpienia.",
+    "demosHeading": "Próbki głosowe",
+    "audioUnsupported": "Twoja przeglądarka nie obsługuje audio.",
+    "noBio": "Brak opisu profilu.",
+    "socialsHeading": "Socjale",
+    "appearancesHeading": "Wystąpienia",
+    "inRole": "W roli: {{character}}",
+    "technicalHeading": "Udział techniczny"
+  },
+
+  "about": {
+    "seo": {
+      "title": "O nas",
+      "description": "Poznaj AruRecord - polskie studio dubbingu, lokalizacji i realizacji głosu do filmów, seriali, gier, animacji oraz reklam."
+    },
+    "badge": "O nas",
+    "titleLine1": "Czym jest",
+    "titleLine2": "Aru Record?",
+    "description": "Jesteśmy zespołem entuzjastów łączącym pasję z profesjonalnym podejściem. Nasze studio to miejsce, gdzie Twoje produkcje mogą nabrać nowych kolorów, dzięki naszej wyjątkowej pracy. Specjalizujemy się w tworzeniu najlepszej jakości projektów, przy zachowaniu energicznego tempa. Jesteśmy otwarci na nowe zlecenia i propozycje współpracy.",
+    "stats": {
+      "quality": {
+        "value": "Topowa jakość",
+        "label": "wysokiej klasy sprzęt i oprogramowanie"
+      },
+      "speed": {
+        "value": "Szybkość i profesjonalizm",
+        "label": "zawrotne tempo realizacji"
+      },
+      "actors": {
+        "value": "Obszerna baza aktorów",
+        "label": "50+ różnych głosów"
+      },
+      "translations": {
+        "value": "Dokładne i staranne tłumaczenia",
+        "label": "doświadczeni dialogiści oraz adiustatorzy"
+      }
+    },
+    "cta": "Zobacz nasze projekty",
+    "imageAlt": "Scur"
+  },
+
+  "voices": {
+    "seo": {
+      "title": "Aktorzy głosowi",
+      "description": "Poznaj aktorów głosowych, realizatorów, reżyserów i dialogistów współpracujących z AruRecord."
+    },
+    "title": "Nasza zgraja",
+    "subtitle": "Poznaj naszą ekipę, każdy z nas dokłada cegiełkę do nadania charakteru każdemu projektowi",
+    "searchHeading": "Wyszukaj członka",
+    "searchPlaceholder": "Wpisz imię lub specjalizację...",
+    "searchButton": "Szukaj",
+    "easterEggPhrase": "Szczur Romek walczący z aligatorem",
+    "filters": {
+      "all": "Wszystkie głosy",
+      "female": "Głosy damskie",
+      "male": "Głosy męskie",
+      "adult": "Głosy dorosłe",
+      "child": "Głosy dziecięce",
+      "soundEngineer": "Realizator dźwięku",
+      "director": "Reżyser",
+      "dialogueWriter": "Dialogista",
+      "vocalist": "Wokalista"
+    },
+    "teamHeading": "Oto nasza brygada szczurów ({{total}})",
+    "loading": "Węszenie w bazie danych...",
+    "noPhoto": "Brak foto",
+    "anonymous": "Anonim",
+    "defaultSpecialization": "Aktor głosowy",
+    "guestHeading": "Występ Gościnny",
+    "emptyTitle": "Pusto tu... jak w pustym kanale.",
+    "showAll": "Pokaż wszystkich",
+    "easterEggAlt": "Easter Egg"
+  },
+
+  "contact": {
+    "title": "Skontaktuj się z nami",
+    "youtube": "Kanał YouTube",
+    "discord": "Serwer Discord",
+    "form": {
+      "fullName": "Imię i nazwisko",
+      "fullNamePlaceholder": "Jan Kowalski",
+      "email": "Email",
+      "emailPlaceholder": "jan@example.com",
+      "message": "Wiadomość",
+      "messagePlaceholder": "Opisz swój projekt...",
+      "submit": "Wyślij wiadomość",
+      "sending": "Wysyłanie..."
+    },
+    "errors": {
+      "required": "To pole jest wymagane",
+      "emailRequired": "Email jest wymagany",
+      "emailInvalid": "Niepoprawny format email",
+      "messageRequired": "Napisz chociaż kilka słów",
+      "messageMinLength": "Wiadomość musi mieć min. 10 znaków"
+    },
+    "status": {
+      "success": "Wiadomość wysłana pomyślnie!",
+      "error": "Błąd wysyłki. Spróbuj ponownie."
+    },
+    "footerImageAlt": "Stopka"
+  },
+
+  "notFound": {
+    "title": "Ups! Strona nie została znaleziona",
+    "text": "Wygląda na to, że trafiłeś w szczurzą próżnię. Strona, której szukasz, mogła zostać przeniesiona lub nigdy nie istniała.",
+    "backHome": "Wróć do strony głównej"
+  }
+}

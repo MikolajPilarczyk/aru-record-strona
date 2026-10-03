@@ -1,20 +1,23 @@
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { client, urlFor } from '../sanityClient';
 import { PortableText, type PortableTextComponents } from '@portabletext/react';
 import { faDiscord, faYoutube,faInstagram, faTiktok} from '@fortawesome/free-brands-svg-icons';
 import {faLink} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { Seo } from "../seo";
-
+import {LocalizedLink as Link} from "../LocalizedLink.tsx";
 
 
 export function     VoiceActorsDetail() {
+    const { t } = useTranslation();
+
     const portableTextComponents: PortableTextComponents = {
         types: {
             image: ({ value }) => (
                 <div className="my-8">
-                    <img src={urlFor(value).width(1200).url()} alt="Zdjęcie" className="rounded-lg border border-gray-800" />
+                    <img src={urlFor(value).width(1200).url()} alt={t('voiceActorDetail.imageAlt')} className="rounded-lg border border-gray-800" />
                 </div>
             ),
         },
@@ -87,13 +90,16 @@ export function     VoiceActorsDetail() {
         }
     }, [id]);
 
-    if (!actors) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">Wczytywanie...</div>;
+    if (!actors) return <div className="min-h-screen bg-gray-900 flex items-center justify-center text-white">{t('common.loading')}</div>;
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
             <Seo
                 title={`${actors.imie || ''} ${actors.ksywka ? `"${actors.ksywka}"` : ''} ${actors.nazwisko || ''}`.trim()}
-                description={`${actors.imie || actors.ksywka || 'Aktor głosowy'} - ${actors.specialization || 'aktor głosowy'} w zespole AruRecord. Posłuchaj próbek głosowych i zobacz wystąpienia.`}
+                description={t('voiceActorDetail.seoDescription', {
+                    name: actors.imie || actors.ksywka || t('voices.defaultSpecialization'),
+                    specialization: actors.specialization || t('voices.defaultSpecialization').toLowerCase(),
+                })}
                 path={`/aktorzy-glosowi/${id}`}
                 image={actors.image ? urlFor(actors.image).width(1200).height(630).url() : '/scul_partnerski.png'}
                 type="profile"
@@ -102,7 +108,7 @@ export function     VoiceActorsDetail() {
                     '@type': 'Person',
                     name: `${actors.imie || ''} ${actors.ksywka ? `"${actors.ksywka}"` : ''} ${actors.nazwisko || ''}`.trim(),
                     image: actors.image ? urlFor(actors.image).width(1200).height(630).url() : undefined,
-                    jobTitle: actors.specialization || 'Aktor głosowy',
+                    jobTitle: actors.specialization || t('voices.defaultSpecialization'),
                     worksFor: {
                         '@type': 'Organization',
                         name: 'AruRecord',
@@ -132,7 +138,7 @@ export function     VoiceActorsDetail() {
                     {/* SEKCJA WIELU DEMO GŁOSOWYCH */}
                     {actors.demo && actors.demo.length > 0 && (
                         <div className="mb-10">
-                            <h2 className="text-white text-2xl mb-6 font-semibold">Próbki głosowe</h2>
+                            <h2 className="text-white text-2xl mb-6 font-semibold">{t('voiceActorDetail.demosHeading')}</h2>
                             <div className="space-y-4">
                                 {actors.demo.map((track: any, index: number) => (
                                     <div key={index} className="bg-gray-900/50 p-4 rounded-xl border border-gray-700 flex flex-col gap-2">
@@ -141,7 +147,7 @@ export function     VoiceActorsDetail() {
                                         )}
                                         <audio controls className="w-full h-10 accent-orange-500">
                                             <source src={track.url} type="audio/mpeg" />
-                                            Twoja przeglądarka nie obsługuje audio.
+                                            {t('voiceActorDetail.audioUnsupported')}
                                         </audio>
                                     </div>
                                 ))}
@@ -154,7 +160,7 @@ export function     VoiceActorsDetail() {
                         {actors.body ? (
                             <PortableText value={actors.body} components={portableTextComponents} />
                         ) : (
-                            <p className="italic text-gray-500 text-center py-10">Brak opisu profilu.</p>
+                            <p className="italic text-gray-500 text-center py-10">{t('voiceActorDetail.noBio')}</p>
                         )}
                     </div>
 
@@ -162,7 +168,7 @@ export function     VoiceActorsDetail() {
                     {
                         actors.socials?(
                             <div className={"pt-3"}>
-                                <h2 className={"text-gray-300 text-3xl"}>Socjale</h2>
+                                <h2 className={"text-gray-300 text-3xl"}>{t('voiceActorDetail.socialsHeading')}</h2>
                                 {actors.socials.map((social: any, index: number) => (
                                     <div key={index} className={"text-gray-200 text-lg pl-1 hover:text-gray-100 cursor-pointer "}>
                                         {
@@ -249,14 +255,14 @@ export function     VoiceActorsDetail() {
                     {/* Powiązane posty */}
                     {posts.length > 0 && (
                         <div className="mt-12 pt-10 border-t border-gray-800">
-                            <h2 className="text-white text-3xl font-bold mb-6">Wystąpienia</h2>
+                            <h2 className="text-white text-3xl font-bold mb-6">{t('voiceActorDetail.appearancesHeading')}</h2>
                             <div className="grid gap-4">
                                 {posts.map((post) => (
                                     <Link to={`/post/${post._id}`} key={post._id} className="block p-5 rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-transparent hover:border-gray-700">
                                         <h3 className="text-xl text-white font-semibold">{post.title}</h3>
                                         <div className="mt-2 text-cyan-400 italic">
                                             {post.cast?.filter((c: any) => c.actorDetail?.ksywka === id).map((member: any, idx: number) => (
-                                                <span key={idx}>W roli: {member.characterName}</span>
+                                                <span key={idx}>{t('voiceActorDetail.inRole', { character: member.characterName })}</span>
                                             ))}
                                         </div>
                                     </Link>
@@ -268,7 +274,7 @@ export function     VoiceActorsDetail() {
                     {/*Udział techniczny*/}
                     {techPosts.length > 0 && (
                         <div className="mt-12 pt-10 border-t border-gray-800">
-                            <h2 className="text-white text-3xl font-bold mb-6">Udział techniczny</h2>
+                            <h2 className="text-white text-3xl font-bold mb-6">{t('voiceActorDetail.technicalHeading')}</h2>
                             <div className="grid gap-4">
                                 {techPosts.map((post) => (
                                     <Link to={`/post/${post._id}`} key={post._id} className="block p-5 rounded-xl bg-white/5 hover:bg-white/10 transition-all border border-transparent hover:border-gray-700">
