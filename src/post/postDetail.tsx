@@ -2,51 +2,79 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { client, urlFor } from '../sanityClient';
 import { PortableText } from '@portabletext/react';
-import { Calendar, AlertTriangle } from 'lucide-react'; // Dodałem ikonkę ostrzeżenia
-import MuxPlayer from '@mux/mux-player-react';
+import { Calendar } from 'lucide-react';
+
+// Funkcja pomocnicza do parsowania ID z linków YouTube lub czystego ID
+function extractYouTubeId(url: string) {
+    if (!url) return '';
+    if (url.length === 11 && !url.includes('/') && !url.includes('.')) {
+        return url;
+    }
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : url;
+}
 
 export function PostDetail() {
     const { id } = useParams();
     const [post, setPost] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const [videoError, setVideoError] = useState(false); // Nowy stan do łapania błędu kodeka
+    const [videoSrc, setSrc] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        // Resetujemy stan błędu wideo przy zmianie postu
-        setVideoError(false);
+
+        const LIBRARY_ID = '726936';
+        const DEFAULT_VIDEO_ID = '866d7d44-b1db-4af3-b2b6-ee1311e31d22';
 
         const query = `*[_type == "post" && _id == $id][0]{ 
-            title,
-            publishedAt,
-            body,
-            image,
-            "cast": cast[]{
-                characterName,
-                "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
-            },
-            "techCast": techCast[]{
-                characterName,
-                "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
-            },
-            "partnerCast": partnerCast[]{
-                characterName,
-                "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
-            },
-            "videoData": videoToUpLoad.asset-> {
-                playbackId,
-                aspectRatio
-            },
-            // Pobieramy bezpośredni URL do pliku wideo w Sanity
-            "nativeVideoUrl": nativeVideo.asset->url
-        }`;
+        title,
+        publishedAt,
+        body,
+        image,
+        bunnyId,
+        ytLink,
+        "cast": cast[]{
+            characterName,
+            "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
+        },
+        "techCast": techCast[]{
+            characterName,
+            "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
+        },
+        "partnerCast": partnerCast[]{
+            characterName,
+            "actorDetail": actor->{ _id, imie, ksywka, nazwisko, image }
+        },
+        "videoData": videoToUpLoad.asset-> {
+            playbackId,
+            aspectRatio
+        },
+        "nativeVideoUrl": nativeVideo.asset->url
+    }`;
 
         client.fetch(query, { id })
             .then((data) => {
                 setPost(data);
+
+                // Automatyczne rozpoznawanie źródła wideo:
+                if (data?.ytLink && data.ytLink.trim() !== '') {
+                    const ytId = extractYouTubeId(data.ytLink);
+                    setSrc(`https://www.youtube.com/embed/${ytId}`);
+                } else if (data?.bunnyId && data.bunnyId.trim() !== '') {
+                    setSrc(`https://player.mediadelivery.net/embed/${LIBRARY_ID}/${data.bunnyId}?autoplay=true&loop=false&muted=true&preload=true&responsive=true`);
+                } else {
+                    setSrc(`https://player.mediadelivery.net/embed/${LIBRARY_ID}/${DEFAULT_VIDEO_ID}?autoplay=true&loop=false&muted=true&preload=true&responsive=true`);
+                }
+
                 setLoading(false);
             })
-            .catch(() => setLoading(false));
+            .catch((err) => {
+                console.error("Błąd podczas pobierania posta:", err);
+                setSrc(`https://player.mediadelivery.net/embed/${LIBRARY_ID}/${DEFAULT_VIDEO_ID}?autoplay=true&loop=false&muted=true&preload=true&responsive=true`);
+                setLoading(false);
+            });
+
     }, [id]);
 
     if (loading) {
@@ -61,45 +89,23 @@ export function PostDetail() {
         <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#172440] p-6 md:p-12">
             <div className="py-7 max-w-4xl mx-auto backdrop-blur-md rounded-3xl overflow-hidden">
                 <div className="mb-8">
-                    {/* LOGIKA WYŚWIETLANIA: MUX -> Native Video -> Brak */}
-                    {post.videoData?.playbackId ? (
-                        <MuxPlayer
-                            playbackId={post.videoData.playbackId}
-                            metadataVideoTitle={post.title || "Wideo"}
-                            streamType="on-demand"
-                            className="w-full aspect-video rounded-xl shadow-xl"
+                    <div style={{ position: 'relative', paddingTop: '56.25%' }}>
+                        <iframe
+                            id="main-video-player"
+                            src={videoSrc}
+                            loading="lazy"
+                            style={{
+                                border: 0,
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                height: '100%',
+                                width: '100%',
+                            }}
+                            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen"
+                            allowFullScreen
                         />
-                    ) : post.nativeVideoUrl ? (
-                        <div className="rounded-xl overflow-hidden shadow-xl bg-black border border-gray-800">
-                            {/* Jeśli wystąpił błąd kodeka, renderujemy ładny komunikat dla użytkownika */}
-                            {videoError ? (
-                                <div className="w-full aspect-video flex flex-col items-center justify-center bg-gray-950 p-6 text-center text-white">
-                                    <AlertTriangle className="w-12 h-12 text-amber-500 mb-3" />
-                                    <h3 className="text-xl font-bold text-gray-100">Format wideo nie jest wspierany</h3>
-                                    <p className="text-sm text-gray-400 mt-2 max-w-md">
-                                        Twoja przeglądarka (np. Firefox) nie obsługuje kodeka **H.265 / HEVC** użytego w tym pliku.
-                                    </p>
-                                    <p className="text-xs text-gray-500 mt-1 max-w-sm">
-                                        Uruchom stronę w Chrome, Edge, Safari lub zainstaluj wtyczkę HEVC w systemie.
-                                    </p>
-                                </div>
-                            ) : (
-                                <video
-                                    src={post.nativeVideoUrl}
-                                    controls
-                                    className="w-full aspect-video"
-                                    controlsList="nodownload"
-                                    onError={() => setVideoError(true)} // Wyłapuje brak wsparcia dla H.265
-                                >
-                                    Twoja przeglądarka nie wspiera odtwarzacza wideo.
-                                </video>
-                            )}
-                        </div>
-                    ) : (
-                        <div className="bg-black/20 aspect-video flex items-center justify-center text-gray-500 rounded-xl border border-gray-800 italic">
-                            Wideo niedostępne
-                        </div>
-                    )}
+                    </div>
                 </div>
 
                 <h1 className="text-5xl md:text-3xl font-luckiest py-2 text-white mb-2 px-2">
